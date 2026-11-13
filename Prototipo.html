@@ -1,0 +1,819 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>FacuPool</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Concepto: sitio responsive de dos tonos. Azul institucional para marca y estructura,
+   naranja solo para la acción principal de cada pantalla. Motivo propio: la línea de ruta punteada
+   (origen ····· Facultad) que aparece en tarjetas, detalle y formularios. */
+:root{
+  --azul:#1F4E79; --azul-fuerte:#163A5B; --azul-suave:#E4EDF6; --enlace:#1F4E79;
+  --naranja:#C2410C; --naranja-hover:#9A3412; --naranja-activo:#7C2D0C; --naranja-suave:#FFEDE2; --naranja-tx:#9A3412;
+  --verde:#17703F; --verde-suave:#E0F3E8; --rojo:#B42318; --rojo-suave:#FDE9E7; --ambar:#7A4F00; --ambar-suave:#FFF1CC;
+  --fondo:#F3F6F9; --superficie:#FFFFFF; --superficie-2:#F8FAFC; --texto:#17212B; --texto-suave:#4F5F6F;
+  --borde:#D3DCE5; --borde-fuerte:#8795A4; --deshabilitado:#E3E8ED; --deshabilitado-tx:#6B7885;
+  --marca-fondo:#163A5B; --marca-tx:#FFFFFF; --primario:#1F4E79; --primario-tx:#FFFFFF; --anillo:#1F4E79;
+  --titulos:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif; --cuerpo:'Nunito Sans','Segoe UI',system-ui,sans-serif;
+  --radio:14px; --radio-chico:10px; --sombra:0 1px 2px rgba(22,58,91,.08),0 6px 18px rgba(22,58,91,.07);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --azul:#8DB8E3; --azul-fuerte:#0D2238; --azul-suave:#1C3248; --enlace:#9CC4EA;
+  --naranja:#C2410C; --naranja-hover:#D4501A; --naranja-activo:#E0622F; --naranja-suave:#3A2217; --naranja-tx:#FFA878;
+  --verde:#6FD39B; --verde-suave:#16301F; --rojo:#FF9C92; --rojo-suave:#3A1B19; --ambar:#F5C75B; --ambar-suave:#3A2E10;
+  --fondo:#0E1620; --superficie:#16212E; --superficie-2:#1B2836; --texto:#EAF0F6; --texto-suave:#A6B4C3;
+  --borde:#2C3B4C; --borde-fuerte:#6E8196; --deshabilitado:#243140; --deshabilitado-tx:#8696A7;
+  --marca-fondo:#0D2238; --primario:#2F6BA3; --anillo:#9CC4EA; --sombra:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --azul:#8DB8E3; --azul-fuerte:#0D2238; --azul-suave:#1C3248; --enlace:#9CC4EA;
+  --naranja:#C2410C; --naranja-hover:#D4501A; --naranja-activo:#E0622F; --naranja-suave:#3A2217; --naranja-tx:#FFA878;
+  --verde:#6FD39B; --verde-suave:#16301F; --rojo:#FF9C92; --rojo-suave:#3A1B19; --ambar:#F5C75B; --ambar-suave:#3A2E10;
+  --fondo:#0E1620; --superficie:#16212E; --superficie-2:#1B2836; --texto:#EAF0F6; --texto-suave:#A6B4C3;
+  --borde:#2C3B4C; --borde-fuerte:#6E8196; --deshabilitado:#243140; --deshabilitado-tx:#8696A7;
+  --marca-fondo:#0D2238; --primario:#2F6BA3; --anillo:#9CC4EA; --sombra:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--cuerpo);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--marca-fondo)}
+h1,h2,h3{font-family:var(--titulos);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:800}
+h2{font-size:clamp(1.45rem,3vw,1.9rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+a{color:var(--enlace)}
+.chico{font-size:.875rem;color:var(--texto-suave)}
+.contenedor{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--anillo);outline-offset:2px;border-radius:6px}
+.solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+svg.icono{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Encabezado */
+.encabezado{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--marca-fondo);color:var(--marca-tx)}
+.encabezado .contenedor{display:flex;align-items:center;gap:20px;min-height:64px}
+.marca{display:flex;align-items:center;gap:10px;color:var(--marca-tx);text-decoration:none;font-family:var(--titulos);font-weight:800;font-size:1.3rem}
+.navegacion{display:flex;gap:4px;margin-left:auto}
+.navegacion a{color:rgba(255,255,255,.88);text-decoration:none;padding:10px 14px;border-radius:999px;font-weight:700;font-size:.95rem;transition:background .15s}
+.navegacion a:hover{background:rgba(255,255,255,.14);color:#fff}
+.navegacion a:active{background:rgba(255,255,255,.24)}
+.navegacion a[aria-current="page"]{background:rgba(255,255,255,.2);color:#fff}
+.encabezado :focus-visible{outline-color:#fff}
+
+/* Barra inferior móvil */
+.barra-inferior{display:none;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--superficie);border-top:1px solid var(--borde);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px));justify-content:space-around}
+.barra-inferior a{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:56px;padding:6px 8px;border-radius:10px;font-size:.72rem;font-weight:700;text-decoration:none;color:var(--texto-suave)}
+.barra-inferior a svg{width:22px;height:22px}
+.barra-inferior a[aria-current="page"]{color:var(--enlace);background:var(--azul-suave)}
+@media (max-width:760px){.navegacion{display:none}.barra-inferior{display:flex}main{padding-bottom:84px}.encabezado .contenedor{min-height:56px}}
+
+/* Botones */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;border:2px solid transparent;font:700 1rem var(--titulos);cursor:pointer;text-decoration:none;transition:background .15s,transform .08s,border-color .15s,box-shadow .15s}
+.boton:active:not(:disabled){transform:translateY(1px)}
+.boton-primario{background:var(--naranja);color:#fff;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.boton-primario:hover:not(:disabled){background:var(--naranja-hover)}
+.boton-primario:active:not(:disabled){background:var(--naranja-activo);box-shadow:none}
+.boton-secundario{background:transparent;color:var(--enlace);border-color:var(--azul)}
+.boton-secundario:hover:not(:disabled){background:var(--azul-suave)}
+.boton-secundario:active:not(:disabled){background:var(--borde)}
+.boton-texto{background:transparent;color:var(--enlace);padding:0 12px;min-height:44px}
+.boton-texto:hover:not(:disabled){background:var(--azul-suave)}
+.boton:disabled{background:var(--deshabilitado);color:var(--deshabilitado-tx);border-color:transparent;cursor:not-allowed;box-shadow:none}
+.boton-chico{min-height:40px;padding:0 16px;font-size:.92rem}
+.boton-peligro{background:transparent;color:var(--rojo);border-color:var(--rojo)}
+.boton-peligro:hover{background:var(--rojo-suave)}
+.boton-favorito{width:44px;min-height:44px;padding:0;border-radius:50%;background:transparent;border:2px solid var(--borde);color:var(--texto-suave);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s,color .15s,border-color .15s}
+.boton-favorito:hover{border-color:var(--naranja-tx);color:var(--naranja-tx)}
+.boton-favorito[aria-pressed="true"]{background:var(--naranja-suave);color:var(--naranja-tx);border-color:var(--naranja-tx)}
+.boton-favorito[aria-pressed="true"] svg{fill:currentColor}
+
+/* Pantallas */
+.pantalla{display:none;padding-block:32px 48px}
+.pantalla.activa{display:block;animation:entrar .22s ease-out}
+#p-inicio{padding-top:0}
+@media (max-width:760px){.barra-filtros{grid-template-columns:1fr 1fr;gap:10px;padding:14px}.barra-filtros .entrada{min-height:44px;padding:8px 10px;font-size:.92rem}}
+@keyframes entrar{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pantalla.activa{animation:none}*{transition:none!important;scroll-behavior:auto!important}}
+.cabecera-pantalla{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.cabecera-pantalla p{color:var(--texto-suave);max-width:62ch}
+.migas{font-size:.9rem;margin-bottom:12px}
+
+/* Formularios */
+.campo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.campo label,.campo .rotulo{font-weight:700;font-size:.95rem}
+.campo .ayuda{font-size:.85rem;color:var(--texto-suave)}
+.entrada,select.entrada,textarea.entrada{width:100%;min-height:48px;padding:10px 14px;border:2px solid var(--borde-fuerte);border-radius:var(--radio-chico);background:var(--superficie);color:var(--texto);font:inherit;transition:border-color .15s,box-shadow .15s}
+.entrada:hover{border-color:var(--azul)}
+.entrada:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 3px color-mix(in srgb,var(--anillo) 35%,transparent)}
+.entrada:disabled{background:var(--deshabilitado);color:var(--deshabilitado-tx);border-color:var(--borde);cursor:not-allowed}
+.entrada[aria-invalid="true"]{border-color:var(--rojo);background:var(--rojo-suave)}
+textarea.entrada{min-height:92px;resize:vertical}
+.error-campo{display:none;color:var(--rojo);font-size:.85rem;font-weight:700;align-items:center;gap:6px}
+.error-campo.visible{display:flex}
+.aviso-formulario{display:none;padding:12px 16px;border-radius:var(--radio-chico);background:var(--rojo-suave);color:var(--rojo);font-weight:700;border:1.5px solid var(--rojo);margin-bottom:16px}
+.aviso-formulario.visible{display:block}
+.rejilla-campos{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.casilla{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--borde);border-radius:var(--radio-chico);background:var(--superficie-2);cursor:pointer}
+.casilla input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--azul);flex:none}
+.casilla:hover{border-color:var(--azul)}
+.casilla.bloqueada{cursor:default;opacity:.85}
+.interruptor{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--borde)}
+.interruptor:last-child{border-bottom:0}
+.interruptor button{position:relative;flex:none;width:54px;height:32px;border-radius:999px;border:2px solid var(--borde-fuerte);background:var(--deshabilitado);cursor:pointer;transition:background .15s}
+.interruptor button::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .15s}
+.interruptor button[aria-checked="true"]{background:var(--azul);border-color:var(--azul)}
+.interruptor button[aria-checked="true"]::after{transform:translateX(22px)}
+.interruptor button:disabled{cursor:not-allowed;opacity:.6}
+.contador{display:inline-flex;align-items:center;border:2px solid var(--borde-fuerte);border-radius:var(--radio-chico);overflow:hidden;width:max-content;background:var(--superficie)}
+.contador button{width:48px;height:44px;border:0;background:transparent;color:var(--enlace);font:700 1.3rem var(--titulos);cursor:pointer}
+.contador button:hover:not(:disabled){background:var(--azul-suave)}
+.contador button:disabled{color:var(--deshabilitado-tx);cursor:not-allowed}
+.contador output{min-width:52px;text-align:center;font:700 1.1rem var(--titulos)}
+
+/* Tarjetas y piezas */
+.panel{background:var(--superficie);border:1px solid var(--borde);border-radius:var(--radio);box-shadow:var(--sombra);padding:24px}
+.linea-ruta{flex:1;min-width:28px;height:0;border-top:3px dotted var(--naranja);position:relative;margin:0 4px;align-self:center}
+.linea-ruta::before,.linea-ruta::after{content:"";position:absolute;top:-7px;width:11px;height:11px;border-radius:50%;background:var(--superficie);border:3px solid var(--naranja)}
+.linea-ruta::before{left:-6px}.linea-ruta::after{right:-6px;background:var(--naranja)}
+.insignia{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:700;background:var(--azul-suave);color:var(--enlace)}
+.insignia.pendiente{background:var(--ambar-suave);color:var(--ambar)}
+.insignia.aceptada{background:var(--verde-suave);color:var(--verde)}
+.insignia.rechazada,.insignia.completo{background:var(--rojo-suave);color:var(--rojo)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--azul);color:#fff;display:inline-flex;align-items:center;justify-content:center;font:700 .85rem var(--titulos);flex:none}
+.avatar.reservado{background:var(--deshabilitado);color:var(--deshabilitado-tx)}
+.avatar.grande{width:56px;height:56px;font-size:1.1rem}
+.chofer{display:flex;align-items:center;gap:10px;font-size:.92rem}
+.chofer small{display:block;color:var(--texto-suave);font-size:.82rem}
+.datos{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92rem}
+.datos li{display:flex;align-items:center;gap:6px}
+.datos svg{color:var(--azul)}
+.datos strong{font-weight:800}
+
+.tarjeta-viaje{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--superficie);border:1.5px solid var(--borde);border-radius:var(--radio);padding:20px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.tarjeta-viaje:hover{border-color:var(--azul);box-shadow:var(--sombra)}
+.tarjeta-viaje.completo{background:var(--superficie-2)}
+.viaje-hora{display:flex;flex-direction:column;align-items:center;padding:10px 0;border-radius:12px;background:var(--azul-suave);color:var(--enlace)}
+.viaje-hora strong{font:800 1.55rem var(--titulos)}
+.viaje-hora span{font-size:.82rem;font-weight:700}
+.viaje-cuerpo{display:flex;flex-direction:column;gap:10px;min-width:0}
+.viaje-ruta{display:flex;align-items:center;gap:6px;font-size:1.1rem}
+.viaje-ruta span{white-space:nowrap}
+.viaje-acciones{display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:170px}
+.viaje-acciones .fila{display:flex;gap:8px;justify-content:flex-end}
+@media (max-width:760px){
+  .tarjeta-viaje{grid-template-columns:1fr;gap:14px}
+  .viaje-hora{flex-direction:row;gap:10px;justify-content:center;padding:8px}
+  .viaje-acciones{min-width:0}
+}
+.lista-tarjetas{display:flex;flex-direction:column;gap:14px}
+
+/* Inicio */
+.heroe{background:var(--marca-fondo);color:var(--marca-tx);padding-block:44px 56px}
+.heroe .contenedor{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:center}
+.heroe p.bajada{font-size:1.12rem;color:rgba(255,255,255,.88);max-width:46ch;margin-top:16px}
+.heroe .ruta-demo{display:flex;align-items:center;gap:8px;margin-top:28px;font:700 .95rem var(--titulos);color:rgba(255,255,255,.92);max-width:420px}
+.heroe .linea-ruta{border-top-color:#FFA878}.heroe .linea-ruta::before{background:var(--marca-fondo);border-color:#FFA878}.heroe .linea-ruta::after{background:#FFA878;border-color:#FFA878}
+.buscador{background:var(--superficie);color:var(--texto);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.buscador h2{font-size:1.25rem}
+@media (max-width:860px){.heroe .contenedor{grid-template-columns:1fr}.heroe{padding-block:32px 40px}}
+.seccion{padding-block:48px 8px}
+.rejilla-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:24px}
+.paso-tarjeta{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:var(--radio);background:var(--superficie);border:1px solid var(--borde)}
+.paso-tarjeta .icono-caja{width:44px;height:44px;border-radius:12px;background:var(--azul-suave);color:var(--enlace);display:flex;align-items:center;justify-content:center}
+.paso-tarjeta .icono-caja svg{width:24px;height:24px}
+.paso-tarjeta.destacada{background:var(--naranja-suave);border-color:transparent}
+.paso-tarjeta.destacada .icono-caja{background:var(--naranja);color:#fff}
+
+/* Resultados */
+.barra-filtros{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;align-items:end;padding:18px;background:var(--superficie);border:1px solid var(--borde);border-radius:var(--radio);margin-bottom:18px}
+.cantidad{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.vacio{text-align:center;padding:40px 20px;border:2px dashed var(--borde-fuerte);border-radius:var(--radio);display:flex;flex-direction:column;align-items:center;gap:14px;background:var(--superficie)}
+.vacio .fila-botones{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* Detalle */
+.detalle{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:900px){.detalle{grid-template-columns:1fr}}
+.ruta-grande{display:flex;align-items:center;gap:10px;margin:16px 0 8px;font:800 1.4rem var(--titulos)}
+.hechos{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:20px}
+.hecho{padding:14px;border-radius:12px;background:var(--superficie-2);border:1px solid var(--borde);display:flex;flex-direction:column;gap:2px}
+.hecho span{font-size:.82rem;color:var(--texto-suave);display:flex;align-items:center;gap:6px}
+.hecho strong{font:800 1.15rem var(--titulos)}
+.lista-reglas{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.lista-reglas li{display:flex;gap:10px;align-items:flex-start}
+.lista-reglas svg{margin-top:3px;color:var(--verde)}
+.nota-privacidad{display:flex;gap:10px;padding:12px 14px;background:var(--azul-suave);border-radius:12px;font-size:.9rem;align-items:flex-start}
+.pegajoso{position:sticky;top:calc(80px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:16px}
+@media (max-width:900px){.pegajoso{position:static}}
+
+/* Solicitudes */
+.tarjeta-solicitud{background:var(--superficie);border:1.5px solid var(--borde);border-radius:var(--radio);padding:20px;display:flex;flex-direction:column;gap:14px}
+.tarjeta-solicitud header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.simulador{border:2px dashed var(--borde-fuerte);border-radius:12px;padding:12px 14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--superficie-2)}
+.simulador b{font-size:.82rem;color:var(--texto-suave)}
+.coordinar{background:var(--verde-suave);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.contacto{font:800 1.15rem var(--titulos);display:flex;gap:10px;align-items:center;flex-wrap:wrap;user-select:all}
+.banner-exito{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:12px;background:var(--verde-suave);color:var(--verde);font-weight:700;margin-bottom:18px}
+
+/* Publicar */
+.pasos{display:flex;gap:8px;list-style:none;padding:0;margin:0 0 22px;flex-wrap:wrap}
+.pasos li{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--superficie);border:1.5px solid var(--borde);font-weight:700;font-size:.9rem;color:var(--texto-suave)}
+.pasos li b{width:24px;height:24px;border-radius:50%;background:var(--deshabilitado);color:var(--deshabilitado-tx);display:inline-flex;align-items:center;justify-content:center;font-size:.8rem}
+.pasos li.actual{border-color:var(--azul);color:var(--texto);background:var(--azul-suave)}
+.pasos li.actual b{background:var(--azul);color:#fff}
+.pasos li.hecho-paso b{background:var(--verde);color:#fff}
+.pasos li.hecho-paso b{background:var(--verde)}
+.destino-fijo{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--radio-chico);background:var(--superficie-2);border:1.5px dashed var(--borde-fuerte)}
+.acciones-formulario{display:flex;justify-content:space-between;gap:12px;margin-top:24px;flex-wrap:wrap}
+.sugerencias{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--borde-fuerte);background:var(--superficie);color:var(--texto);font:700 .9rem var(--cuerpo);cursor:pointer}
+.chip:hover{border-color:var(--azul);background:var(--azul-suave)}
+.chip[aria-pressed="true"]{background:var(--azul);border-color:var(--azul);color:#fff}
+.vista-previa-nota{display:flex;gap:8px;align-items:center;margin-bottom:12px;font-weight:700}
+
+/* Perfil / ayuda */
+.dos-columnas{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:900px){.dos-columnas{grid-template-columns:1fr}}
+.tarjeta-perfil{display:flex;flex-direction:column;gap:14px}
+.perfil-cab{display:flex;gap:14px;align-items:center}
+details.pregunta{background:var(--superficie);border:1.5px solid var(--borde);border-radius:12px;padding:0 18px}
+details.pregunta+details.pregunta{margin-top:10px}
+details.pregunta summary{padding:16px 0;font-weight:700;cursor:pointer;list-style-position:outside}
+details.pregunta p{padding-bottom:16px;color:var(--texto-suave)}
+details.pregunta[open]{border-color:var(--azul)}
+.pie{border-top:1px solid var(--borde);margin-top:40px;padding-block:24px 110px;color:var(--texto-suave);font-size:.9rem}
+.pie .contenedor{display:flex;gap:16px 28px;flex-wrap:wrap;justify-content:space-between}
+.pie nav{display:flex;gap:18px;flex-wrap:wrap}
+
+/* Aviso, guía */
+#aviso{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--azul-fuerte);color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:calc(100vw - 32px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+#aviso.visible{opacity:1;transform:translate(-50%,0)}
+.boton-guia{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:10px;padding:0 18px;min-height:48px;border-radius:999px;background:var(--azul-fuerte);color:#fff;border:2px solid rgba(255,255,255,.25);font:700 .95rem var(--titulos);cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.boton-guia:hover{background:var(--azul)}
+.boton-guia:active{transform:translateY(1px)}
+.boton-guia .progreso{background:#FFA878;color:#3A1708;border-radius:999px;padding:2px 10px;font-size:.82rem}
+@media (max-width:760px){.boton-guia{bottom:calc(76px + env(safe-area-inset-bottom,0px))}#aviso{bottom:calc(140px + env(safe-area-inset-bottom,0px))}.pie{padding-bottom:150px}}
+.guia{position:fixed;z-index:55;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));width:min(400px,calc(100vw - 32px));max-height:calc(100% - 120px - env(safe-area-inset-bottom,0px));overflow:auto;background:var(--superficie);color:var(--texto);border:1.5px solid var(--borde-fuerte);border-radius:18px;box-shadow:0 18px 48px rgba(0,0,0,.35);padding:20px;animation:entrar .2s ease-out}
+.guia header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.guia ol{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:8px}
+.guia li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem}
+.guia li i{width:22px;height:22px;border-radius:50%;border:2px solid var(--borde-fuerte);flex:none;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.72rem;font-weight:800;margin-top:1px}
+.guia li.listo i{background:var(--verde);border-color:var(--verde);color:#fff}
+.guia li.listo span{color:var(--texto-suave);text-decoration:line-through;text-decoration-thickness:1px}
+.guia .barra{height:8px;border-radius:99px;background:var(--deshabilitado);overflow:hidden}
+.guia .barra div{height:100%;background:var(--verde);transition:width .3s}
+.guia .alternos{font-size:.85rem;color:var(--texto-suave);border-top:1px solid var(--borde);padding-top:12px}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-personas" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6M18 14.3A6.5 6.5 0 0 1 21.5 20"/></symbol>
+  <symbol id="i-moneda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.2c-.5-1-1.5-1.5-2.8-1.5-1.6 0-2.8.8-2.8 2s1 1.6 2.8 2 2.8.8 2.8 2-1.2 2-2.8 2c-1.3 0-2.3-.5-2.8-1.5M12 6v1.7M12 16.3V18"/></symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></symbol>
+  <symbol id="i-usuario" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+  <symbol id="i-mas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-cruz" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-corazon" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.500 15.400 12 20 12 20z"/></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.500c0 4.600-3.200 8.200-7.500 9.500-4.300-1.300-7.500-4.900-7.500-9.500V6z"/><path d="M9 12l2.200 2.200L15.500 10"/></symbol>
+  <symbol id="i-casa" viewBox="0 0 24 24"><path d="M3.500 11L12 4l8.500 7M6 9.500V20h12V9.500"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><path d="M4 16v-4l2-5h12l2 5v4M4 16h16M4 16v2.500h3V16M17 16v2.500h3V16"/><circle cx="8" cy="13" r=".8"/><circle cx="16" cy="13" r=".8"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.800v.1"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.500M12 17.300v.1"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+</svg>
+
+<header class="encabezado">
+  <div class="contenedor">
+    <a class="marca" href="#inicio" aria-label="FacuPool, ir al inicio">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="10" fill="#fff"/><circle cx="13" cy="17" r="7" fill="#1F4E79"/><circle cx="21" cy="17" r="7" fill="#C2410C" fill-opacity=".92"/><path d="M17 11.600a7 7 0 0 1 0 10.800 7 7 0 0 1 0-10.800z" fill="#fff"/></svg>
+      FacuPool
+    </a>
+    <nav class="navegacion" aria-label="Principal">
+      <a href="#buscar" data-nav="buscar resultados detalle solicitar">Buscar viajes</a>
+      <a href="#publicar" data-nav="publicar">Publicar viaje</a>
+      <a href="#solicitudes" data-nav="solicitudes mis-viajes">Mis viajes</a>
+      <a href="#perfil" data-nav="perfil">Mi perfil</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- INICIO -->
+<section class="pantalla" id="p-inicio" data-titulo="Inicio">
+  <div class="heroe">
+    <div class="contenedor">
+      <div>
+        <h1>Viajá a la facu con gente de tu zona.</h1>
+        <p class="bajada">Encontrá un viaje que coincida con tu día y tu horario, o publicá el tuyo en tres pasos. Tu teléfono no se muestra hasta que el chofer acepte tu solicitud.</p>
+        <div class="ruta-demo" aria-hidden="true"><span>Tu zona</span><i class="linea-ruta"></i><span>Facultad</span></div>
+      </div>
+      <form class="buscador form-busqueda" data-prefijo="inicio" novalidate aria-labelledby="t-buscador">
+        <h2 id="t-buscador">Buscar un viaje</h2>
+        <div class="aviso-formulario" role="alert"></div>
+        <div data-campos></div>
+        <button class="boton boton-primario" type="submit"><svg class="icono"><use href="#i-lupa"/></svg>Buscar viajes</button>
+        <p class="chico">¿Manejás vos? <a href="#publicar">Publicá un viaje</a></p>
+      </form>
+    </div>
+  </div>
+  <div class="contenedor seccion">
+    <h2>Así funciona</h2>
+    <div class="rejilla-3">
+      <article class="paso-tarjeta"><div class="icono-caja"><svg class="icono"><use href="#i-lupa"/></svg></div><h3>Si viajás como pasajero</h3><p>Elegí zona, día y horario. Comparás tarjetas con lugares, aporte estimado y punto de encuentro antes de pedir un lugar.</p></article>
+      <article class="paso-tarjeta"><div class="icono-caja"><svg class="icono"><use href="#i-auto"/></svg></div><h3>Si viajás como chofer</h3><p>Cargás origen, horario, lugares y aporte estimado. Revisás las solicitudes y aceptás a quien te quede cómodo.</p></article>
+      <article class="paso-tarjeta destacada"><div class="icono-caja"><svg class="icono"><use href="#i-escudo"/></svg></div><h3>Tus datos, bajo tu control</h3><p>Decidís si se ve tu carrera y año. El contacto se comparte recién cuando una solicitud se acepta.</p></article>
+    </div>
+  </div>
+  <div class="contenedor seccion">
+    <div class="cantidad"><h2>Viajes publicados esta semana</h2><a href="#buscar">Ver todos con filtros</a></div>
+    <div class="lista-tarjetas" id="destacados"></div>
+    <p class="chico" style="margin-top:12px">Los viajes, importes y duraciones de este prototipo son datos de ejemplo.</p>
+  </div>
+</section>
+
+<!-- BUSCAR -->
+<section class="pantalla" id="p-buscar" data-titulo="Buscar viajes">
+  <div class="contenedor">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Buscar viajes</h1><p>Elegí desde qué zona salís, qué día y en qué franja horaria. Vas a ver solo viajes que coincidan.</p></div>
+    <form class="panel form-busqueda" data-prefijo="buscar" novalidate style="display:flex;flex-direction:column;gap:18px;max-width:760px" aria-label="Búsqueda de viajes">
+      <div class="aviso-formulario" role="alert"></div>
+      <div data-campos></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="boton boton-primario" type="submit"><svg class="icono"><use href="#i-lupa"/></svg>Buscar</button><a class="boton boton-texto" href="#inicio">Volver al inicio</a></div>
+    </form>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section class="pantalla" id="p-resultados" data-titulo="Resultados de búsqueda">
+  <div class="contenedor">
+    <p class="migas"><a href="#buscar">← Cambiar búsqueda</a></p>
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Resultados</h1><p id="resumen-busqueda"></p></div>
+    <div class="barra-filtros" id="filtros-resultados">
+      <div class="campo"><label for="r-zona">Zona</label><select class="entrada" id="r-zona"></select></div>
+      <div class="campo"><label for="r-dia">Día</label><select class="entrada" id="r-dia"></select></div>
+      <div class="campo"><label for="r-franja">Horario</label><select class="entrada" id="r-franja"></select></div>
+      <div class="campo"><label for="r-asientos">Lugares libres</label><select class="entrada" id="r-asientos"><option value="0">Cualquiera</option><option value="1">1 o más</option><option value="2">2 o más</option><option value="3">3 o más</option></select></div>
+      <div class="campo"><label for="r-orden">Ordenar por</label><select class="entrada" id="r-orden"><option value="hora">Horario de salida</option><option value="aporte">Menor aporte</option><option value="duracion">Menor duración</option></select></div>
+    </div>
+    <div class="cantidad"><strong id="cantidad-resultados" aria-live="polite"></strong></div>
+    <div class="lista-tarjetas" id="lista-resultados"></div>
+  </div>
+</section>
+
+<!-- DETALLE -->
+<section class="pantalla" id="p-detalle" data-titulo="Detalle del viaje">
+  <div class="contenedor"><p class="migas"><a href="#resultados">← Volver a resultados</a></p><div id="detalle-contenido"></div></div>
+</section>
+
+<!-- SOLICITAR -->
+<section class="pantalla" id="p-solicitar" data-titulo="Solicitar lugar">
+  <div class="contenedor"><p class="migas"><a href="#detalle">← Volver al detalle</a></p><div id="solicitar-contenido"></div></div>
+</section>
+
+<!-- MIS SOLICITUDES -->
+<section class="pantalla" id="p-solicitudes" data-titulo="Mis solicitudes">
+  <div class="contenedor">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Mis viajes</h1><p>Seguí tus solicitudes como pasajero o administrá los viajes que publicaste como chofer.</p></div>
+    <div class="sub-pestanas" style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+      <a class="boton boton-secundario boton-chico" href="#solicitudes" aria-current="page" id="pest-solicitudes">Mis solicitudes</a>
+      <a class="boton boton-secundario boton-chico" href="#mis-viajes" id="pest-viajes">Viajes que publiqué</a>
+    </div>
+    <div id="banner-envio"></div>
+    <div class="lista-tarjetas" id="solicitudes-lista"></div>
+  </div>
+</section>
+
+<!-- MIS VIAJES (chofer) -->
+<section class="pantalla" id="p-mis-viajes" data-titulo="Viajes que publiqué">
+  <div class="contenedor">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Mis viajes</h1><p>Seguí tus solicitudes como pasajero o administrá los viajes que publicaste como chofer.</p></div>
+    <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+      <a class="boton boton-secundario boton-chico" href="#solicitudes">Mis solicitudes</a>
+      <a class="boton boton-secundario boton-chico" href="#mis-viajes" aria-current="page">Viajes que publiqué</a>
+      <a class="boton boton-primario boton-chico" href="#publicar"><svg class="icono"><use href="#i-mas"/></svg>Publicar otro viaje</a>
+    </div>
+    <div id="banner-publicado"></div>
+    <div class="lista-tarjetas" id="viajes-lista"></div>
+  </div>
+</section>
+
+<!-- PUBLICAR -->
+<section class="pantalla" id="p-publicar" data-titulo="Publicar viaje">
+  <div class="contenedor" style="max-width:820px">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Publicar un viaje</h1><p>Completá tres pasos y revisá cómo lo van a ver los pasajeros antes de publicarlo.</p></div>
+    <ol class="pasos" id="pasos-pub" aria-label="Progreso"></ol>
+    <form class="panel" id="form-publicar" novalidate>
+      <div class="aviso-formulario" role="alert" id="aviso-pub"></div>
+      <fieldset data-paso="1" style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:18px;min-width:0">
+        <legend class="solo-lector">Paso 1: ruta</legend>
+        <h2 style="font-size:1.3rem">¿Desde dónde salís?</h2>
+        <div class="rejilla-campos">
+          <div class="campo"><label for="p-zona">Zona de origen</label><select class="entrada" id="p-zona"><option value="">Elegí una zona</option><option>Zona Oeste</option><option>Zona Norte</option><option>Zona Sur</option></select><span class="error-campo" id="e-p-zona"><svg class="icono"><use href="#i-alerta"/></svg>Elegí una zona</span></div>
+          <div class="campo"><label for="p-origen">Barrio o localidad</label><input class="entrada" id="p-origen" placeholder="Ej.: Castelar" autocomplete="off"><span class="error-campo" id="e-p-origen"><svg class="icono"><use href="#i-alerta"/></svg>Escribí el barrio o localidad</span></div>
+        </div>
+        <div class="campo"><label for="p-punto">Punto de encuentro</label><input class="entrada" id="p-punto" placeholder="Ej.: Estación Castelar, salida Av. Santa María de Oro" autocomplete="off"><span class="ayuda">Un lugar público y fácil de ubicar. No pongas tu domicilio.</span><span class="error-campo" id="e-p-punto"><svg class="icono"><use href="#i-alerta"/></svg>Indicá dónde se encuentran</span></div>
+        <div class="campo"><span class="rotulo">Destino</span><div class="destino-fijo"><svg class="icono"><use href="#i-pin"/></svg><span><strong>Facultad</strong> <span class="chico">(en esta versión el destino es fijo)</span></span></div></div>
+      </fieldset>
+      <fieldset data-paso="2" hidden style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:18px;min-width:0">
+        <legend class="solo-lector">Paso 2: día, horario y lugares</legend>
+        <h2 style="font-size:1.3rem">¿Cuándo salís y cuántos lugares tenés?</h2>
+        <div class="rejilla-campos">
+          <div class="campo"><label for="p-dia">Día</label><select class="entrada" id="p-dia"><option value="">Elegí un día</option></select><span class="error-campo" id="e-p-dia"><svg class="icono"><use href="#i-alerta"/></svg>Elegí un día</span></div>
+          <div class="campo"><label for="p-hora">Hora de salida</label><input class="entrada" id="p-hora" type="time"><span class="error-campo" id="e-p-hora"><svg class="icono"><use href="#i-alerta"/></svg>Indicá la hora de salida</span></div>
+        </div>
+        <div class="campo"><span class="rotulo" id="r-lugares">Lugares disponibles</span>
+          <div class="contador" role="group" aria-labelledby="r-lugares"><button type="button" data-accion="menos" aria-label="Quitar un lugar">−</button><output id="p-lugares" aria-live="polite">2</output><button type="button" data-accion="mas" aria-label="Agregar un lugar">+</button></div></div>
+      </fieldset>
+      <fieldset data-paso="3" hidden style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:18px;min-width:0">
+        <legend class="solo-lector">Paso 3: aporte y reglas</legend>
+        <h2 style="font-size:1.3rem">Aporte y reglas del viaje</h2>
+        <div class="campo"><label for="p-aporte">Aporte estimado por pasajero (en pesos)</label><input class="entrada" id="p-aporte" type="number" min="0" step="100" inputmode="numeric" placeholder="Ej.: 3500" style="max-width:240px">
+          <div class="sugerencias" id="sugerencias-aporte"></div><span class="error-campo" id="e-p-aporte"><svg class="icono"><use href="#i-alerta"/></svg>Ingresá un aporte mayor a cero</span></div>
+        <div class="campo"><label for="p-espera">Tiempo de espera en el punto de encuentro</label><select class="entrada" id="p-espera" style="max-width:240px"><option value="5">5 minutos</option><option value="10">10 minutos</option></select></div>
+        <label class="casilla"><input type="checkbox" id="p-mostrar" checked><span><strong>Mostrar mi carrera y año</strong><br><span class="chico">Ayuda a que los pasajeros sepan con quién viajan. Podés cambiarlo en Mi perfil.</span></span></label>
+        <label class="casilla"><input type="checkbox" id="p-reglas"><span><strong>Acepto las reglas de puntualidad y cancelación</strong><br><span class="chico">Avisar con 2 horas de anticipación si cancelo.</span></span></label>
+        <span class="error-campo" id="e-p-reglas"><svg class="icono"><use href="#i-alerta"/></svg>Aceptá las reglas para continuar</span>
+      </fieldset>
+      <fieldset data-paso="4" hidden style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;min-width:0">
+        <legend class="solo-lector">Paso 4: revisión</legend>
+        <h2 style="font-size:1.3rem">Así lo van a ver los pasajeros</h2>
+        <div class="vista-previa-nota chico"><svg class="icono"><use href="#i-info"/></svg>Vista previa. Todavía no está publicado.</div>
+        <div id="vista-previa"></div>
+      </fieldset>
+      <div class="acciones-formulario">
+        <button type="button" class="boton boton-secundario" data-accion="pub-atras" id="pub-atras">Atrás</button>
+        <button type="button" class="boton boton-primario" data-accion="pub-siguiente" id="pub-siguiente">Siguiente</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- PERFIL -->
+<section class="pantalla" id="p-perfil" data-titulo="Mi perfil">
+  <div class="contenedor">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Mi perfil</h1><p>Elegí qué datos ven los demás. Tu teléfono nunca aparece en publicaciones.</p></div>
+    <div class="dos-columnas">
+      <form class="panel" id="form-perfil" novalidate style="display:flex;flex-direction:column;gap:18px">
+        <h2 style="font-size:1.3rem">Datos básicos</h2>
+        <div class="rejilla-campos">
+          <div class="campo"><label for="pf-nombre">Nombre y apellido</label><input class="entrada" id="pf-nombre" value="Nicolás Argüello" autocomplete="off"></div>
+          <div class="campo"><label for="pf-zona">Zona habitual</label><select class="entrada" id="pf-zona"><option>Zona Oeste</option><option>Zona Norte</option><option selected>Zona Sur</option></select></div>
+          <div class="campo"><label for="pf-carrera">Carrera</label><select class="entrada" id="pf-carrera"><option>Ingeniería Industrial</option><option>Ingeniería Informática</option><option selected>Licenciatura en Administración</option><option>Abogacía</option><option>Diseño Gráfico</option></select></div>
+          <div class="campo"><label for="pf-anio">Año</label><select class="entrada" id="pf-anio"><option>1.º año</option><option selected>2.º año</option><option>3.º año</option><option>4.º año</option><option>5.º año</option></select></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:4px">Privacidad</h3>
+          <div class="interruptor"><div><strong id="l-sw1">Mostrar carrera y año</strong><div class="chico">Aparece en tus viajes y solicitudes.</div></div><button type="button" role="switch" aria-checked="true" aria-labelledby="l-sw1" data-accion="alternar" id="sw-carrera"></button></div>
+          <div class="interruptor"><div><strong id="l-sw2">Mostrar apellido completo</strong><div class="chico">Si está apagado, se ve solo la inicial (Nicolás A.).</div></div><button type="button" role="switch" aria-checked="false" aria-labelledby="l-sw2" data-accion="alternar" id="sw-apellido"></button></div>
+          <div class="interruptor"><div><strong id="l-sw3">Teléfono visible solo tras aceptar</strong><div class="chico">Esta opción no se puede desactivar.</div></div><button type="button" role="switch" aria-checked="true" aria-labelledby="l-sw3" disabled></button></div>
+        </div>
+        <div><button class="boton boton-primario" type="submit" data-accion="guardar-perfil">Guardar cambios</button></div>
+      </form>
+      <aside class="panel tarjeta-perfil" aria-label="Vista previa de tu perfil">
+        <h3>Así te ven los demás</h3>
+        <div class="perfil-cab" id="perfil-vista"></div>
+        <p class="chico">Los cambios se reflejan acá antes de guardarlos.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="pantalla" id="p-como-funciona" data-titulo="Cómo funciona">
+  <div class="contenedor" style="max-width:860px">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Cómo funciona FacuPool</h1><p>Dos roles, un mismo lugar para coordinar viajes con otros estudiantes.</p></div>
+    <div class="rejilla-3" style="margin-top:0">
+      <article class="paso-tarjeta"><h3>Pasajero</h3><p>1. Buscá por zona, día y horario.<br>2. Compará tarjetas y abrí el detalle.<br>3. Pedí un lugar y esperá la respuesta.<br>4. Si te aceptan, coordiná el contacto.</p><a class="boton boton-secundario boton-chico" href="#buscar" style="align-self:flex-start">Buscar viajes</a></article>
+      <article class="paso-tarjeta"><h3>Chofer</h3><p>1. Indicá ruta y punto de encuentro.<br>2. Elegí día, hora y lugares.<br>3. Definí un aporte estimado.<br>4. Aceptá o rechazá solicitudes.</p><a class="boton boton-secundario boton-chico" href="#publicar" style="align-self:flex-start">Publicar viaje</a></article>
+    </div>
+    <h2 style="margin:36px 0 12px">Recomendaciones</h2>
+    <ul class="lista-reglas panel"><li><svg class="icono"><use href="#i-ok"/></svg><span>Encontrate en un lugar público y conocido.</span></li><li><svg class="icono"><use href="#i-ok"/></svg><span>Llegá a horario. Los choferes esperan 5 o 10 minutos.</span></li><li><svg class="icono"><use href="#i-ok"/></svg><span>Si cambiás de planes, cancelá con al menos 2 horas de anticipación.</span></li></ul>
+  </div>
+</section>
+
+<!-- PRIVACIDAD Y AYUDA -->
+<section class="pantalla" id="p-privacidad" data-titulo="Privacidad y ayuda">
+  <div class="contenedor" style="max-width:860px">
+    <div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Privacidad y ayuda</h1><p>Qué datos se muestran, cuándo y cómo controlarlos.</p></div>
+    <details class="pregunta" open><summary>¿Quién puede ver mi teléfono?</summary><p>Nadie en las publicaciones. Solo la persona con la que se acepta un viaje, después de la aceptación.</p></details>
+    <details class="pregunta"><summary>¿Qué se muestra de mi perfil?</summary><p>Tu nombre con la inicial del apellido y, si lo permitís, tu carrera y año. Lo cambiás en Mi perfil.</p></details>
+    <details class="pregunta"><summary>¿Qué es el aporte estimado?</summary><p>Es un monto sugerido por el chofer para compartir gastos del viaje. Se acuerda entre las personas que viajan.</p></details>
+    <details class="pregunta"><summary>¿Qué pasa si mi solicitud es rechazada?</summary><p>Podés volver a los resultados y elegir otro viaje. No se comparte ningún dato de contacto.</p></details>
+    <details class="pregunta"><summary>¿Qué pasa si necesito cancelar?</summary><p>Cancelá desde Mis viajes con al menos 2 horas de anticipación.</p></details>
+  </div>
+</section>
+</main>
+
+<footer class="pie"><div class="contenedor"><span>FacuPool · Prototipo académico, Diseño y Desarrollo Web, UADE.</span><nav aria-label="Pie"><a href="#como-funciona">Cómo funciona</a><a href="#privacidad">Privacidad y ayuda</a></nav></div></footer>
+
+<nav class="barra-inferior" aria-label="Principal móvil">
+  <a href="#inicio" data-nav="inicio"><svg class="icono"><use href="#i-casa"/></svg>Inicio</a>
+  <a href="#buscar" data-nav="buscar resultados detalle solicitar"><svg class="icono"><use href="#i-lupa"/></svg>Buscar</a>
+  <a href="#publicar" data-nav="publicar"><svg class="icono"><use href="#i-mas"/></svg>Publicar</a>
+  <a href="#solicitudes" data-nav="solicitudes mis-viajes"><svg class="icono"><use href="#i-auto"/></svg>Mis viajes</a>
+  <a href="#perfil" data-nav="perfil"><svg class="icono"><use href="#i-usuario"/></svg>Perfil</a>
+</nav>
+
+<div id="aviso" role="status" aria-live="polite"></div>
+<button class="boton-guia" id="btn-guia" type="button" aria-expanded="false" aria-controls="guia"><svg class="icono"><use href="#i-info"/></svg>Guía de prueba <span class="progreso" id="guia-progreso">0/8</span></button>
+<aside class="guia" id="guia" hidden aria-labelledby="guia-titulo">
+  <header><div><h2 id="guia-titulo" style="font-size:1.15rem">Guía de prueba</h2><p class="chico">Tarea: encontrar un viaje y solicitar un lugar.</p></div><button class="boton boton-texto boton-chico" type="button" data-accion="cerrar-guia" aria-label="Cerrar guía">Cerrar</button></header>
+  <div class="barra" aria-hidden="true"><div id="guia-barra" style="width:0"></div></div>
+  <ol id="guia-pasos"></ol>
+  <p class="alternos"><strong>Caminos alternativos:</strong> buscá Zona Sur + Sábado (sin resultados), mirá el viaje completo de Ramos Mejía a las 07:15 (botón deshabilitado), o publicá un viaje como chofer.</p>
+  <button class="boton boton-secundario boton-chico" type="button" data-accion="reiniciar" style="margin-top:12px">Reiniciar prototipo</button>
+</aside>
+
+<script>
+(function(){
+'use strict';
+var DIAS=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+var ZONAS=['Zona Oeste','Zona Norte','Zona Sur'];
+var FRANJAS=[{v:'manana',t:'Mañana (6 a 12 h)',d:6,h:12},{v:'tarde',t:'Tarde (12 a 18 h)',d:12,h:18},{v:'noche',t:'Noche (18 a 22 h)',d:18,h:22}];
+var SUGERIDO={'Zona Oeste':3300,'Zona Norte':4000,'Zona Sur':3800};
+var VIAJES=[
+ {id:1,zona:'Zona Oeste',origen:'Ramos Mejía',dia:'Lunes',hora:'07:30',lugares:2,aporte:3500,duracion:55,chofer:'Martina P.',carrera:'Ingeniería Industrial',anio:'3.º año',consiente:true,punto:'Estación Ramos Mejía, salida Av. de Mayo',espera:5},
+ {id:2,zona:'Zona Norte',origen:'Olivos',dia:'Lunes',hora:'08:00',lugares:1,aporte:4000,duracion:50,chofer:'Tomás R.',carrera:'Lic. en Administración',anio:'2.º año',consiente:true,punto:'Estación Olivos, lado Maipú',espera:5},
+ {id:3,zona:'Zona Oeste',origen:'Morón',dia:'Lunes',hora:'07:45',lugares:3,aporte:3000,duracion:60,chofer:'Camila S.',carrera:'',anio:'',consiente:false,punto:'Plaza de Morón, esquina Belgrano',espera:10},
+ {id:4,zona:'Zona Sur',origen:'Lanús',dia:'Martes',hora:'07:30',lugares:2,aporte:3200,duracion:45,chofer:'Joaquín M.',carrera:'Ingeniería Informática',anio:'4.º año',consiente:true,punto:'Estación Lanús, salida Av. Hipólito Yrigoyen',espera:5},
+ {id:5,zona:'Zona Sur',origen:'Quilmes',dia:'Martes',hora:'08:30',lugares:1,aporte:4200,duracion:70,chofer:'Lucía B.',carrera:'Abogacía',anio:'1.º año',consiente:true,punto:'Estación Quilmes, lado Rivadavia',espera:5},
+ {id:6,zona:'Zona Oeste',origen:'Haedo',dia:'Miércoles',hora:'13:30',lugares:2,aporte:3300,duracion:50,chofer:'Franco D.',carrera:'Diseño Gráfico',anio:'2.º año',consiente:true,punto:'Estación Haedo, salida Av. Rivadavia',espera:5},
+ {id:7,zona:'Zona Norte',origen:'San Isidro',dia:'Miércoles',hora:'18:00',lugares:3,aporte:4500,duracion:65,chofer:'Abril T.',carrera:'',anio:'',consiente:false,punto:'Catedral de San Isidro, frente a la plaza',espera:10},
+ {id:9,zona:'Zona Norte',origen:'Vicente López',dia:'Jueves',hora:'07:30',lugares:2,aporte:3900,duracion:45,chofer:'Ramiro C.',carrera:'Ingeniería Industrial',anio:'5.º año',consiente:true,punto:'Estación Vicente López, lado Mitre',espera:5},
+ {id:10,zona:'Zona Oeste',origen:'Ramos Mejía',dia:'Lunes',hora:'07:15',lugares:0,aporte:3500,duracion:55,chofer:'Sofía V.',carrera:'Lic. en Administración',anio:'1.º año',consiente:true,punto:'Estación Ramos Mejía, salida Av. de Mayo',espera:5}
+];
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function plata(n){return '$'+Number(n).toLocaleString('es-AR')}
+function ico(n){return '<svg class="icono" aria-hidden="true"><use href="#i-'+n+'"/></svg>'}
+function iniciales(n){var p=n.replace('.','').split(' ');return (p[0][0]+(p[1]?p[1][0]:'')).toUpperCase()}
+function franjaDe(h){var n=parseInt(h,10);for(var i=0;i<FRANJAS.length;i++){if(n>=FRANJAS[i].d&&n<FRANJAS[i].h)return FRANJAS[i].v}return 'noche'}
+function opciones(lista,marcado,vacio){var h=vacio?'<option value="">'+vacio+'</option>':'';lista.forEach(function(x){var v=x.v||x,t=x.t||x;h+='<option value="'+esc(v)+'"'+(v===marcado?' selected':'')+'>'+esc(t)+'</option>'});return h}
+
+var estado,guia;
+function inicial(){
+  estado={filtro:{zona:'',dia:'',franja:''},asientos:0,orden:'hora',viajeId:null,favoritos:{},
+    solicitudes:[{id:'s0',viajeId:5,estado:'rechazada',mensaje:'',cuando:'Ayer'}],
+    misViajes:[{id:101,zona:'Zona Oeste',origen:'Castelar',dia:'Miércoles',hora:'07:30',lugares:2,aporte:3300,duracion:50,punto:'Estación Castelar, salida Santa María de Oro',espera:5,mostrar:true,
+      pedidos:[{id:'r1',nombre:'Valentina G.',perfil:'Diseño Gráfico · 2.º año',mensaje:'Salgo de Morón y puedo caminar hasta la estación.',estado:'pendiente'}]}],
+    pub:{paso:1,lugares:2},contactoVisible:{},condiciones:{},ultimoEnvio:false,ultimoPublicado:false,
+    perfil:{nombre:'Nicolás Argüello',carrera:true,apellido:false}};
+  guia={buscar:false,validacion:false,resultados:false,detalle:false,solicitar:false,envio:false,respuesta:false,contacto:false};
+}
+inicial();
+
+/* ---- Guía de prueba ---- */
+var PASOS_GUIA=[['buscar','Abrí Buscar viajes.'],['validacion','Tocá Buscar sin completar nada y leé los avisos.'],['resultados','Elegí Zona Oeste, Lunes y Mañana. Buscá.'],['detalle','Compará las tarjetas y abrí el detalle del viaje de Martina P.'],['solicitar','Tocá Solicitar lugar.'],['envio','Aceptá las reglas y enviá la solicitud.'],['respuesta','En Mis solicitudes, simulá que el chofer acepta.'],['contacto','Tocá Ver contacto y confirmá las condiciones.']];
+function marcar(k){if(!guia[k]){guia[k]=true;dibujarGuia()}}
+function dibujarGuia(){
+  var hechos=0;
+  $('#guia-pasos').innerHTML=PASOS_GUIA.map(function(p,i){var ok=guia[p[0]];if(ok)hechos++;return '<li class="'+(ok?'listo':'')+'"><i>'+(ok?'✓':(i+1))+'</i><span>'+p[1]+'</span></li>'}).join('');
+  $('#guia-progreso').textContent=hechos+'/8';$('#guia-barra').style.width=(hechos/8*100)+'%';
+}
+
+/* ---- Formularios de búsqueda ---- */
+function camposBusqueda(p){
+  return '<div class="rejilla-campos" style="grid-template-columns:1fr">'+
+  '<div class="campo"><label for="'+p+'-zona">Zona de origen</label><select class="entrada" id="'+p+'-zona" aria-describedby="e-'+p+'-zona">'+opciones(ZONAS,estado.filtro.zona,'Elegí tu zona')+'</select><span class="error-campo" id="e-'+p+'-zona">'+ico('alerta')+'Elegí una zona</span></div>'+
+  '<div class="campo"><label for="'+p+'-dia">Día</label><select class="entrada" id="'+p+'-dia" aria-describedby="e-'+p+'-dia">'+opciones(DIAS,estado.filtro.dia,'Elegí un día')+'</select><span class="error-campo" id="e-'+p+'-dia">'+ico('alerta')+'Elegí un día</span></div>'+
+  '<div class="campo"><label for="'+p+'-franja">Horario</label><select class="entrada" id="'+p+'-franja" aria-describedby="e-'+p+'-franja">'+opciones(FRANJAS,estado.filtro.franja,'Elegí una franja')+'</select><span class="error-campo" id="e-'+p+'-franja">'+ico('alerta')+'Elegí una franja horaria</span></div></div>';
+}
+function montarFormularios(){$$('.form-busqueda').forEach(function(f){var p=f.getAttribute('data-prefijo');$('[data-campos]',f).innerHTML=camposBusqueda(p)})}
+function enviarBusqueda(f){
+  var p=f.getAttribute('data-prefijo'),ok=true,vacios=0;
+  ['zona','dia','franja'].forEach(function(c){var s=$('#'+p+'-'+c),e=$('#e-'+p+'-'+c),mal=!s.value;s.setAttribute('aria-invalid',mal?'true':'false');e.classList.toggle('visible',mal);if(mal){ok=false;vacios++}});
+  var av=$('.aviso-formulario',f);
+  if(!ok){av.textContent='Completá zona, día y franja horaria para buscar.';av.classList.add('visible');marcar('validacion');var primero=$$('select[aria-invalid="true"]',f)[0];if(primero)primero.focus();return}
+  av.classList.remove('visible');
+  estado.filtro={zona:$('#'+p+'-zona').value,dia:$('#'+p+'-dia').value,franja:$('#'+p+'-franja').value};
+  ir('resultados');
+}
+
+/* ---- Tarjetas ---- */
+function bloqueChofer(v){
+  var nombre=esc(v.chofer);
+  if(v.consiente)return '<div class="chofer"><span class="avatar" aria-hidden="true">'+iniciales(v.chofer)+'</span><span><strong>'+nombre+'</strong><small>'+esc(v.carrera)+' · '+esc(v.anio)+'</small></span></div>';
+  return '<div class="chofer"><span class="avatar reservado" aria-hidden="true">'+iniciales(v.chofer)+'</span><span><strong>'+nombre+'</strong><small>Perfil reservado por el chofer</small></span></div>';
+}
+function tarjeta(v,opt){
+  opt=opt||{};var completo=v.lugares===0;
+  var lug=completo?'<span class="insignia completo">'+ico('cruz')+'Completo</span>':'<li>'+ico('personas')+'<strong>'+v.lugares+'</strong> '+(v.lugares===1?'lugar':'lugares')+'</li>';
+  var datos='<ul class="datos">'+(completo?'<li>'+lug+'</li>':lug)+'<li>'+ico('moneda')+'Aporte estimado <strong>'+plata(v.aporte)+'</strong></li><li>'+ico('reloj')+'~'+v.duracion+' min</li></ul>';
+  var acc='';
+  if(!opt.sinAcciones){
+    var fav=!!estado.favoritos[v.id];
+    acc='<div class="viaje-acciones"><div class="fila"><button class="boton-favorito" type="button" data-accion="favorito" data-id="'+v.id+'" aria-pressed="'+fav+'" aria-label="Guardar viaje en favoritos">'+ico('corazon')+'</button><button class="boton boton-secundario boton-chico" type="button" data-accion="ver-detalle" data-id="'+v.id+'">Ver detalle</button></div>'+
+    '<button class="boton boton-primario" type="button" data-accion="solicitar" data-id="'+v.id+'"'+(completo?' disabled aria-disabled="true"':'')+'>'+(completo?'Sin lugares':'Solicitar lugar')+'</button></div>';
+  }
+  return '<article class="tarjeta-viaje'+(completo?' completo':'')+'" '+(opt.sinAcciones?'style="grid-template-columns:96px minmax(0,1fr)"':'')+'><div class="viaje-hora"><strong>'+esc(v.hora)+'</strong><span>'+esc(v.dia)+'</span></div><div class="viaje-cuerpo"><h3 class="viaje-ruta"><span>'+esc(v.zona)+'</span><i class="linea-ruta" aria-hidden="true"></i><span>Facultad</span></h3><p class="chico">Sale de '+esc(v.origen)+' · '+esc(v.punto)+'</p>'+datos+(v.chofer?bloqueChofer(v):'')+'</div>'+acc+'</article>';
+}
+function viajePorId(id){for(var i=0;i<VIAJES.length;i++)if(VIAJES[i].id===Number(id))return VIAJES[i];return null}
+
+/* ---- Resultados ---- */
+function dibujarResultados(){
+  var f=estado.filtro;
+  $('#r-zona').innerHTML=opciones(ZONAS,f.zona,'Todas');$('#r-dia').innerHTML=opciones(DIAS,f.dia,'Todos');$('#r-franja').innerHTML=opciones(FRANJAS,f.franja,'Todas');
+  $('#r-asientos').value=String(estado.asientos);$('#r-orden').value=estado.orden;
+  var lista=VIAJES.filter(function(v){return (!f.zona||v.zona===f.zona)&&(!f.dia||v.dia===f.dia)&&(!f.franja||franjaDe(v.hora)===f.franja)&&v.lugares>=estado.asientos});
+  lista.sort(function(a,b){return estado.orden==='aporte'?a.aporte-b.aporte:estado.orden==='duracion'?a.duracion-b.duracion:a.hora.localeCompare(b.hora)});
+  var fr=FRANJAS.filter(function(x){return x.v===f.franja})[0];
+  $('#resumen-busqueda').textContent=[f.zona||'Todas las zonas',f.dia||'cualquier día',fr?fr.t.split(' (')[0].toLowerCase():'cualquier horario'].join(' · ')+' → Facultad';
+  $('#cantidad-resultados').textContent=lista.length===1?'1 viaje encontrado':lista.length+' viajes encontrados';
+  if(!lista.length){
+    var alt=DIAS.filter(function(d){return d!==f.dia&&VIAJES.some(function(v){return (!f.zona||v.zona===f.zona)&&v.dia===d})});
+    var botones=alt.map(function(d){return '<button class="boton boton-secundario boton-chico" type="button" data-accion="dia-alternativo" data-dia="'+d+'">Ver el '+d.toLowerCase()+'</button>'}).join('');
+    if(f.franja)botones+='<button class="boton boton-secundario boton-chico" type="button" data-accion="quitar-franja">Quitar el horario</button>';
+    $('#lista-resultados').innerHTML='<div class="vacio"><svg class="icono" style="width:40px;height:40px;color:var(--texto-suave)"><use href="#i-lupa"/></svg><h2 style="font-size:1.3rem">No hay viajes con esa combinación</h2><p class="chico" style="max-width:46ch">Probá con otro día, ampliá el horario o cambiá la zona.'+(f.zona?' Estos días tienen viajes desde '+esc(f.zona)+':':'')+'</p><div class="fila-botones">'+botones+'<a class="boton boton-texto boton-chico" href="#buscar">Cambiar búsqueda</a></div></div>';
+  }else $('#lista-resultados').innerHTML=lista.map(function(v){return tarjeta(v)}).join('');
+  marcar('resultados');
+}
+
+/* ---- Detalle ---- */
+function dibujarDetalle(){
+  var v=viajePorId(estado.viajeId)||VIAJES[0];estado.viajeId=v.id;var completo=v.lugares===0;
+  var perfil=v.consiente?'<div class="chofer"><span class="avatar grande" aria-hidden="true">'+iniciales(v.chofer)+'</span><span><strong style="font-size:1.1rem">'+esc(v.chofer)+'</strong><small>'+esc(v.carrera)+' · '+esc(v.anio)+'</small></span></div>':'<div class="chofer"><span class="avatar grande reservado" aria-hidden="true">'+iniciales(v.chofer)+'</span><span><strong style="font-size:1.1rem">'+esc(v.chofer)+'</strong><small>Este chofer eligió no mostrar carrera ni año</small></span></div>';
+  $('#detalle-contenido').innerHTML='<div class="detalle"><div class="panel"><span class="insignia">'+ico('calendario')+esc(v.dia)+' · '+esc(v.hora)+' h</span>'+
+   '<div class="ruta-grande"><span>'+esc(v.zona)+'</span><i class="linea-ruta" aria-hidden="true"></i><span>Facultad</span></div>'+
+   '<p class="chico">Sale de '+esc(v.origen)+'</p>'+
+   '<div class="hechos"><div class="hecho"><span>'+ico('personas')+'Lugares</span><strong>'+(completo?'Completo':v.lugares+' disponibles')+'</strong></div><div class="hecho"><span>'+ico('moneda')+'Aporte estimado</span><strong>'+plata(v.aporte)+'</strong></div><div class="hecho"><span>'+ico('reloj')+'Duración aprox.</span><strong>'+v.duracion+' min</strong></div><div class="hecho"><span>'+ico('pin')+'Punto de encuentro</span><strong style="font-size:.98rem">'+esc(v.punto)+'</strong></div></div>'+
+   '<h3 style="margin-top:26px">Reglas del viaje</h3><ul class="lista-reglas"><li>'+ico('ok')+'<span>Llegá puntual. El chofer espera '+v.espera+' minutos.</span></li><li>'+ico('ok')+'<span>Si cancelás, avisá con al menos 2 horas de anticipación.</span></li><li>'+ico('ok')+'<span>El aporte estimado se acuerda y se entrega en persona.</span></li></ul></div>'+
+   '<div class="pegajoso"><div class="panel"><h3 style="margin-bottom:12px">Chofer</h3>'+perfil+
+   '<div class="nota-privacidad" style="margin-top:16px">'+ico('escudo')+'<span>El teléfono no se publica. Se comparte solo si el chofer acepta tu solicitud.</span></div>'+
+   '<div style="display:flex;flex-direction:column;gap:10px;margin-top:18px"><button class="boton boton-primario" type="button" data-accion="solicitar" data-id="'+v.id+'"'+(completo?' disabled':'')+'>'+(completo?'Sin lugares disponibles':'Solicitar lugar')+'</button><a class="boton boton-secundario" href="#resultados">Volver al listado</a></div></div></div></div>';
+  marcar('detalle');
+}
+
+/* ---- Solicitar ---- */
+function dibujarSolicitar(){
+  var v=viajePorId(estado.viajeId)||VIAJES[0];
+  $('#solicitar-contenido').innerHTML='<div class="cabecera-pantalla"><h1 style="font-size:clamp(1.8rem,4vw,2.4rem)">Solicitar un lugar</h1><p>Revisá el viaje y confirmá qué datos compartís con el chofer.</p></div><div class="dos-columnas"><form class="panel" id="form-solicitud" novalidate style="display:flex;flex-direction:column;gap:16px"><h2 style="font-size:1.3rem">Datos que compartís</h2>'+
+   '<label class="casilla bloqueada"><input type="checkbox" checked disabled><span><strong>Nombre y apellido</strong><br><span class="chico">Necesario para coordinar el viaje.</span></span></label>'+
+   '<label class="casilla"><input type="checkbox" id="s-carrera" checked><span><strong>Carrera y año</strong><br><span class="chico">Licenciatura en Administración · 2.º año</span></span></label>'+
+   '<div class="nota-privacidad">'+ico('escudo')+'<span>Tu teléfono no se comparte ahora. Se habilita solo si el chofer acepta.</span></div>'+
+   '<div class="campo"><label for="s-mensaje">Mensaje para el chofer (opcional)</label><textarea class="entrada" id="s-mensaje" maxlength="140" placeholder="Ej.: Voy con mochila chica. Puedo esperar en la estación."></textarea><span class="ayuda"><span id="s-cuenta">0</span>/140 caracteres</span></div>'+
+   '<label class="casilla"><input type="checkbox" id="s-reglas"><span><strong>Leí y acepto las reglas del viaje</strong><br><span class="chico">Puntualidad ('+v.espera+' min de espera) y cancelación con 2 horas de aviso.</span></span></label>'+
+   '<div style="display:flex;gap:12px;flex-wrap:wrap"><button class="boton boton-primario" type="submit" id="s-enviar" disabled>Enviar solicitud</button><a class="boton boton-texto" href="#detalle">Cancelar</a></div><p class="chico" id="s-ayuda-envio">Aceptá las reglas para habilitar el envío.</p></form>'+
+   '<aside><div class="panel" style="display:flex;flex-direction:column;gap:12px"><h3>Resumen del viaje</h3><div class="viaje-ruta"><span>'+esc(v.zona)+'</span><i class="linea-ruta" aria-hidden="true"></i><span>Facultad</span></div><ul class="datos" style="flex-direction:column;gap:8px"><li>'+ico('calendario')+esc(v.dia)+', '+esc(v.hora)+' h</li><li>'+ico('pin')+esc(v.punto)+'</li><li>'+ico('moneda')+'Aporte estimado <strong>'+plata(v.aporte)+'</strong></li><li>'+ico('reloj')+'~'+v.duracion+' min</li></ul>'+bloqueChofer(v)+'</div></aside></div>';
+  marcar('solicitar');
+}
+
+/* ---- Solicitudes ---- */
+function etiqueta(e){return e==='pendiente'?'<span class="insignia pendiente">'+ico('reloj')+'Pendiente</span>':e==='aceptada'?'<span class="insignia aceptada">'+ico('ok')+'Aceptada</span>':'<span class="insignia rechazada">'+ico('cruz')+'Rechazada</span>'}
+function dibujarSolicitudes(){
+  $('#banner-envio').innerHTML=estado.ultimoEnvio?'<div class="banner-exito" role="status">'+ico('ok')+'<span>Solicitud enviada. Te mostramos acá cuando el chofer responda.</span></div>':'';
+  estado.ultimoEnvio=false;
+  $('#solicitudes-lista').innerHTML=estado.solicitudes.length?estado.solicitudes.map(function(s){
+    var v=viajePorId(s.viajeId),h='<article class="tarjeta-solicitud"><header><div><h3 class="viaje-ruta"><span>'+esc(v.zona)+'</span><i class="linea-ruta" aria-hidden="true"></i><span>Facultad</span></h3><p class="chico" style="margin-top:4px">'+esc(v.dia)+' · '+esc(v.hora)+' h · '+esc(v.chofer)+' · '+esc(s.cuando)+'</p></div>'+etiqueta(s.estado)+'</header>';
+    if(s.mensaje)h+='<p class="chico">Tu mensaje: “'+esc(s.mensaje)+'”</p>';
+    if(s.estado==='pendiente')h+='<p>Esperando la respuesta del chofer.</p><div class="simulador"><b>Solo prototipo · simular respuesta:</b><button class="boton boton-secundario boton-chico" type="button" data-accion="simular-aceptar" data-id="'+s.id+'">Aceptar</button><button class="boton boton-peligro boton-chico" type="button" data-accion="simular-rechazar" data-id="'+s.id+'">Rechazar</button></div><div><button class="boton boton-texto boton-chico" type="button" data-accion="cancelar-solicitud" data-id="'+s.id+'">Cancelar solicitud</button></div>';
+    if(s.estado==='aceptada'){var vis=estado.contactoVisible[s.id],cond=estado.condiciones[s.id];
+      h+='<div class="coordinar"><strong>'+esc(v.chofer)+' aceptó tu solicitud. Ya podés coordinar.</strong><p class="chico" style="color:inherit">Punto de encuentro: '+esc(v.punto)+'. Espera '+v.espera+' minutos.</p>'+
+      (vis?'<div class="contacto">WhatsApp +54 9 11 5555-0142 <button class="boton boton-secundario boton-chico" type="button" data-accion="copiar" data-texto="+54 9 11 5555-0142">'+ico('copiar')+'Copiar</button></div><p class="chico" style="color:inherit">Número de ejemplo del prototipo.</p>':'<div><button class="boton boton-primario boton-chico" type="button" data-accion="ver-contacto" data-id="'+s.id+'">Ver contacto</button></div>')+
+      '<div><button class="boton boton-secundario boton-chico" type="button" data-accion="confirmar-condiciones" data-id="'+s.id+'" aria-pressed="'+!!cond+'">'+(cond?'✓ Condiciones confirmadas':'Confirmar condiciones')+'</button></div></div>';}
+    if(s.estado==='rechazada')h+='<p>El chofer no tiene lugar para vos en este viaje. No se compartió ningún dato de contacto.</p><div><a class="boton boton-primario boton-chico" href="#resultados">Buscar otra opción</a></div>';
+    return h+'</article>';}).join(''):'<div class="vacio"><h2 style="font-size:1.3rem">Todavía no pediste ningún lugar</h2><p class="chico">Buscá un viaje y tu solicitud va a aparecer acá.</p><a class="boton boton-primario" href="#buscar">Buscar viajes</a></div>';
+}
+
+/* ---- Mis viajes (chofer) ---- */
+function dibujarMisViajes(){
+  $('#banner-publicado').innerHTML=estado.ultimoPublicado?'<div class="banner-exito" role="status">'+ico('ok')+'<span>Viaje publicado. Ya aparece en los resultados de búsqueda.</span></div>':'';estado.ultimoPublicado=false;
+  $('#viajes-lista').innerHTML=estado.misViajes.length?estado.misViajes.map(function(m){
+    var pend=m.pedidos.map(function(p){return '<li style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between;padding:12px 0;border-top:1px solid var(--borde)"><div style="min-width:0;flex:1 1 220px"><strong>'+esc(p.nombre)+'</strong> <span class="chico">'+esc(p.perfil)+'</span>'+(p.mensaje?'<p class="chico">“'+esc(p.mensaje)+'”</p>':'')+'</div>'+(p.estado==='pendiente'?'<div style="display:flex;gap:8px"><button class="boton boton-primario boton-chico" type="button" data-accion="aceptar-pasajero" data-viaje="'+m.id+'" data-id="'+p.id+'"'+(m.lugares===0?' disabled':'')+'>Aceptar</button><button class="boton boton-secundario boton-chico" type="button" data-accion="rechazar-pasajero" data-viaje="'+m.id+'" data-id="'+p.id+'">Rechazar</button></div>':etiqueta(p.estado))+'</li>'}).join('');
+    var confirmar=estado.confirmarCancelar===m.id;
+    return '<article class="tarjeta-solicitud"><header><div><h3 class="viaje-ruta"><span>'+esc(m.zona)+'</span><i class="linea-ruta" aria-hidden="true"></i><span>Facultad</span></h3><p class="chico" style="margin-top:4px">'+esc(m.dia)+' · '+esc(m.hora)+' h · Sale de '+esc(m.origen)+'</p></div><span class="insignia">'+ico('personas')+m.lugares+' '+(m.lugares===1?'lugar libre':'lugares libres')+'</span></header>'+
+     '<ul class="datos"><li>'+ico('moneda')+'Aporte estimado <strong>'+plata(m.aporte)+'</strong></li><li>'+ico('pin')+esc(m.punto)+'</li></ul>'+
+     '<div><h3 style="font-size:1rem">Solicitudes recibidas ('+m.pedidos.length+')</h3>'+(m.pedidos.length?'<ul style="list-style:none;padding:0;margin:8px 0 0">'+pend+'</ul>':'<p class="chico" style="margin-top:6px">Todavía no recibiste solicitudes.</p>')+'</div>'+
+     '<div>'+(confirmar?'<span class="chico">¿Cancelar este viaje?</span> <button class="boton boton-peligro boton-chico" type="button" data-accion="cancelar-viaje" data-id="'+m.id+'">Sí, cancelar viaje</button> <button class="boton boton-texto boton-chico" type="button" data-accion="no-cancelar">No, mantener</button>':'<button class="boton boton-texto boton-chico" type="button" data-accion="cancelar-viaje" data-id="'+m.id+'">Cancelar viaje</button>')+'</div></article>'}).join(''):'<div class="vacio"><h2 style="font-size:1.3rem">No publicaste ningún viaje</h2><p class="chico">Publicá tu primer viaje en tres pasos.</p><a class="boton boton-primario" href="#publicar">Publicar viaje</a></div>';
+}
+
+/* ---- Publicar ---- */
+var NOMBRES_PASOS=['Ruta','Horario','Aporte y reglas','Revisión'];
+function dibujarPublicar(){
+  var n=estado.pub.paso;
+  $('#pasos-pub').innerHTML=NOMBRES_PASOS.map(function(t,i){var c=(i+1===n)?'actual':(i+1<n?'hecho-paso':'');return '<li class="'+c+'"'+(i+1===n?' aria-current="step"':'')+'><b>'+(i+1<n?'✓':(i+1))+'</b>'+t+'</li>'}).join('');
+  $$('#form-publicar fieldset').forEach(function(f){f.hidden=Number(f.getAttribute('data-paso'))!==n});
+  $('#pub-atras').style.visibility=n===1?'hidden':'visible';
+  $('#pub-siguiente').textContent=n===3?'Ver vista previa':n===4?'Publicar viaje':'Siguiente';
+  $('#p-lugares').textContent=estado.pub.lugares;
+  $('[data-accion="menos"]').disabled=estado.pub.lugares<=1;$('[data-accion="mas"]').disabled=estado.pub.lugares>=4;
+  if(n===3){var z=$('#p-zona').value,s=SUGERIDO[z];$('#sugerencias-aporte').innerHTML=s?'<span class="chico">Sugerido (ejemplo):</span> <button type="button" class="chip" data-accion="sugerir" data-valor="'+s+'">'+plata(s)+'</button>':''}
+  $('#aviso-pub').classList.remove('visible');
+}
+function validarPaso(n){
+  var errs=0;function chk(id,mal){var el=$('#'+id),er=$('#e-'+id);if(el)el.setAttribute('aria-invalid',mal?'true':'false');if(er)er.classList.toggle('visible',mal);if(mal)errs++}
+  if(n===1){chk('p-zona',!$('#p-zona').value);chk('p-origen',!$('#p-origen').value.trim());chk('p-punto',!$('#p-punto').value.trim())}
+  if(n===2){chk('p-dia',!$('#p-dia').value);chk('p-hora',!$('#p-hora').value)}
+  if(n===3){chk('p-aporte',!(Number($('#p-aporte').value)>0));var er=$('#e-p-reglas');er.classList.toggle('visible',!$('#p-reglas').checked);if(!$('#p-reglas').checked)errs++}
+  var av=$('#aviso-pub');av.textContent='Revisá los campos marcados para continuar.';av.classList.toggle('visible',errs>0);
+  if(errs){var p=$('#form-publicar fieldset:not([hidden]) [aria-invalid="true"]')||$('#p-reglas');if(p)p.focus()}
+  return errs===0;
+}
+function armarViaje(){var z=$('#p-zona').value;return {id:Date.now(),zona:z,origen:$('#p-origen').value.trim(),dia:$('#p-dia').value,hora:$('#p-hora').value,lugares:estado.pub.lugares,aporte:Number($('#p-aporte').value),duracion:SUGERIDO[z]?(z==='Zona Sur'?55:50):50,punto:$('#p-punto').value.trim(),espera:Number($('#p-espera').value),mostrar:$('#p-mostrar').checked,pedidos:[],chofer:'',consiente:$('#p-mostrar').checked}}
+function pubSiguiente(){
+  var n=estado.pub.paso;if(!validarPaso(n))return;
+  if(n===3){var v=armarViaje();$('#vista-previa').innerHTML=tarjeta({zona:v.zona,origen:v.origen,dia:v.dia,hora:v.hora,lugares:v.lugares,aporte:v.aporte,duracion:v.duracion,punto:v.punto,chofer:'Nicolás A.',carrera:'Lic. en Administración',anio:'2.º año',consiente:v.mostrar},{sinAcciones:true})}
+  if(n===4){var nv=armarViaje();estado.misViajes.unshift(nv);VIAJES.push({id:nv.id,zona:nv.zona,origen:nv.origen,dia:nv.dia,hora:nv.hora,lugares:nv.lugares,aporte:nv.aporte,duracion:nv.duracion,chofer:'Nicolás A.',carrera:'Lic. en Administración',anio:'2.º año',consiente:nv.mostrar,punto:nv.punto,espera:nv.espera});
+    estado.ultimoPublicado=true;estado.pub={paso:1,lugares:2};$('#form-publicar').reset();aviso('Viaje publicado');ir('mis-viajes');return}
+  estado.pub.paso=n+1;dibujarPublicar();
+}
+
+/* ---- Perfil ---- */
+function dibujarPerfil(){
+  var nom=$('#pf-nombre').value.trim()||'Tu nombre',partes=nom.split(' '),visible=$('#sw-apellido').getAttribute('aria-checked')==='true'?nom:(partes[0]+(partes[1]?' '+partes[1][0]+'.':''));
+  var carr=$('#sw-carrera').getAttribute('aria-checked')==='true';
+  $('#perfil-vista').innerHTML='<span class="avatar grande" aria-hidden="true">'+iniciales(nom)+'</span><span><strong style="font-size:1.1rem">'+esc(visible)+'</strong><br><span class="chico">'+(carr?esc($('#pf-carrera').value)+' · '+esc($('#pf-anio').value):'Carrera y año ocultos')+'</span><br><span class="chico">Teléfono: visible solo tras aceptar</span></span>';
+}
+
+/* ---- Navegación ---- */
+var PANTALLAS=['inicio','buscar','resultados','detalle','solicitar','solicitudes','mis-viajes','publicar','perfil','como-funciona','privacidad'];
+function ir(n){if(location.hash==='#'+n)mostrar();else location.hash=n}
+function mostrar(){
+  var n=location.hash.replace('#','');if(PANTALLAS.indexOf(n)<0)n='inicio';
+  if((n==='detalle'||n==='solicitar')&&!estado.viajeId)estado.viajeId=1;
+  $$('.pantalla').forEach(function(p){p.classList.toggle('activa',p.id==='p-'+n)});
+  $$('[data-nav]').forEach(function(a){var on=a.getAttribute('data-nav').split(' ').indexOf(n)>-1;if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  document.title='FacuPool · '+$('#p-'+n).getAttribute('data-titulo');
+  if(n==='inicio')$('#destacados').innerHTML=[1,2,6].map(function(i){return tarjeta(viajePorId(i))}).join('');
+  if(n==='buscar'){marcar('buscar');montarFormularios()}
+  if(n==='resultados')dibujarResultados();
+  if(n==='detalle')dibujarDetalle();
+  if(n==='solicitar')dibujarSolicitar();
+  if(n==='solicitudes')dibujarSolicitudes();
+  if(n==='mis-viajes')dibujarMisViajes();
+  if(n==='publicar')dibujarPublicar();
+  if(n==='perfil')dibujarPerfil();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',mostrar);
+
+var temporizador;
+function aviso(t){var a=$('#aviso');a.textContent=t;a.classList.add('visible');clearTimeout(temporizador);temporizador=setTimeout(function(){a.classList.remove('visible')},2600)}
+
+/* ---- Eventos ---- */
+document.addEventListener('submit',function(e){
+  var f=e.target;
+  if(f.classList.contains('form-busqueda')){e.preventDefault();enviarBusqueda(f)}
+  else if(f.id==='form-solicitud'){e.preventDefault();if(!$('#s-reglas').checked)return;
+    estado.solicitudes.unshift({id:'s'+Date.now(),viajeId:estado.viajeId,estado:'pendiente',mensaje:$('#s-mensaje').value.trim(),cuando:'Hoy'});
+    var v=viajePorId(estado.viajeId);estado.ultimoEnvio=true;marcar('envio');aviso('Solicitud enviada');ir('solicitudes')}
+  else if(f.id==='form-perfil'){e.preventDefault();aviso('Cambios guardados')}
+  else if(f.id==='form-publicar'){e.preventDefault();pubSiguiente()}
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='s-mensaje')$('#s-cuenta').textContent=t.value.length;
+  if(t.closest&&t.closest('#form-perfil'))dibujarPerfil();
+  if(t.getAttribute&&t.getAttribute('aria-invalid')==='true'&&t.value){t.setAttribute('aria-invalid','false');var er=$('#e-'+t.id);if(er)er.classList.remove('visible')}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.id==='s-reglas'){$('#s-enviar').disabled=!t.checked;$('#s-ayuda-envio').textContent=t.checked?'Listo para enviar.':'Aceptá las reglas para habilitar el envío.'}
+  if(t.id==='r-zona'||t.id==='r-dia'||t.id==='r-franja'){estado.filtro={zona:$('#r-zona').value,dia:$('#r-dia').value,franja:$('#r-franja').value};dibujarResultados()}
+  if(t.id==='r-asientos'){estado.asientos=Number(t.value);dibujarResultados()}
+  if(t.id==='r-orden'){estado.orden=t.value;dibujarResultados()}
+  if(t.id==='p-zona'&&estado.pub.paso===3)dibujarPublicar();
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-accion]');
+  if(b){
+  var a=b.getAttribute('data-accion'),id=b.getAttribute('data-id');
+  switch(a){
+    case 'ver-detalle':estado.viajeId=Number(id);ir('detalle');break;
+    case 'solicitar':estado.viajeId=Number(id);ir('solicitar');break;
+    case 'favorito':var on=b.getAttribute('aria-pressed')!=='true';estado.favoritos[id]=on;b.setAttribute('aria-pressed',on);aviso(on?'Guardado en favoritos':'Quitado de favoritos');break;
+    case 'dia-alternativo':estado.filtro.dia=b.getAttribute('data-dia');estado.filtro.franja='';dibujarResultados();break;
+    case 'quitar-franja':estado.filtro.franja='';dibujarResultados();break;
+    case 'simular-aceptar':case 'simular-rechazar':
+      estado.solicitudes.forEach(function(s){if(s.id===id){s.estado=a==='simular-aceptar'?'aceptada':'rechazada'}});if(a==='simular-aceptar')marcar('respuesta');aviso(a==='simular-aceptar'?'El chofer aceptó tu solicitud':'El chofer rechazó tu solicitud');dibujarSolicitudes();break;
+    case 'cancelar-solicitud':estado.solicitudes=estado.solicitudes.filter(function(s){return s.id!==id});aviso('Solicitud cancelada');dibujarSolicitudes();break;
+    case 'ver-contacto':estado.contactoVisible[id]=true;dibujarSolicitudes();break;
+    case 'confirmar-condiciones':estado.condiciones[id]=!estado.condiciones[id];if(estado.condiciones[id]&&estado.contactoVisible[id])marcar('contacto');if(estado.condiciones[id])aviso('Condiciones confirmadas');dibujarSolicitudes();break;
+    case 'copiar':try{navigator.clipboard.writeText(b.getAttribute('data-texto')).then(function(){aviso('Copiado')},function(){aviso('Seleccioná el número para copiarlo')})}catch(x){aviso('Seleccioná el número para copiarlo')}break;
+    case 'aceptar-pasajero':case 'rechazar-pasajero':
+      estado.misViajes.forEach(function(m){if(String(m.id)===b.getAttribute('data-viaje'))m.pedidos.forEach(function(p){if(p.id===id){p.estado=a==='aceptar-pasajero'?'aceptada':'rechazada';if(a==='aceptar-pasajero')m.lugares=Math.max(0,m.lugares-1)}})});aviso(a==='aceptar-pasajero'?'Solicitud aceptada':'Solicitud rechazada');dibujarMisViajes();break;
+    case 'cancelar-viaje':if(estado.confirmarCancelar===Number(id)){estado.misViajes=estado.misViajes.filter(function(m){return m.id!==Number(id)});VIAJES=VIAJES.filter(function(v){return v.id!==Number(id)});estado.confirmarCancelar=null;aviso('Viaje cancelado')}else estado.confirmarCancelar=Number(id);dibujarMisViajes();break;
+    case 'no-cancelar':estado.confirmarCancelar=null;dibujarMisViajes();break;
+    case 'mas':estado.pub.lugares=Math.min(4,estado.pub.lugares+1);dibujarPublicar();break;
+    case 'menos':estado.pub.lugares=Math.max(1,estado.pub.lugares-1);dibujarPublicar();break;
+    case 'sugerir':$('#p-aporte').value=b.getAttribute('data-valor');$('#p-aporte').setAttribute('aria-invalid','false');$('#e-p-aporte').classList.remove('visible');break;
+    case 'pub-siguiente':pubSiguiente();break;
+    case 'pub-atras':estado.pub.paso=Math.max(1,estado.pub.paso-1);dibujarPublicar();break;
+    case 'alternar':var v=b.getAttribute('aria-checked')!=='true';b.setAttribute('aria-checked',v);dibujarPerfil();break;
+    case 'cerrar-guia':$('#guia').hidden=true;$('#btn-guia').setAttribute('aria-expanded','false');break;
+    case 'reiniciar':var orig=VIAJES.length;VIAJES=VIAJES.filter(function(v){return v.id<100});inicial();$$('form').forEach(function(f){if(f.reset)f.reset()});montarFormularios();dibujarGuia();aviso('Prototipo reiniciado');ir('inicio');mostrar();break;
+  }
+  return}
+  if(e.target.closest('#btn-guia')){var g=$('#guia');g.hidden=!g.hidden;$('#btn-guia').setAttribute('aria-expanded',String(!g.hidden))}
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#guia').hidden){$('#guia').hidden=true;$('#btn-guia').setAttribute('aria-expanded','false');$('#btn-guia').focus()}});
+
+/* ---- Inicio ---- */
+$('#p-dia').innerHTML=opciones(DIAS,'','Elegí un día');
+montarFormularios();dibujarGuia();mostrar();
+})();
+</script>
+
+</body></html>
