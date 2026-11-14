@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Publicá un viaje a la facultad en tres pasos y revisá cómo lo verán los pasajeros.">
+  <title>Publicar viaje · FacuPool</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografías de la guía de estilo (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap">
+
+  <!-- Bootstrap 5.3.8 e íconos (CDN jsDelivr) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <!-- Estilos propios: van después para pisar a Bootstrap -->
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+          <li class="nav-item"><a class="nav-link" href="buscar.html"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar viajes</a></li>
+          <li class="nav-item"><a class="nav-link active" href="publicar.html" aria-current="page"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Publicar viaje</a></li>
+          <li class="nav-item"><a class="nav-link" href="mis-viajes.html"><i class="bi bi-car-front me-1" aria-hidden="true"></i>Mis viajes</a></li>
+          <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="bi bi-person-circle me-1" aria-hidden="true"></i>Mi perfil</a></li>
+          </ul>
+          <a class="btn btn-claro btn-sm ms-lg-3 mb-3 mb-lg-0" href="ingresar.html">Ingresar</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina container">
+      <h1>Publicar un viaje</h1>
+      <p class="mt-2 mb-0">Completá los tres pasos y revisá cómo lo van a ver los pasajeros antes de publicarlo.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-7">
+          <div id="exito-publicar" class="d-none mb-3" role="status"></div>
+          <form id="form-publicar" class="panel">
+            <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+
+            <fieldset>
+              <legend class="h5 fw-bold">1. Ruta</legend>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="p-zona">Zona de origen</label>
+                  <select class="form-select" id="p-zona" name="zona" required>
+                  <option value="">Elegí una zona</option>
+                  <option>Zona Oeste</option>
+                  <option>Zona Norte</option>
+                  <option>Zona Sur</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí una zona.</div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="p-origen">Barrio o localidad</label>
+                  <input class="form-control" id="p-origen" name="origen" type="text" required minlength="3" maxlength="40" autocomplete="address-level2">
+                  <div class="invalid-feedback">Escribí el barrio o localidad (mínimo 3 letras).</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="p-punto">Punto de encuentro</label>
+                  <input class="form-control" id="p-punto" name="punto" type="text" required minlength="5" maxlength="80" aria-describedby="p-punto-ayuda">
+                  <div id="p-punto-ayuda" class="form-text">Un lugar público y fácil de ubicar. No pongas tu domicilio.</div>
+                  <div class="invalid-feedback">Indicá dónde se encuentran (mínimo 5 caracteres).</div>
+                </div>
+                <div class="col-12">
+                  <p class="form-label mb-1">Destino</p>
+                  <p class="destino-fijo mb-0"><i class="bi bi-building" aria-hidden="true"></i>Facultad <span class="texto-suave small">(en esta versión el destino es fijo)</span></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+              <legend class="h5 fw-bold">2. Día, horario y lugares</legend>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="p-dia">Día</label>
+                  <select class="form-select" id="p-dia" name="dia" required>
+                  <option value="">Elegí un día</option>
+                  <option>Lunes</option>
+                  <option>Martes</option>
+                  <option>Miércoles</option>
+                  <option>Jueves</option>
+                  <option>Viernes</option>
+                  <option>Sábado</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí un día.</div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="p-hora">Hora de salida</label>
+                  <input class="form-control" id="p-hora" name="hora" type="time" required min="06:00" max="23:30">
+                  <div class="invalid-feedback">Indicá una hora entre las 06:00 y las 23:30.</div>
+                </div>
+                <div class="col-12">
+                  <p class="form-label mb-1" id="p-lugares-rotulo">Lugares disponibles</p>
+                  <div class="contador" role="group" aria-labelledby="p-lugares-rotulo">
+                    <button type="button" id="menos" aria-label="Quitar un lugar">−</button>
+                    <output id="p-lugares" aria-live="polite">2</output>
+                    <button type="button" id="mas" aria-label="Agregar un lugar">+</button>
+                  </div>
+                  <p class="form-text mb-0">Entre 1 y 4 lugares.</p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="mt-4">
+              <legend class="h5 fw-bold">3. Aporte y reglas</legend>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="p-aporte">Aporte estimado por pasajero</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">$</span>
+                    <input class="form-control" id="p-aporte" name="aporte" type="number" required min="500" max="20000" step="100" inputmode="numeric">
+                    <div class="invalid-feedback">Ingresá un monto entre $500 y $20.000.</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <fieldset>
+                    <legend class="form-label fs-6">Espera en el punto de encuentro</legend>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="espera" id="espera-5" value="5" checked>
+                      <label class="form-check-label" for="espera-5">5 minutos</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="espera" id="espera-10" value="10">
+                      <label class="form-check-label" for="espera-10">10 minutos</label>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-12">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="p-mostrar" name="mostrar" checked>
+                    <label class="form-check-label" for="p-mostrar">Mostrar mi carrera y año en la publicación</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check caja-casilla">
+                    <input class="form-check-input" type="checkbox" id="p-reglas" name="reglas" required>
+                    <label class="form-check-label" for="p-reglas">Acepto las reglas de puntualidad y cancelación (avisar con 2 horas de anticipación si cancelo)</label>
+                    <div class="invalid-feedback">Aceptá las reglas para publicar.</div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="d-flex flex-wrap gap-2 justify-content-end mt-4">
+              <button class="btn btn-outline-primary" type="reset">Borrar todo</button>
+              <button class="btn btn-accion" type="submit"><i class="bi bi-check2-circle" aria-hidden="true"></i>Publicar viaje</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <aside class="pegajoso" aria-labelledby="titulo-vista">
+            <h2 id="titulo-vista" class="h5"><i class="bi bi-eye me-2" aria-hidden="true"></i>Así lo van a ver los pasajeros</h2>
+            <p class="texto-suave small">Vista previa: se actualiza mientras completás el formulario.</p>
+            <div id="vista-previa"></div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-5">
+          <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
+          <p class="mb-0">Viajes compartidos entre estudiantes que van a la misma facultad. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+        </div>
+        <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
+          <h2>Secciones</h2>
+          <ul>
+            <li><a href="buscar.html">Buscar viajes</a></li>
+            <li><a href="publicar.html">Publicar viaje</a></li>
+            <li><a href="mis-viajes.html">Mis viajes</a></li>
+            <li><a href="perfil.html">Mi perfil</a></li>
+          </ul>
+        </nav>
+        <nav class="col-6 col-md-3" aria-label="Ayuda">
+          <h2>Ayuda</h2>
+          <ul>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="seguridad.html">Seguridad y reglas</a></li>
+            <li><a href="ayuda.html">Ayuda y contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../assets/js/datos.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/publicar.js" defer></script>
+</body>
+</html>

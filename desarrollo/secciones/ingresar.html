@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ingresá o creá tu cuenta de FacuPool con tu mail institucional.">
+  <title>Ingresar · FacuPool</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografías de la guía de estilo (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap">
+
+  <!-- Bootstrap 5.3.8 e íconos (CDN jsDelivr) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <!-- Estilos propios: van después para pisar a Bootstrap -->
+  <link rel="stylesheet" href="../assets/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+          <li class="nav-item"><a class="nav-link" href="buscar.html"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar viajes</a></li>
+          <li class="nav-item"><a class="nav-link" href="publicar.html"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Publicar viaje</a></li>
+          <li class="nav-item"><a class="nav-link" href="mis-viajes.html"><i class="bi bi-car-front me-1" aria-hidden="true"></i>Mis viajes</a></li>
+          <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="bi bi-person-circle me-1" aria-hidden="true"></i>Mi perfil</a></li>
+          </ul>
+          <a class="btn btn-claro btn-sm ms-lg-3 mb-3 mb-lg-0" href="ingresar.html" aria-current="page">Ingresar</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <div class="cabecera-pagina container">
+      <h1>Ingresar o crear cuenta</h1>
+      <p class="mt-2 mb-0">Usá tu mail institucional: así sabemos que todos son estudiantes de la facultad.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-5">
+          <section class="panel h-100" aria-labelledby="titulo-ingresar">
+            <h2 id="titulo-ingresar" class="h4">Ya tengo cuenta</h2>
+            <div id="exito-ingresar" class="d-none mt-3" role="status"></div>
+            <form class="validar mt-3" data-exito="exito-ingresar" data-mensaje="Ingresaste correctamente. Esta es una versión de prueba: no se guarda la sesión.">
+              <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+              <div class="mb-3">
+                <label class="form-label" for="i-mail">Mail institucional</label>
+                <input class="form-control" id="i-mail" name="mail" type="email" required autocomplete="email" pattern="[^@\s]+@uade\.edu\.ar" aria-describedby="i-mail-ayuda">
+                <div id="i-mail-ayuda" class="form-text">Termina en @uade.edu.ar</div>
+                <div class="invalid-feedback">Ingresá un mail que termine en @uade.edu.ar.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="i-clave">Contraseña</label>
+                <div class="input-group has-validation">
+                  <input class="form-control" id="i-clave" name="clave" type="password" required autocomplete="current-password">
+                  <button class="btn btn-outline-primary ver-clave" type="button" data-campo="i-clave" aria-pressed="false"><i class="bi bi-eye" aria-hidden="true"></i><span class="visually-hidden">Mostrar contraseña</span></button>
+                  <div class="invalid-feedback">Ingresá tu contraseña.</div>
+                </div>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-accion" type="submit">Ingresar</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        <div class="col-12 col-lg-7">
+          <section class="panel h-100" aria-labelledby="titulo-registro">
+            <h2 id="titulo-registro" class="h4">Crear una cuenta</h2>
+            <div id="exito-registro" class="d-none mt-3" role="status"></div>
+            <form class="validar mt-3" data-exito="exito-registro" data-mensaje="¡Cuenta creada! Te enviamos un mail para confirmar tu dirección.">
+              <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label" for="r-nombre">Nombre y apellido</label>
+                  <input class="form-control" id="r-nombre" name="nombre" type="text" required minlength="3" autocomplete="name">
+                  <div class="invalid-feedback">Escribí tu nombre y apellido.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="r-mail">Mail institucional</label>
+                  <input class="form-control" id="r-mail" name="mail" type="email" required autocomplete="email" pattern="[^@\s]+@uade\.edu\.ar">
+                  <div class="invalid-feedback">Ingresá un mail que termine en @uade.edu.ar.</div>
+                </div>
+                <div class="col-12 col-md-7">
+                  <label class="form-label" for="r-carrera">Carrera</label>
+                  <select class="form-select" id="r-carrera" name="carrera" required>
+                  <option value="">Elegí tu carrera</option>
+                  <option>Ingeniería Industrial</option>
+                  <option>Ingeniería Informática</option>
+                  <option>Lic. en Administración</option>
+                  <option>Abogacía</option>
+                  <option>Diseño Gráfico</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí tu carrera.</div>
+                </div>
+                <div class="col-12 col-md-5">
+                  <label class="form-label" for="r-anio">Año</label>
+                  <select class="form-select" id="r-anio" name="anio" required>
+                  <option value="">Elegí el año</option>
+                  <option>1.º año</option>
+                  <option>2.º año</option>
+                  <option>3.º año</option>
+                  <option>4.º año</option>
+                  <option>5.º año</option>
+                  </select>
+                  <div class="invalid-feedback">Elegí el año.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="r-clave">Contraseña</label>
+                  <div class="input-group has-validation">
+                    <input class="form-control" id="r-clave" name="clave" type="password" required minlength="8" autocomplete="new-password" aria-describedby="r-clave-ayuda">
+                    <button class="btn btn-outline-primary ver-clave" type="button" data-campo="r-clave" aria-pressed="false"><i class="bi bi-eye" aria-hidden="true"></i><span class="visually-hidden">Mostrar contraseña</span></button>
+                    <div class="invalid-feedback">Usá al menos 8 caracteres.</div>
+                  </div>
+                  <div id="r-clave-ayuda" class="form-text">Mínimo 8 caracteres.</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check caja-casilla">
+                    <input class="form-check-input" type="checkbox" id="r-terminos" name="terminos" required>
+                    <label class="form-check-label" for="r-terminos">Leí y acepto las <a href="seguridad.html">reglas de convivencia</a></label>
+                    <div class="invalid-feedback">Aceptá las reglas para crear la cuenta.</div>
+                  </div>
+                </div>
+                <div class="col-12 d-grid d-md-flex justify-content-md-end">
+                  <button class="btn btn-accion" type="submit">Crear cuenta</button>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-5">
+          <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
+          <p class="mb-0">Viajes compartidos entre estudiantes que van a la misma facultad. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+        </div>
+        <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
+          <h2>Secciones</h2>
+          <ul>
+            <li><a href="buscar.html">Buscar viajes</a></li>
+            <li><a href="publicar.html">Publicar viaje</a></li>
+            <li><a href="mis-viajes.html">Mis viajes</a></li>
+            <li><a href="perfil.html">Mi perfil</a></li>
+          </ul>
+        </nav>
+        <nav class="col-6 col-md-3" aria-label="Ayuda">
+          <h2>Ayuda</h2>
+          <ul>
+            <li><a href="como-funciona.html">Cómo funciona</a></li>
+            <li><a href="seguridad.html">Seguridad y reglas</a></li>
+            <li><a href="ayuda.html">Ayuda y contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../assets/js/datos.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/ingresar.js" defer></script>
+</body>
+</html>
