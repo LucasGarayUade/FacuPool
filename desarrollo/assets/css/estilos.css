@@ -331,7 +331,9 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .franja-privacidad { background: var(--fp-azul-suave); border-radius: var(--fp-radio); padding: 1.25rem; }
 
 .cabecera-pagina { padding-block: 1.75rem 1rem; }
-.cabecera-pagina p { color: var(--fp-texto-suave); max-width: 62ch; }
+.cabecera-pagina p {
+    color: var(--fp-texto-suave);
+}
 
 .ruta-grande { font: 800 1.25rem var(--fp-titulos); }
 .hecho { padding: .85rem; border-radius: 12px; background: var(--fp-superficie-2); border: 1px solid var(--fp-borde); height: 100%; }
@@ -402,3 +404,77 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .estrellas { color: #9A6700; letter-spacing: .05em; }
 .datos li + li::before { content: "·"; margin-right: .35rem; color: var(--fp-borde-fuerte); }
+
+.seccion-reglas {
+    margin-top: 2rem;
+}
+
+.seccion-reglas h2 {
+    margin-bottom: 1rem;
+}
+
+.regla {
+    height: 100%;
+    padding: 1.25rem;
+    background: var(--fp-superficie);
+    border: 1px solid var(--fp-borde);
+    border-radius: var(--fp-radio);
+}
+
+.regla i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: .75rem;
+    border-radius: 12px;
+    background: var(--fp-azul-suave);
+    color: var(--fp-azul);
+    font-size: 1.3rem;
+}
+
+.regla h3 {
+    margin-bottom: .4rem;
+}
+
+.table th,
+.table td {
+    padding: .9rem 1.1rem;
+}
+
+#vista-previa .tarjeta-viaje {
+    grid-template-columns: 1fr;
+    gap: .9rem;
+}
+
+#vista-previa .viaje-hora {
+    flex-direction: row;
+    align-items: baseline;
+    gap: .6rem;
+    padding: .5rem;
+}
+
+#vista-previa .viaje-acciones {
+    min-width: 0;
+}
+
+.tarjeta-viaje > * {
+    min-width: 0;
+}
+
+@media (max-width: 575.98px) {
+    .ruta span {
+        white-space: normal;
+    }
+
+    .ruta-grande {
+        font-size: 1.1rem;
+    }
+
+    .table th,
+    .table td {
+        padding: .7rem .8rem;
+        font-size: .9rem;
+    }
+}

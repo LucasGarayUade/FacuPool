@@ -15,9 +15,8 @@ function actualizarContador() {
 function leerFormulario() {
     return {
         id: Date.now(),
-        zona: formPublicar.zona.value || "Zona",
-        origen: formPublicar.origen.value.trim() || "Tu barrio",
-        punto: formPublicar.punto.value.trim(),
+        zona: formPublicar.zona.value || "Tu zona",
+        origen: formPublicar.origen.value || "Tu localidad",
         dia: formPublicar.dia.value || "Día",
         hora: formPublicar.hora.value || "--:--",
         lugares: lugares,
@@ -60,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formPublicar.classList.remove("was-validated");
         formPublicar.querySelector(".resumen-errores").classList.add("d-none");
         setTimeout(function () {
+            formPublicar.origen.dataset.valor = "";
+            llenarLocalidades(formPublicar.zona, formPublicar.origen, "Elegí una localidad");
             actualizarContador();
             actualizarVistaPrevia();
         }, 0);

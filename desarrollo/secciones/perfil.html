@@ -22,7 +22,7 @@
         <header class="encabezado">
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
                 <div class="container">
-                    <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+                    <a class="navbar-brand" href="../index.html"><i class="bi bi-car-front-fill" aria-hidden="true"></i>FacuPool</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -54,13 +54,13 @@
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="nombre">Nombre</label>
-                                    <input class="form-control" id="nombre" name="nombre" type="text" required minlength="2" maxlength="40" value="Nicolás" autocomplete="given-name">
-                                    <div class="invalid-feedback">Escribí tu nombre.</div>
+                                    <input class="form-control" id="nombre" name="nombre" type="text" required minlength="2" maxlength="40" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]{2,40}" data-solo="letras" value="Nicolás" autocomplete="given-name">
+                                    <div class="invalid-feedback">Escribí tu nombre: solo letras, mínimo 2.</div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="apellido">Apellido</label>
-                                    <input class="form-control" id="apellido" name="apellido" type="text" required minlength="2" maxlength="40" value="Argüello" autocomplete="family-name">
-                                    <div class="invalid-feedback">Escribí tu apellido.</div>
+                                    <input class="form-control" id="apellido" name="apellido" type="text" required minlength="2" maxlength="40" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]{2,40}" data-solo="letras" value="Argüello" autocomplete="family-name">
+                                    <div class="invalid-feedback">Escribí tu apellido: solo letras, mínimo 2.</div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="facultad">Facultad</label>
@@ -95,13 +95,13 @@
                             <div class="row g-3">
                                 <div class="col-12 col-md-5">
                                     <label class="form-label" for="telefono">Teléfono</label>
-                                    <input class="form-control" id="telefono" name="telefono" type="tel" required pattern="[0-9 ]{8,15}" value="11 5555 0199" autocomplete="tel">
-                                    <div class="invalid-feedback">Ingresá un teléfono de 8 a 15 números.</div>
+                                    <input class="form-control" id="telefono" name="telefono" type="tel" inputmode="numeric" required minlength="8" maxlength="15" pattern="[0-9]{8,15}" data-solo="numeros" value="1155550199" autocomplete="tel">
+                                    <div class="invalid-feedback">Ingresá un teléfono de 8 a 15 números, sin espacios ni guiones.</div>
                                 </div>
                                 <div class="col-12 col-md-7">
                                     <label class="form-label" for="domicilio">Domicilio</label>
-                                    <input class="form-control" id="domicilio" name="domicilio" type="text" required minlength="5" value="Av. Rivadavia 14200, Ramos Mejía" autocomplete="street-address">
-                                    <div class="invalid-feedback">Ingresá tu domicilio.</div>
+                                    <input class="form-control" id="domicilio" name="domicilio" type="text" required minlength="5" maxlength="80" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 .,°º\-]{5,80}" data-solo="direccion" value="Av. Rivadavia 14200, Ramos Mejía" autocomplete="street-address">
+                                    <div class="invalid-feedback">Ingresá tu domicilio: letras, números y espacios (mínimo 5).</div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <p class="form-label mb-1">Legajo</p>
@@ -136,8 +136,8 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-5">
-                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
-                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE que viajan a la sede Monserrat. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-car-front-fill me-2" aria-hidden="true"></i>FacuPool</p>
+                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE: compartís el camino a la facu, ahorrás en cada viaje y sumás nuevas experiencias y amistades.</p>
                     </div>
                     <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
                         <h2>Secciones</h2>

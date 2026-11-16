@@ -22,7 +22,7 @@
         <header class="encabezado">
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
                 <div class="container">
-                    <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+                    <a class="navbar-brand" href="../index.html"><i class="bi bi-car-front-fill" aria-hidden="true"></i>FacuPool</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -48,7 +48,7 @@
                 <form id="form-buscar" class="panel" action="buscar.html" method="get" aria-label="Filtros de búsqueda">
                     <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
                     <div class="row g-3 align-items-end">
-                        <div class="col-12 col-md-6 col-lg">
+                        <div class="col-12 col-md-6 col-lg-3">
                             <label class="form-label" for="f-zona">Zona de salida</label>
                             <select class="form-select" id="f-zona" name="zona" required>
                                 <option value="">Elegí una zona</option>
@@ -59,7 +59,13 @@
                             </select>
                             <div class="invalid-feedback">Elegí una zona.</div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <label class="form-label" for="f-localidad">Localidad</label>
+                            <select class="form-select" id="f-localidad" name="localidad" data-zona="f-zona" data-vacio="Todas las localidades" disabled>
+                                <option value="">Primero elegí la zona</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
                             <label class="form-label" for="f-dia">Día</label>
                             <select class="form-select" id="f-dia" name="dia" required>
                                 <option value="">Elegí un día</option>
@@ -72,16 +78,16 @@
                             </select>
                             <div class="invalid-feedback">Elegí un día.</div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg">
+                        <div class="col-12 col-md-6 col-lg-3">
                             <label class="form-label" for="f-franja">Horario</label>
                             <select class="form-select" id="f-franja" name="franja">
                                 <option value="">Cualquier horario</option>
-                                <option value="manana">Mañana (6 a 12 h)</option>
+                                <option value="manana">Mañana (hasta las 12 h)</option>
                                 <option value="tarde">Tarde (12 a 18 h)</option>
                                 <option value="noche">Noche (18 a 24 h)</option>
                             </select>
                         </div>
-                        <div class="col-6 col-md-3 col-lg">
+                        <div class="col-6 col-md-4">
                             <label class="form-label" for="f-lugares">Lugares libres</label>
                             <select class="form-select" id="f-lugares" name="lugares">
                                 <option value="0">Cualquiera</option>
@@ -90,7 +96,7 @@
                                 <option value="3">3 o más</option>
                             </select>
                         </div>
-                        <div class="col-6 col-md-3 col-lg">
+                        <div class="col-6 col-md-4">
                             <label class="form-label" for="f-orden">Ordenar por</label>
                             <select class="form-select" id="f-orden" name="orden">
                                 <option value="hora">Horario</option>
@@ -98,7 +104,7 @@
                                 <option value="duracion">Menor duración</option>
                             </select>
                         </div>
-                        <div class="col-12 col-lg-auto d-grid">
+                        <div class="col-12 col-md-4 d-grid">
                             <button class="btn btn-accion" type="submit"><i class="bi bi-search" aria-hidden="true"></i>Buscar</button>
                         </div>
                     </div>
@@ -116,8 +122,8 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-5">
-                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
-                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE que viajan a la sede Monserrat. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-car-front-fill me-2" aria-hidden="true"></i>FacuPool</p>
+                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE: compartís el camino a la facu, ahorrás en cada viaje y sumás nuevas experiencias y amistades.</p>
                     </div>
                     <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
                         <h2>Secciones</h2>

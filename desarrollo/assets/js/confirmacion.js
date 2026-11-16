@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("conf-datos").innerHTML =
         "<li>" + viaje.dia + " " + viaje.hora + "</li>" +
-        "<li>" + escaparHTML(viaje.punto) + "</li>" +
+        "<li>Sale desde " + escaparHTML(viaje.origen) + "</li>" +
         "<li>Aporte " + formatearPlata(viaje.aporte) + "</li>";
 
     document.getElementById("conf-chofer").textContent = nombreCompleto(chofer);

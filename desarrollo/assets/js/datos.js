@@ -1,16 +1,16 @@
 const DESTINO = "UADE Monserrat";
 
 const ZONAS = {
-    "CABA": ["Palermo", "Belgrano", "Caballito", "Flores", "Villa Urquiza", "Almagro"],
-    "Zona Norte": ["Olivos", "San Isidro", "Vicente López", "Martínez", "Tigre"],
-    "Zona Sur": ["Lanús", "Quilmes", "Avellaneda", "Lomas de Zamora", "Banfield"],
-    "Zona Oeste": ["Ramos Mejía", "Morón", "Haedo", "Castelar", "Ituzaingó"]
+    "CABA": ["Palermo", "Belgrano", "Caballito", "Flores", "Villa Urquiza", "Villa Devoto", "Almagro", "Recoleta", "Núñez", "Villa del Parque"],
+    "Zona Norte": ["Vicente López", "Olivos", "Florida", "Martínez", "San Isidro", "San Fernando", "Tigre", "Benavídez", "Escobar", "Pilar"],
+    "Zona Oeste": ["Ramos Mejía", "Haedo", "Morón", "Castelar", "Ituzaingó", "San Justo", "Ciudadela", "Caseros", "Merlo", "Moreno"],
+    "Zona Sur": ["Avellaneda", "Lanús", "Banfield", "Lomas de Zamora", "Adrogué", "Temperley", "Quilmes", "Bernal", "Berazategui", "Ezeiza"]
 };
 
 const DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
 const FRANJAS = {
-    manana: { texto: "Mañana (6 a 12 h)", desde: 6, hasta: 12, horas: ["07:00", "07:30", "08:00", "09:30", "10:30"] },
+    manana: { texto: "Mañana (hasta las 12 h)", desde: 6, hasta: 12, horas: ["07:00", "07:30", "08:00", "09:30", "10:30"] },
     tarde: { texto: "Tarde (12 a 18 h)", desde: 12, hasta: 18, horas: ["12:30", "13:30", "14:00", "16:30"] },
     noche: { texto: "Noche (18 a 24 h)", desde: 18, hasta: 24, horas: ["18:00", "18:30", "19:00", "20:30"] }
 };
@@ -76,7 +76,6 @@ function generarViajes() {
                         aporte: esCaba ? 1500 + Math.floor(azar() * 11) * 100 : 3000 + Math.floor(azar() * 16) * 100,
                         duracion: esCaba ? 20 + Math.floor(azar() * 16) : 40 + Math.floor(azar() * 36),
                         choferId: elegir(CHOFERES.slice(0, -1)).id,
-                        punto: (esCaba ? "Plaza principal de " : "Estación ") + origen,
                         espera: azar() < 0.6 ? 5 : 10
                     });
                 }
@@ -87,6 +86,25 @@ function generarViajes() {
 }
 
 const VIAJES = generarViajes();
+
+function llenarLocalidades(selectZona, selectLocalidad, textoVacio) {
+    const zona = selectZona.value;
+    const elegida = selectLocalidad.dataset.valor || "";
+    selectLocalidad.innerHTML = '<option value="">' + textoVacio + "</option>";
+
+    if (!ZONAS[zona]) {
+        selectLocalidad.disabled = true;
+        return;
+    }
+
+    ZONAS[zona].forEach(function (localidad) {
+        const opcion = document.createElement("option");
+        opcion.textContent = localidad;
+        opcion.selected = localidad === elegida;
+        selectLocalidad.appendChild(opcion);
+    });
+    selectLocalidad.disabled = false;
+}
 
 function formatearPlata(numero) {
     return "$" + Number(numero).toLocaleString("es-AR");
@@ -99,6 +117,9 @@ function iniciales(nombre) {
 
 function franjaDeHora(hora) {
     const h = parseInt(hora, 10);
+    if (h < FRANJAS.manana.desde) {
+        return "manana";
+    }
     for (const clave in FRANJAS) {
         if (h >= FRANJAS[clave].desde && h < FRANJAS[clave].hasta) {
             return clave;

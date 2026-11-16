@@ -22,7 +22,7 @@
         <header class="encabezado">
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+                    <a class="navbar-brand" href="index.html"><i class="bi bi-car-front-fill" aria-hidden="true"></i>FacuPool</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -45,7 +45,7 @@
                     <div class="row g-4 g-lg-5 align-items-center">
                         <div class="col-12 col-lg-6">
                             <h1 id="titulo-banner">Viajá a UADE con estudiantes de tu zona.</h1>
-                            <p class="bajada mt-3">Encontrá un viaje que coincida con tu día y tu horario, o publicá el tuyo en tres pasos. Tu teléfono no se muestra hasta que el chofer acepte tu solicitud.</p>
+                            <p class="bajada mt-3">Encontrá un viaje que coincida con tus necesidades, o publicá el tuyo en tres simples pasos.</p>
                             <p class="ruta mt-4 mb-0" aria-hidden="true"><span>Tu zona</span><span class="linea-ruta"></span><span>UADE Monserrat</span></p>
                             <p class="mt-4 mb-0">
                                 <a class="btn btn-claro" href="secciones/publicar.html"><i class="bi bi-plus-circle" aria-hidden="true"></i>¿Manejás vos? Publicá un viaje</a>
@@ -67,6 +67,12 @@
                                         <div class="invalid-feedback">Elegí desde qué zona salís.</div>
                                     </div>
                                     <div class="col-12 col-md-6">
+                                        <label class="form-label" for="b-localidad">Localidad</label>
+                                        <select class="form-select" id="b-localidad" name="localidad" data-zona="b-zona" data-vacio="Todas las localidades" disabled>
+                                            <option value="">Primero elegí la zona</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 col-md-6">
                                         <label class="form-label" for="b-dia">Día</label>
                                         <select class="form-select" id="b-dia" name="dia" required>
                                             <option value="">Elegí un día</option>
@@ -79,11 +85,11 @@
                                         </select>
                                         <div class="invalid-feedback">Elegí qué día viajás.</div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12 col-md-6">
                                         <label class="form-label" for="b-franja">Horario</label>
                                         <select class="form-select" id="b-franja" name="franja">
                                             <option value="">Cualquier horario</option>
-                                            <option value="manana">Mañana (6 a 12 h)</option>
+                                            <option value="manana">Mañana (hasta las 12 h)</option>
                                             <option value="tarde">Tarde (12 a 18 h)</option>
                                             <option value="noche">Noche (18 a 24 h)</option>
                                         </select>
@@ -108,7 +114,7 @@
                                 <h3><i class="bi bi-person-walking me-2" aria-hidden="true"></i>Si viajás como pasajero</h3>
                                 <ol>
                                     <li>Elegí zona, día y horario.</li>
-                                    <li>Compará lugares, aporte y punto de encuentro.</li>
+                                    <li>Compará horario, lugares y aporte.</li>
                                     <li>Pedí un lugar y esperá la respuesta.</li>
                                 </ol>
                             </article>
@@ -152,7 +158,7 @@
                                 <ul class="lista-reglas mt-0">
                                     <li><i class="bi bi-shield-check" aria-hidden="true"></i>Cuentas verificadas con legajo y mail @uade.edu.ar.</li>
                                     <li><i class="bi bi-shield-check" aria-hidden="true"></i>Tu teléfono nunca aparece en una publicación.</li>
-                                    <li><i class="bi bi-shield-check" aria-hidden="true"></i>Puntos de encuentro en lugares públicos.</li>
+                                    <li><i class="bi bi-shield-check" aria-hidden="true"></i>El punto exacto se acuerda por teléfono, en un lugar público.</li>
                                     <li><i class="bi bi-shield-check" aria-hidden="true"></i>Perfil del conductor con viajes realizados y reseñas.</li>
                                 </ul>
                                 <p class="mt-3 mb-0"><a href="secciones/seguridad.html">Ver seguridad y reglas</a></p>
@@ -167,8 +173,8 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-5">
-                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
-                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE que viajan a la sede Monserrat. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-car-front-fill me-2" aria-hidden="true"></i>FacuPool</p>
+                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE: compartís el camino a la facu, ahorrás en cada viaje y sumás nuevas experiencias y amistades.</p>
                     </div>
                     <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
                         <h2>Secciones</h2>

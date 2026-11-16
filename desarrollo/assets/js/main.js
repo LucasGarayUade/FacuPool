@@ -37,11 +37,41 @@ function mostrarExito(contenedor, mensajeHTML) {
     contenedor.focus();
 }
 
+const CARACTERES_PERMITIDOS = {
+    numeros: /[^0-9]/g,
+    letras: /[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]/g,
+    direccion: /[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 .,°º-]/g
+};
+
+function limpiarCampo(campo) {
+    const limpio = campo.value.replace(CARACTERES_PERMITIDOS[campo.dataset.solo], "");
+    if (limpio !== campo.value) {
+        campo.value = limpio;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-solo]").forEach(function (campo) {
+        campo.addEventListener("input", function () {
+            limpiarCampo(campo);
+        });
+    });
+
     const anio = document.getElementById("anio");
     if (anio) {
         anio.textContent = new Date().getFullYear();
     }
+
+    document.querySelectorAll("select[data-zona]").forEach(function (selectLocalidad) {
+        const selectZona = document.getElementById(selectLocalidad.dataset.zona);
+        const textoVacio = selectLocalidad.dataset.vacio;
+
+        llenarLocalidades(selectZona, selectLocalidad, textoVacio);
+        selectZona.addEventListener("change", function () {
+            selectLocalidad.dataset.valor = "";
+            llenarLocalidades(selectZona, selectLocalidad, textoVacio);
+        });
+    });
 
     document.querySelectorAll("form.validar").forEach(function (formulario) {
         prepararValidacion(formulario, function (form) {

@@ -22,7 +22,7 @@
         <header class="encabezado">
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
                 <div class="container">
-                    <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+                    <a class="navbar-brand" href="../index.html"><i class="bi bi-car-front-fill" aria-hidden="true"></i>FacuPool</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -109,8 +109,8 @@
                                 <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
                                 <div class="mb-3">
                                     <label class="form-label" for="c-nombre">Nombre</label>
-                                    <input class="form-control" id="c-nombre" name="nombre" type="text" required minlength="2" autocomplete="name">
-                                    <div class="invalid-feedback">Escribí tu nombre.</div>
+                                    <input class="form-control" id="c-nombre" name="nombre" type="text" required minlength="2" maxlength="40" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]{2,40}" data-solo="letras" autocomplete="name">
+                                    <div class="invalid-feedback">Escribí tu nombre: solo letras, mínimo 2.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="c-mail">Mail</label>
@@ -146,8 +146,8 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-5">
-                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
-                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE que viajan a la sede Monserrat. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-car-front-fill me-2" aria-hidden="true"></i>FacuPool</p>
+                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE: compartís el camino a la facu, ahorrás en cada viaje y sumás nuevas experiencias y amistades.</p>
                     </div>
                     <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
                         <h2>Secciones</h2>

@@ -24,7 +24,8 @@ function completarDetalle() {
         chofer.facultad + " · " + chofer.anio + " · ★ " + promedioEstrellas(chofer) + " · " + chofer.viajes + " viajes</span></span>";
     document.getElementById("ver-perfil").href = "conductor.html?id=" + chofer.id;
 
-    document.getElementById("punto").textContent = viaje.punto;
+    document.getElementById("punto").textContent =
+        "Sale desde " + viaje.origen + " (" + viaje.zona + "). El punto exacto se coordina por teléfono cuando el chofer acepta tu solicitud.";
     document.getElementById("regla-espera").textContent =
         "El chofer espera " + viaje.espera + " minutos en el punto de encuentro.";
 }

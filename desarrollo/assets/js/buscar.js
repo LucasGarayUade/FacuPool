@@ -4,6 +4,7 @@ const cantidad = document.getElementById("cantidad");
 
 function filtrarViajes(todos) {
     const zona = formBuscar.zona.value;
+    const localidad = formBuscar.localidad.value;
     const dia = formBuscar.dia.value;
     const franja = formBuscar.franja.value;
     const minimoLugares = Number(formBuscar.lugares.value);
@@ -14,6 +15,7 @@ function filtrarViajes(todos) {
             return viaje.lugares >= minimoLugares;
         }
         return viaje.zona === zona &&
+            (localidad === "" || viaje.origen === localidad) &&
             viaje.dia === dia &&
             (franja === "" || franjaDeHora(viaje.hora) === franja) &&
             (minimoLugares === 0 || viaje.lugares >= minimoLugares);
@@ -36,7 +38,7 @@ function mostrarResultados(todos) {
         cantidad.textContent = "No encontramos viajes con esos filtros.";
         resultados.innerHTML =
             '<div class="panel text-center">' +
-                '<p class="fw-bold mb-1">No hay viajes para ' + escaparHTML(formBuscar.zona.value) + " el " + escaparHTML(formBuscar.dia.value).toLowerCase() + ".</p>" +
+                '<p class="fw-bold mb-1">No hay viajes para ' + escaparHTML(formBuscar.localidad.value || formBuscar.zona.value) + " el " + escaparHTML(formBuscar.dia.value).toLowerCase() + ".</p>" +
                 '<p class="texto-suave">Probá con otro día u otro horario, o publicá tu propio viaje.</p>' +
                 '<div class="d-flex flex-wrap justify-content-center gap-2">' +
                     '<button class="btn btn-outline-primary" type="button" id="ver-todos">Ver todos los viajes</button>' +
@@ -62,6 +64,8 @@ function completarDesdeURL() {
             formBuscar[campo].value = parametros.get(campo);
         }
     });
+    formBuscar.localidad.dataset.valor = parametros.get("localidad") || "";
+    llenarLocalidades(formBuscar.zona, formBuscar.localidad, "Todas las localidades");
 
     if (parametros.get("todos") === "1") {
         mostrarResultados(true);
