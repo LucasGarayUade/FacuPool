@@ -1,0 +1,46 @@
+TRABAJO PRÁCTICO OBLIGATORIO
+Nombre: FacuPool
+Descripción: Viajes compartidos entre estudiantes de UADE hacia la sede Monserrat
+Materia: Diseño y Desarrollo Web, UADE
+Profesor: Ricardo Javier Rodríguez
+
+EQUIPO
+Integrante: Giuliano Coraglio
+Rol: Frontend Developer
+Responsabilidades: 
+-Maquetar las páginas en HTML5 semántico con Bootstrap y los estilos propios.
+-Programar en JavaScript la validación de formularios, la búsqueda y la interacción.
+-Asegurar que el sitio sea responsive en celular, tablet y computadora.
+Contacto: gcoraglio@uade.edu.ar
+
+Integrante: Lucas Garay
+Rol: UX Researcher
+Responsabilidades:
+-Investigar las necesidades de los estudiantes con entrevistas y encuestas.
+-Definir la persona, el mapa de empatía y los flujos de usuario del sitio.
+-Validar con usuarios que la búsqueda y la publicación de viajes sean fáciles de usar.
+Contacto: lgaray@uade.edu.ar
+
+Integrante: Bautista Maiorana
+Rol: UI Designer
+Responsabilidades:
+-Diseñar la guía visual: paleta de colores, tipografías, íconos y componentes.
+-Crear los wireframes, mockups y el prototipo navegable.
+-Cuidar la coherencia visual y el contraste accesible en todas las pantallas.
+Contacto: bmaiorana@uade.edu.ar
+
+Integrante: Matías Oberto
+Rol: QA / Documentación
+Responsabilidades: 
+-Probar el sitio en distintos dispositivos y navegadores, y reportar errores.
+-Validar el código y medir accesibilidad y rendimiento con Lighthouse.
+-Organizar la documentación del proyecto y el registro de uso de IA.
+Contacto: moberto@uade.edu.ar
+
+PAGINA WEB
+Última actualización: 2026/11/16
+Idioma: Español (Argentina)
+Estándares: HTML5, CSS3, JavaScript
+Componentes: Bootstrap 5.3.8, Bootstrap Icons 1.13.2 (archivos locales)
+Tipografías: Plus Jakarta Sans y Nunito Sans (Google Fonts)
+Hosting: Vercel
