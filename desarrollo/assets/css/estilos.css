@@ -1,135 +1,118 @@
-/* =========================================================
-   FacuPool · estilos propios
-   Se carga DESPUÉS de bootstrap.min.css para poder pisar sus
-   variables y sumar los componentes de la guía de estilo (Fase 4).
-   Enfoque mobile first: los estilos base son para 320px y los
-   @media (min-width: ...) agregan cambios para pantallas más grandes.
-   ========================================================= */
-
-/* ---------- 1. Tokens de diseño (variables CSS) ---------- */
 :root {
-  /* Paleta de la guía de estilo */
-  --fp-azul: #1F4E79;          /* marca y estructura */
-  --fp-azul-fuerte: #163A5B;   /* encabezado, banner y pie */
-  --fp-azul-suave: #E4EDF6;    /* fondos de apoyo */
-  --fp-naranja: #C2410C;       /* SOLO la acción principal de cada pantalla */
-  --fp-naranja-hover: #9A3412;
-  --fp-naranja-activo: #7C2D0C;
-  --fp-naranja-suave: #FFEDE2;
-  --fp-naranja-claro: #FFA878; /* detalles sobre fondo azul oscuro */
-  --fp-verde: #17703F;
-  --fp-verde-suave: #E0F3E8;
-  --fp-rojo: #B42318;
-  --fp-rojo-suave: #FDE9E7;
-  --fp-ambar: #7A4F00;
-  --fp-ambar-suave: #FFF1CC;
-  --fp-fondo: #F3F6F9;
-  --fp-superficie: #FFFFFF;
-  --fp-superficie-2: #F8FAFC;
-  --fp-texto: #17212B;
-  --fp-texto-suave: #4F5F6F;
-  --fp-borde: #D3DCE5;
-  --fp-borde-fuerte: #8795A4;
+    --fp-azul: #1F4E79;
+    --fp-azul-fuerte: #163A5B;
+    --fp-azul-suave: #E4EDF6;
+    --fp-naranja: #C2410C;
+    --fp-naranja-hover: #9A3412;
+    --fp-naranja-activo: #7C2D0C;
+    --fp-naranja-suave: #FFEDE2;
+    --fp-naranja-claro: #FFA878;
+    --fp-verde: #17703F;
+    --fp-verde-suave: #E0F3E8;
+    --fp-rojo: #B42318;
+    --fp-rojo-suave: #FDE9E7;
+    --fp-ambar: #7A4F00;
+    --fp-ambar-suave: #FFF1CC;
+    --fp-fondo: #F3F6F9;
+    --fp-superficie: #FFFFFF;
+    --fp-superficie-2: #F8FAFC;
+    --fp-texto: #17212B;
+    --fp-texto-suave: #4F5F6F;
+    --fp-borde: #D3DCE5;
+    --fp-borde-fuerte: #8795A4;
 
-  /* Tipografía */
-  --fp-titulos: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
-  --fp-cuerpo: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+    --fp-titulos: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    --fp-cuerpo: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
 
-  /* Forma y profundidad */
-  --fp-radio: 14px;
-  --fp-radio-chico: 10px;
-  --fp-sombra: 0 1px 2px rgba(22, 58, 91, .08), 0 6px 18px rgba(22, 58, 91, .07);
+    --fp-radio: 14px;
+    --fp-radio-chico: 10px;
+    --fp-sombra: 0 1px 2px rgba(22, 58, 91, .08), 0 6px 18px rgba(22, 58, 91, .07);
 
-  /* Variables de Bootstrap que reemplazamos con nuestra paleta */
-  --bs-primary: var(--fp-azul);
-  --bs-primary-rgb: 31, 78, 121;
-  --bs-body-font-family: var(--fp-cuerpo);
-  --bs-body-color: var(--fp-texto);
-  --bs-body-bg: var(--fp-fondo);
-  --bs-secondary-color: var(--fp-texto-suave);
-  --bs-border-color: var(--fp-borde);
-  --bs-link-color: var(--fp-azul);
-  --bs-link-color-rgb: 31, 78, 121;
-  --bs-link-hover-color: var(--fp-azul-fuerte);
-  --bs-link-hover-color-rgb: 22, 58, 91;
-  --bs-border-radius: var(--fp-radio-chico);
-  --bs-focus-ring-color: rgba(31, 78, 121, .35);
-  --bs-success: var(--fp-verde);
-  --bs-success-rgb: 23, 112, 63;
-  --bs-danger: var(--fp-rojo);
-  --bs-danger-rgb: 180, 35, 24;
-  --bs-form-valid-color: var(--fp-verde);
-  --bs-form-valid-border-color: var(--fp-verde);
-  --bs-form-invalid-color: var(--fp-rojo);
-  --bs-form-invalid-border-color: var(--fp-rojo);
+    --bs-primary: var(--fp-azul);
+    --bs-primary-rgb: 31, 78, 121;
+    --bs-body-font-family: var(--fp-cuerpo);
+    --bs-body-color: var(--fp-texto);
+    --bs-body-bg: var(--fp-fondo);
+    --bs-secondary-color: var(--fp-texto-suave);
+    --bs-border-color: var(--fp-borde);
+    --bs-link-color: var(--fp-azul);
+    --bs-link-color-rgb: 31, 78, 121;
+    --bs-link-hover-color: var(--fp-azul-fuerte);
+    --bs-link-hover-color-rgb: 22, 58, 91;
+    --bs-border-radius: var(--fp-radio-chico);
+    --bs-focus-ring-color: rgba(31, 78, 121, .35);
+    --bs-success: var(--fp-verde);
+    --bs-success-rgb: 23, 112, 63;
+    --bs-danger: var(--fp-rojo);
+    --bs-danger-rgb: 180, 35, 24;
+    --bs-form-valid-color: var(--fp-verde);
+    --bs-form-valid-border-color: var(--fp-verde);
+    --bs-form-invalid-color: var(--fp-rojo);
+    --bs-form-invalid-border-color: var(--fp-rojo);
 }
 
-/* ---------- 2. Base ---------- */
 body {
-  font-size: 1rem;
-  line-height: 1.55;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    font-size: 1rem;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main { flex: 1 0 auto; }
 
 h1, h2, h3, .titulo {
-  font-family: var(--fp-titulos);
-  line-height: 1.15;
-  letter-spacing: -.01em;
-  text-wrap: balance;
-  color: inherit;
+    font-family: var(--fp-titulos);
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    color: inherit;
 }
 
 h1 { font-size: clamp(1.9rem, 6vw, 3rem); font-weight: 800; }
 h2 { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 800; }
 h3 { font-size: 1.15rem; font-weight: 700; }
 
-/* Detalles del navegador con la paleta propia */
 ::selection { background: var(--fp-naranja-suave); color: var(--fp-texto); }
 :focus-visible { outline: 3px solid var(--fp-azul); outline-offset: 2px; }
 
 .texto-suave { color: var(--fp-texto-suave); }
 .medida { max-width: 62ch; }
 
-/* Enlace para saltar al contenido (accesibilidad con teclado) */
 .saltar {
-  position: absolute;
-  left: 1rem;
-  top: -100px;
-  z-index: 2000;
-  padding: .6rem 1rem;
-  border-radius: var(--fp-radio-chico);
-  background: var(--fp-superficie);
-  color: var(--fp-azul);
-  font-weight: 700;
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 2000;
+    padding: .6rem 1rem;
+    border-radius: var(--fp-radio-chico);
+    background: var(--fp-superficie);
+    color: var(--fp-azul);
+    font-weight: 700;
 }
 .saltar:focus { top: 1rem; }
 
-/* ---------- 3. Encabezado y navegación ---------- */
 .encabezado {
-  background: var(--fp-azul-fuerte);
+    background: var(--fp-azul-fuerte);
 }
 
 .encabezado .navbar-brand {
-  font-family: var(--fp-titulos);
-  font-weight: 800;
-  font-size: 1.3rem;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+    font-family: var(--fp-titulos);
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 .encabezado .navbar-brand i { color: var(--fp-naranja-claro); }
 
 .encabezado .nav-link {
-  color: rgba(255, 255, 255, .9);
-  font-weight: 700;
-  border-radius: 999px;
-  padding: .55rem .9rem;
+    color: rgba(255, 255, 255, .9);
+    font-weight: 700;
+    border-radius: 999px;
+    padding: .55rem .9rem;
 }
 
 .encabezado .nav-link:hover { color: #fff; background: rgba(255, 255, 255, .12); }
@@ -140,82 +123,77 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .encabezado .navbar-toggler-icon { filter: invert(1); }
 .encabezado :focus-visible { outline-color: #fff; }
 
-/* ---------- 4. Botones ---------- */
 .btn {
-  --bs-btn-font-family: var(--fp-titulos);
-  --bs-btn-font-weight: 700;
-  --bs-btn-padding-x: 1.3rem;
-  --bs-btn-padding-y: .7rem;
-  --bs-btn-border-radius: 12px;
-  --bs-btn-border-width: 2px;
-  min-height: 48px; /* tamaño táctil mínimo */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
+    --bs-btn-font-family: var(--fp-titulos);
+    --bs-btn-font-weight: 700;
+    --bs-btn-padding-x: 1.3rem;
+    --bs-btn-padding-y: .7rem;
+    --bs-btn-border-radius: 12px;
+    --bs-btn-border-width: 2px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
 }
 
 .btn-sm { min-height: 40px; --bs-btn-padding-x: 1rem; --bs-btn-padding-y: .4rem; }
 
-/* Acción principal: naranja (una por pantalla) */
 .btn-accion {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: var(--fp-naranja);
-  --bs-btn-border-color: var(--fp-naranja);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: var(--fp-naranja-hover);
-  --bs-btn-hover-border-color: var(--fp-naranja-hover);
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: var(--fp-naranja-activo);
-  --bs-btn-active-border-color: var(--fp-naranja-activo);
-  --bs-btn-disabled-color: #6B7885;
-  --bs-btn-disabled-bg: #E3E8ED;
-  --bs-btn-disabled-border-color: #E3E8ED;
-  --bs-btn-focus-shadow-rgb: 194, 65, 12;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--fp-naranja);
+    --bs-btn-border-color: var(--fp-naranja);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--fp-naranja-hover);
+    --bs-btn-hover-border-color: var(--fp-naranja-hover);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--fp-naranja-activo);
+    --bs-btn-active-border-color: var(--fp-naranja-activo);
+    --bs-btn-disabled-color: #6B7885;
+    --bs-btn-disabled-bg: #E3E8ED;
+    --bs-btn-disabled-border-color: #E3E8ED;
+    --bs-btn-focus-shadow-rgb: 194, 65, 12;
 }
 
-/* Secundaria: contorno azul */
 .btn-outline-primary {
-  --bs-btn-color: var(--fp-azul);
-  --bs-btn-border-color: var(--fp-azul);
-  --bs-btn-hover-color: var(--fp-azul);
-  --bs-btn-hover-bg: var(--fp-azul-suave);
-  --bs-btn-hover-border-color: var(--fp-azul);
-  --bs-btn-active-color: var(--fp-azul);
-  --bs-btn-active-bg: #D3DCE5;
-  --bs-btn-active-border-color: var(--fp-azul);
-  --bs-btn-focus-shadow-rgb: 31, 78, 121;
+    --bs-btn-color: var(--fp-azul);
+    --bs-btn-border-color: var(--fp-azul);
+    --bs-btn-hover-color: var(--fp-azul);
+    --bs-btn-hover-bg: var(--fp-azul-suave);
+    --bs-btn-hover-border-color: var(--fp-azul);
+    --bs-btn-active-color: var(--fp-azul);
+    --bs-btn-active-bg: #D3DCE5;
+    --bs-btn-active-border-color: var(--fp-azul);
+    --bs-btn-focus-shadow-rgb: 31, 78, 121;
 }
 
 .btn-primary {
-  --bs-btn-bg: var(--fp-azul);
-  --bs-btn-border-color: var(--fp-azul);
-  --bs-btn-hover-bg: var(--fp-azul-fuerte);
-  --bs-btn-hover-border-color: var(--fp-azul-fuerte);
-  --bs-btn-active-bg: var(--fp-azul-fuerte);
-  --bs-btn-active-border-color: var(--fp-azul-fuerte);
+    --bs-btn-bg: var(--fp-azul);
+    --bs-btn-border-color: var(--fp-azul);
+    --bs-btn-hover-bg: var(--fp-azul-fuerte);
+    --bs-btn-hover-border-color: var(--fp-azul-fuerte);
+    --bs-btn-active-bg: var(--fp-azul-fuerte);
+    --bs-btn-active-border-color: var(--fp-azul-fuerte);
 }
 
-/* Sobre fondo azul oscuro (banner) */
 .btn-claro {
-  --bs-btn-color: #fff;
-  --bs-btn-border-color: rgba(255, 255, 255, .7);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: rgba(255, 255, 255, .12);
-  --bs-btn-hover-border-color: #fff;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: rgba(255, 255, 255, .2);
-  --bs-btn-active-border-color: #fff;
+    --bs-btn-color: #fff;
+    --bs-btn-border-color: rgba(255, 255, 255, .7);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgba(255, 255, 255, .12);
+    --bs-btn-hover-border-color: #fff;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgba(255, 255, 255, .2);
+    --bs-btn-active-border-color: #fff;
 }
 
-/* ---------- 5. Formularios ---------- */
 .form-label { font-weight: 700; margin-bottom: .35rem; }
 
 .form-control,
 .form-select {
-  min-height: 48px;
-  border: 2px solid var(--fp-borde-fuerte);
-  border-radius: var(--fp-radio-chico);
+    min-height: 48px;
+    border: 2px solid var(--fp-borde-fuerte);
+    border-radius: var(--fp-radio-chico);
 }
 
 .form-control:hover,
@@ -223,8 +201,8 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .form-control:focus,
 .form-select:focus {
-  border-color: var(--fp-azul);
-  box-shadow: 0 0 0 .25rem rgba(31, 78, 121, .25);
+    border-color: var(--fp-azul);
+    box-shadow: 0 0 0 .25rem rgba(31, 78, 121, .25);
 }
 
 .form-text { color: var(--fp-texto-suave); }
@@ -235,50 +213,46 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .form-switch .form-check-input { width: 2.6em; }
 
 .caja-casilla {
-  padding: .8rem 1rem .8rem 2.8rem;
-  border: 1.5px solid var(--fp-borde);
-  border-radius: var(--fp-radio-chico);
-  background: var(--fp-superficie-2);
+    padding: .8rem 1rem .8rem 2.8rem;
+    border: 1.5px solid var(--fp-borde);
+    border-radius: var(--fp-radio-chico);
+    background: var(--fp-superficie-2);
 }
 
-/* Contador de lugares (- 2 +) */
 .contador { display: inline-flex; align-items: center; border: 2px solid var(--fp-borde-fuerte); border-radius: var(--fp-radio-chico); background: var(--fp-superficie); overflow: hidden; }
 .contador button { width: 48px; height: 46px; border: 0; background: transparent; color: var(--fp-azul); font: 700 1.3rem var(--fp-titulos); }
 .contador button:hover:not(:disabled) { background: var(--fp-azul-suave); }
 .contador button:disabled { color: #8795A4; }
 .contador output { min-width: 3rem; text-align: center; font: 700 1.1rem var(--fp-titulos); }
 
-/* Destino fijo (solo lectura) */
 .destino-fijo { display: flex; align-items: center; gap: .6rem; padding: .75rem 1rem; border-radius: var(--fp-radio-chico); background: var(--fp-superficie-2); border: 1.5px dashed var(--fp-borde-fuerte); }
 
-/* ---------- 6. Piezas reutilizables ---------- */
 .panel {
-  background: var(--fp-superficie);
-  border: 1px solid var(--fp-borde);
-  border-radius: var(--fp-radio);
-  box-shadow: var(--fp-sombra);
-  padding: 1.25rem;
+    background: var(--fp-superficie);
+    border: 1px solid var(--fp-borde);
+    border-radius: var(--fp-radio);
+    box-shadow: var(--fp-sombra);
+    padding: 1.25rem;
 }
 
-/* Motivo propio: línea de ruta punteada origen ····· Facultad */
 .linea-ruta {
-  flex: 1;
-  min-width: 28px;
-  height: 0;
-  border-top: 3px dotted var(--fp-naranja);
-  position: relative;
-  margin: 0 .35rem;
+    flex: 1;
+    min-width: 28px;
+    height: 0;
+    border-top: 3px dotted var(--fp-naranja);
+    position: relative;
+    margin: 0 .35rem;
 }
 .linea-ruta::before,
 .linea-ruta::after {
-  content: "";
-  position: absolute;
-  top: -7px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 3px solid var(--fp-naranja);
-  background: var(--fp-superficie);
+    content: "";
+    position: absolute;
+    top: -7px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 3px solid var(--fp-naranja);
+    background: var(--fp-superficie);
 }
 .linea-ruta::before { left: -6px; }
 .linea-ruta::after { right: -6px; background: var(--fp-naranja); }
@@ -286,45 +260,41 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .ruta { display: flex; align-items: center; gap: .4rem; }
 .ruta span { white-space: nowrap; }
 
-/* Insignias de estado */
 .insignia { display: inline-flex; align-items: center; gap: .35rem; padding: .25rem .65rem; border-radius: 999px; font-size: .82rem; font-weight: 700; background: var(--fp-azul-suave); color: var(--fp-azul); }
 .insignia.pendiente { background: var(--fp-ambar-suave); color: var(--fp-ambar); }
 .insignia.aceptada { background: var(--fp-verde-suave); color: var(--fp-verde); }
 .insignia.rechazada,
 .insignia.completo { background: var(--fp-rojo-suave); color: var(--fp-rojo); }
 
-/* Avatar con iniciales */
 .avatar { width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--fp-azul); color: #fff; display: inline-flex; align-items: center; justify-content: center; font: 700 .9rem var(--fp-titulos); }
 .avatar.grande { width: 56px; height: 56px; font-size: 1.1rem; }
 
-/* Lista de datos con ícono */
 .datos { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .92rem; }
 .datos li { display: flex; align-items: center; gap: .35rem; }
 .datos i { color: var(--fp-azul); }
 
-/* ---------- 7. Tarjeta de viaje ---------- */
 .tarjeta-viaje {
-  display: grid;
-  grid-template-columns: 1fr;   /* móvil: todo apilado */
-  gap: .9rem;
-  background: var(--fp-superficie);
-  border: 1.5px solid var(--fp-borde);
-  border-radius: var(--fp-radio);
-  padding: 1.1rem;
-  transition: border-color .15s, box-shadow .15s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .9rem;
+    background: var(--fp-superficie);
+    border: 1.5px solid var(--fp-borde);
+    border-radius: var(--fp-radio);
+    padding: 1.1rem;
+    transition: border-color .15s, box-shadow .15s;
 }
 .tarjeta-viaje:hover { border-color: var(--fp-azul); box-shadow: var(--fp-sombra); }
 .tarjeta-viaje.completo { background: var(--fp-superficie-2); }
 
 .viaje-hora {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: .6rem;
-  padding: .5rem;
-  border-radius: 12px;
-  background: var(--fp-azul-suave);
-  color: var(--fp-azul);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: .6rem;
+    padding: .5rem;
+    border-radius: 12px;
+    background: var(--fp-azul-suave);
+    color: var(--fp-azul);
 }
 .viaje-hora strong { font: 800 1.5rem var(--fp-titulos); font-variant-numeric: tabular-nums; }
 .viaje-hora span { font-size: .85rem; font-weight: 700; }
@@ -332,11 +302,10 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .viaje-ruta { font-size: 1.05rem; font-weight: 700; }
 .viaje-acciones { display: flex; flex-direction: column; gap: .5rem; }
 
-/* ---------- 8. Inicio ---------- */
 .banner {
-  background: var(--fp-azul-fuerte);
-  color: #fff;
-  padding-block: 2rem 2.5rem;
+    background: var(--fp-azul-fuerte);
+    color: #fff;
+    padding-block: 2rem 2.5rem;
 }
 .banner .bajada { font-size: 1.1rem; color: rgba(255, 255, 255, .9); max-width: 46ch; }
 .banner .ruta { color: rgba(255, 255, 255, .92); font-family: var(--fp-titulos); font-weight: 700; max-width: 420px; }
@@ -345,16 +314,15 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .banner .linea-ruta::after { background: var(--fp-naranja-claro); border-color: var(--fp-naranja-claro); }
 
 .buscador {
-  background: var(--fp-superficie);
-  color: var(--fp-texto);
-  border-radius: 18px;
-  padding: 1.25rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+    background: var(--fp-superficie);
+    color: var(--fp-texto);
+    border-radius: 18px;
+    padding: 1.25rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
 }
 
 .seccion { padding-block: 2.5rem .5rem; }
 
-/* Bloques de "Así funciona": distintos entre sí, no tres tarjetas iguales */
 .rol { padding: 1.25rem; border-radius: var(--fp-radio); background: var(--fp-superficie); border: 1px solid var(--fp-borde); height: 100%; }
 .rol.chofer { background: var(--fp-naranja-suave); border-color: transparent; }
 .rol ol { padding-left: 1.2rem; margin: .75rem 0 0; }
@@ -362,11 +330,9 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .franja-privacidad { background: var(--fp-azul-suave); border-radius: var(--fp-radio); padding: 1.25rem; }
 
-/* ---------- 9. Encabezado de página interna ---------- */
 .cabecera-pagina { padding-block: 1.75rem 1rem; }
 .cabecera-pagina p { color: var(--fp-texto-suave); max-width: 62ch; }
 
-/* ---------- 10. Detalle ---------- */
 .ruta-grande { font: 800 1.25rem var(--fp-titulos); }
 .hecho { padding: .85rem; border-radius: 12px; background: var(--fp-superficie-2); border: 1px solid var(--fp-borde); height: 100%; }
 .hecho span { display: flex; align-items: center; gap: .35rem; font-size: .82rem; color: var(--fp-texto-suave); }
@@ -376,69 +342,63 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 .lista-reglas i { color: var(--fp-verde); }
 .nota-privacidad { display: flex; gap: .6rem; padding: .8rem 1rem; background: var(--fp-azul-suave); border-radius: 12px; font-size: .92rem; }
 
-/* ---------- 11. Contenido de lectura (páginas secundarias) ---------- */
 .contenido-lectura h2 { margin-top: 2rem; margin-bottom: .75rem; }
 .contenido-lectura h3 { margin-top: 1.5rem; margin-bottom: .4rem; }
 .contenido-lectura p,
 .contenido-lectura li { max-width: 68ch; }
 
 .accordion {
-  --bs-accordion-active-bg: var(--fp-azul-suave);
-  --bs-accordion-active-color: var(--fp-azul-fuerte);
-  --bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgba(31, 78, 121, .25);
-  --bs-accordion-border-radius: var(--fp-radio);
-  --bs-accordion-inner-border-radius: var(--fp-radio);
+    --bs-accordion-active-bg: var(--fp-azul-suave);
+    --bs-accordion-active-color: var(--fp-azul-fuerte);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgba(31, 78, 121, .25);
+    --bs-accordion-border-radius: var(--fp-radio);
+    --bs-accordion-inner-border-radius: var(--fp-radio);
 }
 .accordion-button { font-weight: 700; }
 
-/* ---------- 12. Pestañas (Mis viajes) ---------- */
 .nav-pills {
-  --bs-nav-pills-link-active-bg: var(--fp-azul);
-  --bs-nav-link-color: var(--fp-azul);
-  --bs-nav-link-hover-color: var(--fp-azul-fuerte);
-  --bs-nav-link-font-weight: 700;
+    --bs-nav-pills-link-active-bg: var(--fp-azul);
+    --bs-nav-link-color: var(--fp-azul);
+    --bs-nav-link-hover-color: var(--fp-azul-fuerte);
+    --bs-nav-link-font-weight: 700;
 }
 .nav-pills .nav-link { border-radius: 999px; min-height: 44px; }
 
-/* ---------- 13. Pie ---------- */
 .pie {
-  background: var(--fp-azul-fuerte);
-  color: rgba(255, 255, 255, .88);
-  padding-block: 2rem;
-  margin-top: 3rem;
-  font-size: .92rem;
+    background: var(--fp-azul-fuerte);
+    color: rgba(255, 255, 255, .88);
+    padding-block: 2rem;
+    margin-top: 3rem;
+    font-size: .92rem;
 }
 .pie a { color: #fff; }
 .pie h2 { font-size: 1rem; color: #fff; }
 .pie ul { list-style: none; padding: 0; margin: 0; }
 .pie li + li { margin-top: .35rem; }
 
-/* ---------- 14. Responsive (mobile first) ---------- */
-
-/* Tablet: 768px */
 @media (min-width: 768px) {
-  .banner { padding-block: 3rem 3.5rem; }
-  .panel, .buscador { padding: 1.5rem; }
+    .banner { padding-block: 3rem 3.5rem; }
+    .panel, .buscador { padding: 1.5rem; }
 
-  .tarjeta-viaje {
-    grid-template-columns: 96px minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 1.25rem;
-  }
-  .viaje-hora { flex-direction: column; align-items: center; gap: 0; padding: .6rem 0; }
-  .viaje-acciones { min-width: 170px; }
+    .tarjeta-viaje {
+        grid-template-columns: 96px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1.25rem;
+    }
+    .viaje-hora { flex-direction: column; align-items: center; gap: 0; padding: .6rem 0; }
+    .viaje-acciones { min-width: 170px; }
 }
 
-/* Desktop: 1024px */
 @media (min-width: 1024px) {
-  .seccion { padding-block: 3.5rem .5rem; }
-  .pegajoso { position: sticky; top: 1.5rem; }
+    .seccion { padding-block: 3.5rem .5rem; }
+    .pegajoso { position: sticky; top: 1.5rem; }
 }
 
-/* Respeta a quien pide menos movimiento */
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; scroll-behavior: auto !important; }
+    * { transition: none !important; scroll-behavior: auto !important; }
 }
 
-/* ---------- 15. Confirmación ---------- */
 .caja-contacto { padding: 1rem; border-radius: 12px; background: var(--fp-verde-suave); }
+
+.estrellas { color: #9A6700; letter-spacing: .05em; }
+.datos li + li::before { content: "·"; margin-right: .35rem; color: var(--fp-borde-fuerte); }

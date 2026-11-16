@@ -1,13 +1,15 @@
-/* Inicio: muestra los tres próximos viajes con lugares libres */
 document.addEventListener("DOMContentLoaded", function () {
-  const contenedor = document.getElementById("viajes-destacados");
+    const contenedor = document.getElementById("viajes-destacados");
+    const zonas = Object.keys(ZONAS);
 
-  const disponibles = VIAJES
-    .filter(function (viaje) { return viaje.lugares > 0; })
-    .slice(0, 3);
+    const destacados = zonas.map(function (zona) {
+        return VIAJES.find(function (viaje) {
+            return viaje.zona === zona && viaje.lugares > 0;
+        });
+    });
 
-  contenedor.innerHTML = ""; // saca el texto "Cargando viajes…"
-  disponibles.forEach(function (viaje) {
-    contenedor.appendChild(crearTarjetaViaje(viaje, "secciones/detalle.html"));
-  });
+    contenedor.innerHTML = "";
+    destacados.forEach(function (viaje) {
+        contenedor.appendChild(crearTarjetaViaje(viaje, "secciones/detalle.html"));
+    });
 });

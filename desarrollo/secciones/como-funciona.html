@@ -1,150 +1,146 @@
 <!DOCTYPE html>
 <html lang="es-AR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Paso a paso para viajar como pasajero o como chofer en FacuPool, y cómo funciona el aporte estimado.">
-  <title>Cómo funciona · FacuPool</title>
-  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Paso a paso para viajar como pasajero o como chofer en FacuPool, y cómo funciona el aporte estimado.">
+        <title>Cómo funciona · FacuPool</title>
+        <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
 
-  <!-- Tipografías de la guía de estilo (Google Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap">
 
-  <!-- Bootstrap 5.3.8 e íconos (CDN jsDelivr) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
 
-  <!-- Estilos propios: van después para pisar a Bootstrap -->
-  <link rel="stylesheet" href="../assets/css/estilos.css">
-</head>
-<body>
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
+        <link rel="stylesheet" href="../assets/css/estilos.css">
+    </head>
+    <body>
+        <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <header class="encabezado">
-    <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
-                aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-          <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
-          <li class="nav-item"><a class="nav-link" href="buscar.html"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar viajes</a></li>
-          <li class="nav-item"><a class="nav-link" href="publicar.html"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Publicar viaje</a></li>
-          <li class="nav-item"><a class="nav-link" href="mis-viajes.html"><i class="bi bi-car-front me-1" aria-hidden="true"></i>Mis viajes</a></li>
-          <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="bi bi-person-circle me-1" aria-hidden="true"></i>Mi perfil</a></li>
-          </ul>
-          <a class="btn btn-claro btn-sm ms-lg-3 mb-3 mb-lg-0" href="ingresar.html">Ingresar</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+        <header class="encabezado">
+            <nav class="navbar navbar-expand-lg" data-bs-theme="dark" aria-label="Navegación principal">
+                <div class="container">
+                    <a class="navbar-brand" href="../index.html"><i class="bi bi-signpost-split" aria-hidden="true"></i>FacuPool</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="menu">
+                        <ul class="navbar-nav ms-auto gap-lg-1 py-2 py-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="buscar.html"><i class="bi bi-search me-1" aria-hidden="true"></i>Buscar viajes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="publicar.html"><i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Publicar viaje</a></li>
+                            <li class="nav-item"><a class="nav-link" href="mis-viajes.html"><i class="bi bi-car-front me-1" aria-hidden="true"></i>Mis viajes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="perfil.html"><i class="bi bi-person-circle me-1" aria-hidden="true"></i>Mi perfil</a></li>
+                        </ul>
+                        <a class="btn btn-claro btn-sm ms-lg-3 mb-3 mb-lg-0" href="ingresar.html">Ingresar</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
-  <main id="contenido">
-    <div class="cabecera-pagina container">
-      <nav aria-label="Ubicación"><ol class="breadcrumb mb-2"><li class="breadcrumb-item"><a href="../index.html">Inicio</a></li><li class="breadcrumb-item active" aria-current="page">Cómo funciona FacuPool</li></ol></nav>
-      <h1>Cómo funciona FacuPool</h1>
-      <p class="mt-2 mb-0">Dos roles y un mismo lugar para coordinar viajes con otros estudiantes. Acá está el paso a paso de cada uno.</p>
-    </div>
-    <div class="container contenido-lectura">
-      <div class="row">
-        <div class="col-12 col-lg-8">
-          <section aria-labelledby="titulo-pasajero">
-            <h2 id="titulo-pasajero"><i class="bi bi-person-walking me-2" aria-hidden="true"></i>Si viajás como pasajero</h2>
-            <article>
-              <h3>1. Buscá por zona, día y horario</h3>
-              <p>En <a href="buscar.html">Buscar viajes</a> elegís desde qué zona salís y qué día cursás. Si querés, sumá la franja horaria para ver solo los viajes que te sirven.</p>
-            </article>
-            <article>
-              <h3>2. Compará antes de decidir</h3>
-              <p>Cada tarjeta muestra el horario, los lugares libres, el aporte estimado y la duración. Podés ordenar por horario, por menor aporte o por menor duración.</p>
-            </article>
-            <article>
-              <h3>3. Pedí un lugar</h3>
-              <p>En el detalle del viaje ves quién maneja, el punto de encuentro y las reglas. Si te sirve, mandás la solicitud con un mensaje opcional para el chofer.</p>
-            </article>
-            <article>
-              <h3>4. Coordiná cuando te acepten</h3>
-              <p>Cuando el chofer acepta, en <a href="mis-viajes.html">Mis viajes</a> aparece su contacto. Antes de eso nadie ve tu teléfono.</p>
-            </article>
-          </section>
-
-          <section aria-labelledby="titulo-chofer">
-            <h2 id="titulo-chofer"><i class="bi bi-car-front me-2" aria-hidden="true"></i>Si viajás como chofer</h2>
-            <article>
-              <h3>1. Indicá la ruta y el punto de encuentro</h3>
-              <p>Elegí tu zona y un punto público y fácil de ubicar, como una estación o una plaza. Nunca pongas tu domicilio.</p>
-            </article>
-            <article>
-              <h3>2. Elegí día, hora y lugares</h3>
-              <p>Indicá a qué hora salís y cuántos lugares tenés libres, entre 1 y 4.</p>
-            </article>
-            <article>
-              <h3>3. Definí un aporte estimado</h3>
-              <p>Es un monto sugerido para compartir gastos de nafta y peajes. Mientras completás el formulario ves cómo queda tu publicación.</p>
-            </article>
-            <article>
-              <h3>4. Respondé las solicitudes</h3>
-              <p>Cada pedido muestra el nombre, la carrera y el mensaje de quien lo envía. Aceptás o rechazás desde Mis viajes.</p>
-            </article>
-          </section>
-
-          <section aria-labelledby="titulo-aporte">
-            <h2 id="titulo-aporte"><i class="bi bi-cash-coin me-2" aria-hidden="true"></i>El aporte estimado</h2>
-            <h3>Cómo se calcula</h3>
-            <p>Lo propone el chofer según la distancia, la nafta y los peajes del recorrido. FacuPool no cobra comisión.</p>
-            <h3>Cómo se paga</h3>
-            <p>Se acuerda entre las personas que viajan, en efectivo o por transferencia. Conviene hablarlo antes de subir al auto.</p>
-          </section>
-        </div>
-        <div class="col-12 col-lg-4">
-          <aside class="panel pegajoso mt-4 mt-lg-0" aria-labelledby="titulo-empezar">
-            <h2 id="titulo-empezar" class="h5 mt-0">¿Listo para empezar?</h2>
-            <p>Buscá un viaje para esta semana o publicá el tuyo.</p>
-            <div class="d-grid gap-2">
-              <a class="btn btn-accion" href="buscar.html">Buscar viajes</a>
-              <a class="btn btn-outline-primary" href="publicar.html">Publicar un viaje</a>
+        <main id="contenido">
+            <div class="cabecera-pagina container">
+                <nav aria-label="Ubicación"><ol class="breadcrumb mb-2"><li class="breadcrumb-item"><a href="../index.html">Inicio</a></li><li class="breadcrumb-item active" aria-current="page">Cómo funciona FacuPool</li></ol></nav>
+                <h1>Cómo funciona FacuPool</h1>
+                <p class="mt-2 mb-0">Dos roles y un mismo lugar para coordinar viajes con otros estudiantes. Acá está el paso a paso de cada uno.</p>
             </div>
-          </aside>
-        </div>
-      </div>
-    </div>
-  </main>
+            <div class="container contenido-lectura">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <section aria-labelledby="titulo-pasajero">
+                            <h2 id="titulo-pasajero"><i class="bi bi-person-walking me-2" aria-hidden="true"></i>Si viajás como pasajero</h2>
+                            <article>
+                                <h3>1. Buscá por zona, día y horario</h3>
+                                <p>En <a href="buscar.html">Buscar viajes</a> elegís desde qué zona salís y qué día cursás. Si querés, sumá la franja horaria para ver solo los viajes que te sirven.</p>
+                            </article>
+                            <article>
+                                <h3>2. Compará antes de decidir</h3>
+                                <p>Cada tarjeta muestra el horario, los lugares libres, el aporte estimado y la duración. Podés ordenar por horario, por menor aporte o por menor duración.</p>
+                            </article>
+                            <article>
+                                <h3>3. Pedí un lugar</h3>
+                                <p>En el detalle del viaje ves quién maneja, el punto de encuentro y las reglas. Si te sirve, mandás la solicitud con un mensaje opcional para el chofer.</p>
+                            </article>
+                            <article>
+                                <h3>4. Coordiná cuando te acepten</h3>
+                                <p>Cuando el chofer acepta, en <a href="mis-viajes.html">Mis viajes</a> aparece su contacto. Antes de eso nadie ve tu teléfono.</p>
+                            </article>
+                        </section>
 
-  <footer class="pie">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-5">
-          <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
-          <p class="mb-0">Viajes compartidos entre estudiantes que van a la misma facultad. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
-        </div>
-        <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
-          <h2>Secciones</h2>
-          <ul>
-            <li><a href="buscar.html">Buscar viajes</a></li>
-            <li><a href="publicar.html">Publicar viaje</a></li>
-            <li><a href="mis-viajes.html">Mis viajes</a></li>
-            <li><a href="perfil.html">Mi perfil</a></li>
-          </ul>
-        </nav>
-        <nav class="col-6 col-md-3" aria-label="Ayuda">
-          <h2>Ayuda</h2>
-          <ul>
-            <li><a href="como-funciona.html" aria-current="page">Cómo funciona</a></li>
-            <li><a href="seguridad.html">Seguridad y reglas</a></li>
-            <li><a href="ayuda.html">Ayuda y contacto</a></li>
-          </ul>
-        </nav>
-      </div>
-      <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
-    </div>
-  </footer>
+                        <section aria-labelledby="titulo-chofer">
+                            <h2 id="titulo-chofer"><i class="bi bi-car-front me-2" aria-hidden="true"></i>Si viajás como chofer</h2>
+                            <article>
+                                <h3>1. Indicá la ruta y el punto de encuentro</h3>
+                                <p>Elegí tu zona (CABA, Norte, Sur u Oeste) y un punto público y fácil de ubicar, como una estación o una plaza. Nunca pongas tu domicilio.</p>
+                            </article>
+                            <article>
+                                <h3>2. Elegí día, hora y lugares</h3>
+                                <p>Indicá a qué hora salís y cuántos lugares tenés libres, entre 1 y 4.</p>
+                            </article>
+                            <article>
+                                <h3>3. Definí un aporte estimado</h3>
+                                <p>Es un monto sugerido para compartir gastos de nafta y peajes. Mientras completás el formulario ves cómo queda tu publicación.</p>
+                            </article>
+                            <article>
+                                <h3>4. Respondé las solicitudes</h3>
+                                <p>Cada pedido muestra el nombre completo, la facultad, el año y el mensaje de quien lo envía. Aceptás o rechazás desde Mis viajes.</p>
+                            </article>
+                        </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
-  <script src="../assets/js/datos.js" defer></script>
-  <script src="../assets/js/main.js" defer></script>
-</body>
+                        <section aria-labelledby="titulo-aporte">
+                            <h2 id="titulo-aporte"><i class="bi bi-cash-coin me-2" aria-hidden="true"></i>El aporte estimado</h2>
+                            <h3>Cómo se calcula</h3>
+                            <p>Lo propone el chofer según la distancia, la nafta y los peajes del recorrido. FacuPool no cobra comisión.</p>
+                            <h3>Cómo se paga</h3>
+                            <p>Se acuerda entre las personas que viajan, en efectivo o por transferencia. Conviene hablarlo antes de subir al auto.</p>
+                        </section>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <aside class="panel pegajoso mt-4 mt-lg-0" aria-labelledby="titulo-empezar">
+                            <h2 id="titulo-empezar" class="h5 mt-0">¿Listo para empezar?</h2>
+                            <p>Buscá un viaje para esta semana o publicá el tuyo.</p>
+                            <div class="d-grid gap-2">
+                                <a class="btn btn-accion" href="buscar.html">Buscar viajes</a>
+                                <a class="btn btn-outline-primary" href="publicar.html">Publicar un viaje</a>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="pie">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-5">
+                        <p class="h5 text-white fw-bold mb-2"><i class="bi bi-signpost-split me-2" aria-hidden="true"></i>FacuPool</p>
+                        <p class="mb-0">Viajes compartidos entre estudiantes de UADE que viajan a la sede Monserrat. Tu teléfono solo se comparte cuando se acepta una solicitud.</p>
+                    </div>
+                    <nav class="col-6 col-md-3 col-lg-3 offset-lg-1" aria-label="Secciones">
+                        <h2>Secciones</h2>
+                        <ul>
+                            <li><a href="buscar.html">Buscar viajes</a></li>
+                            <li><a href="publicar.html">Publicar viaje</a></li>
+                            <li><a href="mis-viajes.html">Mis viajes</a></li>
+                            <li><a href="perfil.html">Mi perfil</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="col-6 col-md-3" aria-label="Ayuda">
+                        <h2>Ayuda</h2>
+                        <ul>
+                            <li><a href="como-funciona.html" aria-current="page">Cómo funciona</a></li>
+                            <li><a href="seguridad.html">Seguridad y reglas</a></li>
+                            <li><a href="ayuda.html">Ayuda y contacto</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+            </div>
+        </footer>
+
+        <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+        <script src="../assets/js/datos.js" defer></script>
+        <script src="../assets/js/main.js" defer></script>
+    </body>
 </html>

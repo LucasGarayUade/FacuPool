@@ -1,116 +1,186 @@
-/* =========================================================
-   FacuPool · datos de ejemplo y funciones compartidas
-   No hay servidor: los viajes viven en este arreglo y lo que
-   el usuario hace (solicitudes, viajes publicados) se guarda
-   en localStorage del navegador.
-   ========================================================= */
+const DESTINO = "UADE Monserrat";
 
-const VIAJES = [
-  { id: 1, zona: "Zona Oeste", origen: "Ramos Mejía", dia: "Lunes", hora: "07:30", lugares: 2, aporte: 3500, duracion: 55, chofer: "Martina P.", carrera: "Ingeniería Industrial", anio: "3.º año", punto: "Estación Ramos Mejía, salida Av. de Mayo", espera: 5 },
-  { id: 2, zona: "Zona Norte", origen: "Olivos", dia: "Lunes", hora: "08:00", lugares: 1, aporte: 4000, duracion: 50, chofer: "Tomás R.", carrera: "Lic. en Administración", anio: "2.º año", punto: "Estación Olivos, lado Maipú", espera: 5 },
-  { id: 3, zona: "Zona Oeste", origen: "Morón", dia: "Lunes", hora: "07:45", lugares: 3, aporte: 3000, duracion: 60, chofer: "Camila S.", carrera: "", anio: "", punto: "Plaza de Morón, esquina Belgrano", espera: 10 },
-  { id: 4, zona: "Zona Sur", origen: "Lanús", dia: "Martes", hora: "07:30", lugares: 2, aporte: 3200, duracion: 45, chofer: "Joaquín M.", carrera: "Ingeniería Informática", anio: "4.º año", punto: "Estación Lanús, salida Av. Hipólito Yrigoyen", espera: 5 },
-  { id: 5, zona: "Zona Sur", origen: "Quilmes", dia: "Martes", hora: "08:30", lugares: 1, aporte: 4200, duracion: 70, chofer: "Lucía B.", carrera: "Abogacía", anio: "1.º año", punto: "Estación Quilmes, lado Rivadavia", espera: 5 },
-  { id: 6, zona: "Zona Oeste", origen: "Haedo", dia: "Miércoles", hora: "13:30", lugares: 2, aporte: 3300, duracion: 50, chofer: "Franco D.", carrera: "Diseño Gráfico", anio: "2.º año", punto: "Estación Haedo, salida Av. Rivadavia", espera: 5 },
-  { id: 7, zona: "Zona Norte", origen: "San Isidro", dia: "Miércoles", hora: "18:00", lugares: 3, aporte: 4500, duracion: 65, chofer: "Abril T.", carrera: "", anio: "", punto: "Catedral de San Isidro, frente a la plaza", espera: 10 },
-  { id: 8, zona: "Zona Norte", origen: "Vicente López", dia: "Jueves", hora: "07:30", lugares: 2, aporte: 3900, duracion: 45, chofer: "Ramiro C.", carrera: "Ingeniería Industrial", anio: "5.º año", punto: "Estación Vicente López, lado Mitre", espera: 5 },
-  { id: 9, zona: "Zona Oeste", origen: "Ramos Mejía", dia: "Lunes", hora: "07:15", lugares: 0, aporte: 3500, duracion: 55, chofer: "Sofía V.", carrera: "Lic. en Administración", anio: "1.º año", punto: "Estación Ramos Mejía, salida Av. de Mayo", espera: 5 }
-];
-
-/* Franjas horarias del buscador */
-const FRANJAS = {
-  manana: { texto: "Mañana (6 a 12 h)", desde: 6, hasta: 12 },
-  tarde: { texto: "Tarde (12 a 18 h)", desde: 12, hasta: 18 },
-  noche: { texto: "Noche (18 a 24 h)", desde: 18, hasta: 24 }
+const ZONAS = {
+    "CABA": ["Palermo", "Belgrano", "Caballito", "Flores", "Villa Urquiza", "Almagro"],
+    "Zona Norte": ["Olivos", "San Isidro", "Vicente López", "Martínez", "Tigre"],
+    "Zona Sur": ["Lanús", "Quilmes", "Avellaneda", "Lomas de Zamora", "Banfield"],
+    "Zona Oeste": ["Ramos Mejía", "Morón", "Haedo", "Castelar", "Ituzaingó"]
 };
 
-/* $3.500 con formato argentino */
-function formatearPlata(numero) {
-  return "$" + Number(numero).toLocaleString("es-AR");
+const DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+const FRANJAS = {
+    manana: { texto: "Mañana (6 a 12 h)", desde: 6, hasta: 12, horas: ["07:00", "07:30", "08:00", "09:30", "10:30"] },
+    tarde: { texto: "Tarde (12 a 18 h)", desde: 12, hasta: 18, horas: ["12:30", "13:30", "14:00", "16:30"] },
+    noche: { texto: "Noche (18 a 24 h)", desde: 18, hasta: 24, horas: ["18:00", "18:30", "19:00", "20:30"] }
+};
+
+const FACULTADES = ["FACE", "FAIN", "FARU", "FADI", "FAJU", "FASA", "FAEN"];
+
+const CHOFERES = [
+    { id: "c1", nombre: "Martina", apellido: "Pereyra", facultad: "FAIN", anio: "3.º año", viajes: 42, desde: "marzo 2025",
+        resenas: [{ autor: "Lucía Benítez", estrellas: 5, texto: "Súper puntual y muy amable. Avisa si hay tránsito." }, { autor: "Tomás Rivas", estrellas: 5, texto: "Viaje tranquilo, el punto de encuentro es muy fácil." }] },
+    { id: "c2", nombre: "Tomás", apellido: "Rivas", facultad: "FACE", anio: "2.º año", viajes: 18, desde: "agosto 2025",
+        resenas: [{ autor: "Camila Sosa", estrellas: 4, texto: "Muy buena onda, llegó cinco minutos tarde una vez." }] },
+    { id: "c3", nombre: "Camila", apellido: "Sosa", facultad: "FADI", anio: "4.º año", viajes: 65, desde: "abril 2024",
+        resenas: [{ autor: "Franco Díaz", estrellas: 5, texto: "La recomiendo, siempre responde rápido." }, { autor: "Abril Torres", estrellas: 5, texto: "Muy prolija con los horarios." }, { autor: "Bruno López", estrellas: 4, texto: "Todo bien, el auto es cómodo." }] },
+    { id: "c4", nombre: "Joaquín", apellido: "Medina", facultad: "FAIN", anio: "5.º año", viajes: 80, desde: "marzo 2024",
+        resenas: [{ autor: "Valentina Gómez", estrellas: 5, texto: "Excelente, maneja con mucho cuidado." }, { autor: "Ramiro Castro", estrellas: 4, texto: "Puntual. A veces pone la música fuerte." }] },
+    { id: "c5", nombre: "Lucía", apellido: "Benítez", facultad: "FAJU", anio: "1.º año", viajes: 6, desde: "septiembre 2026",
+        resenas: [{ autor: "Martina Pereyra", estrellas: 5, texto: "Muy amable, todo coordinado por el chat." }] },
+    { id: "c6", nombre: "Franco", apellido: "Díaz", facultad: "FARU", anio: "2.º año", viajes: 24, desde: "febrero 2025",
+        resenas: [{ autor: "Sofía Vera", estrellas: 4, texto: "Buen viaje, recomiendo." }, { autor: "Tomás Rivas", estrellas: 5, texto: "Muy responsable." }] },
+    { id: "c7", nombre: "Abril", apellido: "Torres", facultad: "FASA", anio: "3.º año", viajes: 37, desde: "julio 2025",
+        resenas: [{ autor: "Joaquín Medina", estrellas: 5, texto: "Impecable, siempre a horario." }] },
+    { id: "c8", nombre: "Ramiro", apellido: "Castro", facultad: "FAEN", anio: "4.º año", viajes: 51, desde: "marzo 2025",
+        resenas: [{ autor: "Lucía Benítez", estrellas: 4, texto: "Muy correcto. El aporte es justo." }, { autor: "Camila Sosa", estrellas: 5, texto: "Lo volvería a elegir." }] },
+    { id: "c9", nombre: "Sofía", apellido: "Vera", facultad: "FACE", anio: "1.º año", viajes: 9, desde: "agosto 2026",
+        resenas: [{ autor: "Abril Torres", estrellas: 5, texto: "Muy simpática y puntual." }] },
+    { id: "c10", nombre: "Bruno", apellido: "López", facultad: "FAJU", anio: "3.º año", viajes: 29, desde: "mayo 2025",
+        resenas: [{ autor: "Franco Díaz", estrellas: 4, texto: "Todo en orden, buen trato." }] },
+    { id: "yo", nombre: "Nicolás", apellido: "Argüello", facultad: "FAIN", anio: "3.º año", viajes: 12, desde: "marzo 2026",
+        resenas: [{ autor: "Sofía Vera", estrellas: 5, texto: "Muy puntual y buena onda." }] }
+];
+
+const USUARIO = "yo";
+
+function crearAleatorio(semilla) {
+    return function () {
+        semilla = (semilla + 0x6D2B79F5) | 0;
+        let t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
 }
 
-/* "Martina P." -> "MP" */
-function iniciales(nombre) {
-  const partes = nombre.replace(".", "").split(" ");
-  return (partes[0][0] + (partes[1] ? partes[1][0] : "")).toUpperCase();
-}
+function generarViajes() {
+    const azar = crearAleatorio(2026);
+    const elegir = function (lista) { return lista[Math.floor(azar() * lista.length)]; };
+    const lista = [];
+    let id = 1;
 
-/* "07:30" -> "manana" */
-function franjaDeHora(hora) {
-  const h = parseInt(hora, 10);
-  for (const clave in FRANJAS) {
-    if (h >= FRANJAS[clave].desde && h < FRANJAS[clave].hasta) {
-      return clave;
+    for (const zona in ZONAS) {
+        const esCaba = zona === "CABA";
+        DIAS.forEach(function (dia) {
+            for (const franja in FRANJAS) {
+                const cantidad = azar() < 0.5 ? 1 : 2;
+                for (let i = 0; i < cantidad; i++) {
+                    const origen = elegir(ZONAS[zona]);
+                    lista.push({
+                        id: id++,
+                        zona: zona,
+                        origen: origen,
+                        dia: dia,
+                        hora: elegir(FRANJAS[franja].horas),
+                        lugares: azar() < 0.15 ? 0 : 1 + Math.floor(azar() * 4),
+                        aporte: esCaba ? 1500 + Math.floor(azar() * 11) * 100 : 3000 + Math.floor(azar() * 16) * 100,
+                        duracion: esCaba ? 20 + Math.floor(azar() * 16) : 40 + Math.floor(azar() * 36),
+                        choferId: elegir(CHOFERES.slice(0, -1)).id,
+                        punto: (esCaba ? "Plaza principal de " : "Estación ") + origen,
+                        espera: azar() < 0.6 ? 5 : 10
+                    });
+                }
+            }
+        });
     }
-  }
-  return "noche";
+    return lista;
+}
+
+const VIAJES = generarViajes();
+
+function formatearPlata(numero) {
+    return "$" + Number(numero).toLocaleString("es-AR");
+}
+
+function iniciales(nombre) {
+    const partes = nombre.trim().split(" ");
+    return (partes[0][0] + (partes[1] ? partes[1][0] : "")).toUpperCase();
+}
+
+function franjaDeHora(hora) {
+    const h = parseInt(hora, 10);
+    for (const clave in FRANJAS) {
+        if (h >= FRANJAS[clave].desde && h < FRANJAS[clave].hasta) {
+            return clave;
+        }
+    }
+    return "noche";
 }
 
 function buscarViaje(id) {
-  return VIAJES.find(function (v) { return v.id === Number(id); });
+    return VIAJES.find(function (v) { return v.id === Number(id); });
 }
 
-/* Evita que un texto cargado por el usuario se interprete como HTML */
+function buscarChofer(id) {
+    return CHOFERES.find(function (c) { return c.id === id; });
+}
+
+function nombreCompleto(persona) {
+    return persona.nombre + " " + persona.apellido;
+}
+
+function promedioEstrellas(chofer) {
+    const total = chofer.resenas.reduce(function (suma, r) { return suma + r.estrellas; }, 0);
+    return (total / chofer.resenas.length).toFixed(1);
+}
+
 function escaparHTML(texto) {
-  const div = document.createElement("div");
-  div.textContent = texto;
-  return div.innerHTML;
+    const div = document.createElement("div");
+    div.textContent = texto;
+    return div.innerHTML;
 }
 
-/* localStorage puede fallar (modo privado, permisos): por eso try/catch */
 function leerGuardado(clave, valorPorDefecto) {
-  try {
-    const dato = localStorage.getItem("facupool-" + clave);
-    return dato ? JSON.parse(dato) : valorPorDefecto;
-  } catch (error) {
-    return valorPorDefecto;
-  }
+    try {
+        const dato = localStorage.getItem("facupool2-" + clave);
+        return dato ? JSON.parse(dato) : valorPorDefecto;
+    } catch (error) {
+        return valorPorDefecto;
+    }
 }
 
 function guardar(clave, valor) {
-  try {
-    localStorage.setItem("facupool-" + clave, JSON.stringify(valor));
-    return true;
-  } catch (error) {
-    return false;
-  }
+    try {
+        localStorage.setItem("facupool2-" + clave, JSON.stringify(valor));
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
-/* Tarjeta de viaje reutilizada en Inicio y en Buscar.
-   rutaDetalle: camino relativo a detalle.html según desde dónde se llame. */
+function rutaHTML(origen) {
+    return "<span>" + escaparHTML(origen) + '</span><span class="linea-ruta" aria-hidden="true"></span><span>' + DESTINO + "</span>";
+}
+
 function crearTarjetaViaje(viaje, rutaDetalle) {
-  const completo = viaje.lugares === 0;
-  const articulo = document.createElement("article");
-  articulo.className = "tarjeta-viaje" + (completo ? " completo" : "");
+    const completo = viaje.lugares === 0;
+    const chofer = buscarChofer(viaje.choferId);
+    const articulo = document.createElement("article");
+    articulo.className = "tarjeta-viaje" + (completo ? " completo" : "");
 
-  const perfil = viaje.carrera
-    ? viaje.carrera + " · " + viaje.anio
-    : "Prefiere no mostrar carrera";
+    const lugaresTexto = completo
+        ? '<span class="insignia completo">Completo</span>'
+        : '<span class="insignia">' + viaje.lugares + (viaje.lugares === 1 ? " lugar libre" : " lugares libres") + "</span>";
 
-  const lugaresTexto = completo
-    ? '<span class="insignia completo"><i class="bi bi-x-circle" aria-hidden="true"></i>Completo</span>'
-    : '<span class="insignia"><i class="bi bi-person" aria-hidden="true"></i>' + viaje.lugares + (viaje.lugares === 1 ? " lugar libre" : " lugares libres") + "</span>";
+    articulo.innerHTML =
+        '<div class="viaje-hora"><strong>' + viaje.hora + "</strong><span>" + viaje.dia + "</span></div>" +
+        '<div class="d-flex flex-column gap-2">' +
+            '<h3 class="viaje-ruta ruta mb-0">' + rutaHTML(viaje.origen) + "</h3>" +
+            '<ul class="datos">' +
+                "<li>" + escaparHTML(viaje.zona) + "</li>" +
+                "<li>Aporte <strong>" + formatearPlata(viaje.aporte) + "</strong></li>" +
+                "<li>" + viaje.duracion + " min</li>" +
+            "</ul>" +
+            '<p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">' + iniciales(nombreCompleto(chofer)) + "</span>" +
+                "<span>" + escaparHTML(nombreCompleto(chofer)) + '<br><span class="texto-suave">' + chofer.facultad + " · " + chofer.anio + " · ★ " + promedioEstrellas(chofer) + "</span></span></p>" +
+        "</div>" +
+        '<div class="viaje-acciones">' + lugaresTexto +
+            '<a class="btn btn-outline-primary btn-sm" href="' + rutaDetalle + "?id=" + viaje.id + '">Ver detalle<span class="visually-hidden"> del viaje desde ' + escaparHTML(viaje.origen) + " a las " + viaje.hora + "</span></a>" +
+        "</div>";
 
-  articulo.innerHTML =
-    '<div class="viaje-hora"><strong>' + viaje.hora + "</strong><span>" + viaje.dia + "</span></div>" +
-    '<div class="d-flex flex-column gap-2">' +
-      '<h3 class="viaje-ruta ruta mb-0"><span>' + escaparHTML(viaje.origen) + '</span><span class="linea-ruta" aria-hidden="true"></span><span>Facultad</span></h3>' +
-      '<ul class="datos">' +
-        '<li><i class="bi bi-geo-alt" aria-hidden="true"></i>' + escaparHTML(viaje.zona) + "</li>" +
-        '<li><i class="bi bi-cash-coin" aria-hidden="true"></i>Aporte <strong>' + formatearPlata(viaje.aporte) + "</strong></li>" +
-        '<li><i class="bi bi-clock" aria-hidden="true"></i>' + viaje.duracion + " min</li>" +
-      "</ul>" +
-      '<p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">' + iniciales(viaje.chofer) + "</span>" +
-        "<span>" + escaparHTML(viaje.chofer) + '<br><span class="texto-suave">' + escaparHTML(perfil) + "</span></span></p>" +
-    "</div>" +
-    '<div class="viaje-acciones">' + lugaresTexto +
-      '<a class="btn btn-outline-primary btn-sm" href="' + rutaDetalle + "?id=" + viaje.id + '">Ver detalle<span class="visually-hidden"> del viaje desde ' + escaparHTML(viaje.origen) + " a las " + viaje.hora + "</span></a>" +
-    "</div>";
-
-  return articulo;
+    return articulo;
 }
 
-/* Los viajes que el usuario publicó en este navegador se suman a la lista */
 leerGuardado("publicados", []).forEach(function (viaje) {
-  VIAJES.push(viaje);
+    VIAJES.push(viaje);
 });
