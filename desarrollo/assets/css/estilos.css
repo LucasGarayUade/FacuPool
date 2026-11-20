@@ -330,6 +330,12 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .franja-privacidad { background: var(--fp-azul-suave); border-radius: var(--fp-radio); padding: 1.25rem; }
 
+.franja-video { background: var(--fp-superficie); border: 1px solid var(--fp-borde); border-radius: var(--fp-radio); padding: 1.25rem; }
+.video-zonas { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--fp-fondo); }
+.lista-zonas { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+.lista-zonas a { display: inline-block; padding: .4rem .9rem; border-radius: 999px; background: var(--fp-naranja-suave); color: var(--fp-naranja-activo); font-weight: 700; text-decoration: none; }
+.lista-zonas a:hover, .lista-zonas a:focus-visible { background: var(--fp-naranja); color: #FFFFFF; }
+
 .cabecera-pagina { padding-block: 1.75rem 1rem; }
 .cabecera-pagina p {
     color: var(--fp-texto-suave);
