@@ -43,36 +43,69 @@
 
         <main id="contenido">
             <div class="cabecera-pagina container">
-                <nav aria-label="Ubicación"><ol class="breadcrumb mb-2"><li class="breadcrumb-item"><a href="buscar.html">Buscar viajes</a></li><li class="breadcrumb-item active" aria-current="page">Perfil del conductor</li></ol></nav>
+                <nav aria-label="Ubicación"><ol class="breadcrumb mb-2"><li class="breadcrumb-item"><a href="buscar.html">Buscar viajes</a></li><li class="breadcrumb-item"><a href="detalle.html">Detalle</a></li><li class="breadcrumb-item active" aria-current="page">Perfil del conductor</li></ol></nav>
             </div>
 
             <div class="container">
-                <div id="conductor-inexistente" class="alert alert-warning d-none" role="alert">
-                    No encontramos ese perfil. <a href="buscar.html?todos=1">Volver a los viajes</a>.
-                </div>
-
-                <div id="perfil-conductor" class="row g-4">
+                <div class="row g-4">
                     <div class="col-12 col-lg-4">
                         <section class="panel text-center" aria-labelledby="titulo-conductor">
-                            <span id="c-iniciales" class="avatar grande mx-auto" aria-hidden="true"></span>
-                            <h1 id="titulo-conductor" class="h3 mt-3 mb-1">Conductor</h1>
-                            <p id="c-facultad" class="texto-suave mb-2"></p>
-                            <p class="mb-3"><span class="insignia aceptada">Estudiante UADE verificado</span></p>
+                            <span class="avatar grande mx-auto" aria-hidden="true">MP</span>
+                            <h1 id="titulo-conductor" class="h3 mt-3 mb-1">Martina Pereyra</h1>
+                            <p class="texto-suave mb-2">FAIN · 3.º año</p>
+                            <p class="mb-3"><span class="insignia aceptada">Estudiante UADE verificada</span></p>
                             <div class="row g-2">
-                                <div class="col-6"><p class="hecho mb-0"><span>Viajes realizados</span><strong id="c-viajes"></strong></p></div>
-                                <div class="col-6"><p class="hecho mb-0"><span>Calificación</span><strong id="c-promedio"></strong></p></div>
+                                <div class="col-6"><p class="hecho mb-0"><span>Viajes realizados</span><strong>42</strong></p></div>
+                                <div class="col-6"><p class="hecho mb-0"><span>Calificación</span><strong>★ 5.0</strong></p></div>
                             </div>
-                            <p id="c-desde" class="small texto-suave mt-3 mb-0"></p>
+                            <p class="small texto-suave mt-3 mb-0">En FacuPool desde marzo 2025</p>
                         </section>
                     </div>
                     <div class="col-12 col-lg-8">
                         <section aria-labelledby="titulo-resenas">
-                            <h2 id="titulo-resenas" class="h4">Reseñas (<span id="c-cantidad"></span>)</h2>
-                            <ul id="c-resenas" class="list-unstyled d-grid gap-3 mt-3"></ul>
+                            <h2 id="titulo-resenas" class="h4">Reseñas (3)</h2>
+                            <ul class="list-unstyled d-grid gap-3 mt-3">
+                                <li class="panel"><p class="mb-1"><span class="estrellas" aria-label="5 de 5 estrellas">★★★★★</span> <strong>Lucía Benítez</strong></p><p class="mb-0">Súper puntual y muy amable. Avisa si hay tránsito.</p></li>
+                                <li class="panel"><p class="mb-1"><span class="estrellas" aria-label="5 de 5 estrellas">★★★★★</span> <strong>Tomás Rivas</strong></p><p class="mb-0">Viaje tranquilo, nos pusimos de acuerdo rápido por teléfono.</p></li>
+                                <li class="panel"><p class="mb-1"><span class="estrellas" aria-label="5 de 5 estrellas">★★★★★</span> <strong>Bruno López</strong></p><p class="mb-0">Maneja con mucho cuidado. La recomiendo.</p></li>
+                            </ul>
                         </section>
                         <section class="mt-4" aria-labelledby="titulo-proximos">
                             <h2 id="titulo-proximos" class="h4">Viajes publicados</h2>
-                            <div id="c-proximos" class="d-grid gap-3 mt-3"></div>
+                            <div class="d-grid gap-3 mt-3">
+                                <article class="tarjeta-viaje" data-zona="Zona Oeste" data-localidad="Ramos Mejía" data-dia="Lunes" data-franja="manana">
+                                    <div class="viaje-hora"><strong>07:30</strong><span>Lunes</span></div>
+                                    <div class="d-flex flex-column gap-2">
+                                        <h3 class="viaje-ruta ruta mb-0"><span>Ramos Mejía</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                        <ul class="datos">
+                                            <li>Zona Oeste</li>
+                                            <li>Aporte <strong>$3.500</strong></li>
+                                            <li>55 min</li>
+                                        </ul>
+                                        <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">MP</span><span>Martina Pereyra<br><span class="texto-suave">FAIN · 3.º año · ★ 5.0</span></span></p>
+                                    </div>
+                                    <div class="viaje-acciones">
+                                        <span class="insignia">2 lugares libres</span>
+                                        <a class="btn btn-outline-primary btn-sm" href="detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Ramos Mejía a las 07:30</span></a>
+                                    </div>
+                                </article>
+                                <article class="tarjeta-viaje" data-zona="Zona Oeste" data-localidad="Castelar" data-dia="Viernes" data-franja="noche">
+                                    <div class="viaje-hora"><strong>19:00</strong><span>Viernes</span></div>
+                                    <div class="d-flex flex-column gap-2">
+                                        <h3 class="viaje-ruta ruta mb-0"><span>Castelar</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                        <ul class="datos">
+                                            <li>Zona Oeste</li>
+                                            <li>Aporte <strong>$3.400</strong></li>
+                                            <li>60 min</li>
+                                        </ul>
+                                        <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">MP</span><span>Martina Pereyra<br><span class="texto-suave">FAIN · 3.º año · ★ 5.0</span></span></p>
+                                    </div>
+                                    <div class="viaje-acciones">
+                                        <span class="insignia">3 lugares libres</span>
+                                        <a class="btn btn-outline-primary btn-sm" href="detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Castelar a las 19:00</span></a>
+                                    </div>
+                                </article>
+                            </div>
                         </section>
                     </div>
                 </div>
@@ -104,13 +137,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/conductor.js" defer></script>
     </body>
 </html>

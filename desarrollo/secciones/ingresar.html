@@ -51,9 +51,8 @@
                     <div class="col-12 col-lg-5">
                         <section class="panel h-100" aria-labelledby="titulo-ingresar">
                             <h2 id="titulo-ingresar" class="h4">Ya tengo cuenta</h2>
-                            <div id="exito-ingresar" class="d-none mt-3" role="status"></div>
-                            <form class="validar mt-3" data-exito="exito-ingresar" data-mensaje="Ingresaste correctamente. Esta es una versión de prueba: no se guarda la sesión.">
-                                <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                            <div id="exito-ingresar" class="alert alert-success d-none mt-3" role="status" tabindex="-1">Ingresaste correctamente. Esta es una versión de prueba: no se guarda la sesión.</div>
+                            <form class="validar mt-3" data-exito="exito-ingresar" novalidate>
                                 <div class="mb-3">
                                     <label class="form-label" for="i-usuario">Legajo o mail institucional</label>
                                     <input class="form-control" id="i-usuario" name="usuario" type="text" required autocomplete="username" pattern="([0-9]{6,8}|[^@\s]+@uade\.edu\.ar)" aria-describedby="i-usuario-ayuda">
@@ -64,7 +63,7 @@
                                     <label class="form-label" for="i-clave">Contraseña</label>
                                     <div class="input-group has-validation">
                                         <input class="form-control" id="i-clave" name="clave" type="password" required autocomplete="current-password">
-                                        <button class="btn btn-outline-primary ver-clave" type="button" data-campo="i-clave" aria-pressed="false" aria-label="Mostrar contraseña">Mostrar</button>
+                                        <button class="btn btn-outline-primary ver-clave" type="button" data-campo="i-clave" aria-label="Mostrar contraseña">Mostrar</button>
                                         <div class="invalid-feedback">Ingresá tu contraseña.</div>
                                     </div>
                                 </div>
@@ -78,9 +77,8 @@
                         <section class="panel h-100" aria-labelledby="titulo-registro">
                             <h2 id="titulo-registro" class="h4">Crear una cuenta</h2>
                             <p class="small texto-suave mb-0">Todos los campos son obligatorios.</p>
-                            <div id="exito-registro" class="d-none mt-3" role="status"></div>
-                            <form class="validar mt-3" data-exito="exito-registro" data-mensaje="¡Cuenta creada! Te enviamos un mail a tu casilla de UADE para confirmar tu legajo.">
-                                <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                            <div id="exito-registro" class="alert alert-success d-none mt-3" role="status" tabindex="-1">¡Cuenta creada! Te enviamos un mail a tu casilla de UADE para confirmar tu legajo.</div>
+                            <form class="validar mt-3" data-exito="exito-registro" novalidate>
                                 <div class="row g-3">
                                     <div class="col-12 col-md-6">
                                         <label class="form-label" for="r-nombre">Nombre</label>
@@ -145,7 +143,7 @@
                                         <label class="form-label" for="r-clave">Contraseña</label>
                                         <div class="input-group has-validation">
                                             <input class="form-control" id="r-clave" name="clave" type="password" required minlength="8" autocomplete="new-password" aria-describedby="r-clave-ayuda">
-                                            <button class="btn btn-outline-primary ver-clave" type="button" data-campo="r-clave" aria-pressed="false" aria-label="Mostrar contraseña">Mostrar</button>
+                                            <button class="btn btn-outline-primary ver-clave" type="button" data-campo="r-clave" aria-label="Mostrar contraseña">Mostrar</button>
                                             <div class="invalid-feedback">Usá al menos 8 caracteres.</div>
                                         </div>
                                         <div id="r-clave-ayuda" class="form-text">Mínimo 8 caracteres.</div>
@@ -193,13 +191,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/ingresar.js" defer></script>
     </body>
 </html>

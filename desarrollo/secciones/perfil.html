@@ -49,9 +49,10 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-lg-7">
-                        <div id="exito-perfil" class="d-none mb-3" role="status"></div>
-                        <form id="form-perfil" class="panel">
-                            <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                        <div id="exito-perfil" class="alert alert-success d-none mb-3" role="status" tabindex="-1">
+                            <strong>Cambios guardados.</strong> Así te van a ver en tus próximos viajes.
+                        </div>
+                        <form class="panel validar" data-exito="exito-perfil" novalidate>
                             <h2 class="h5">Datos visibles para todos</h2>
                             <div class="row g-3">
                                 <div class="col-12 col-md-6">
@@ -124,10 +125,10 @@
                         <aside class="pegajoso" aria-labelledby="titulo-asi-te-ven">
                             <h2 id="titulo-asi-te-ven" class="h5">Así te ven los demás</h2>
                             <div class="panel d-flex align-items-center gap-3">
-                                <span id="vista-iniciales" class="avatar grande" aria-hidden="true">NA</span>
-                                <p class="mb-0"><strong id="vista-nombre">Nicolás Argüello</strong><br><span id="vista-facultad" class="texto-suave">FAIN · 3.º año</span><br><span class="insignia aceptada mt-1">Estudiante UADE verificado</span></p>
+                                <span class="avatar grande" aria-hidden="true">NA</span>
+                                <p class="mb-0"><strong>Nicolás Argüello</strong><br><span class="texto-suave">FAIN · 3.º año</span><br><span class="insignia aceptada mt-1">Estudiante UADE verificado</span></p>
                             </div>
-                            <p class="small texto-suave mt-2"><a href="conductor.html?id=yo">Ver mi perfil público</a></p>
+
                         </aside>
                     </div>
                 </div>
@@ -159,13 +160,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/perfil.js" defer></script>
     </body>
 </html>

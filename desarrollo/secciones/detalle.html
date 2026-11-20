@@ -44,36 +44,38 @@
         <main id="contenido">
             <div class="cabecera-pagina container">
                 <nav aria-label="Ubicación"><ol class="breadcrumb mb-2"><li class="breadcrumb-item"><a href="../index.html">Inicio</a></li><li class="breadcrumb-item"><a href="buscar.html">Buscar viajes</a></li><li class="breadcrumb-item active" aria-current="page">Detalle</li></ol></nav>
-                <h1 id="titulo-viaje">Detalle del viaje</h1>
+                <h1>Viaje desde Ramos Mejía</h1>
+                <p class="mt-2 mb-0">Este es un viaje de ejemplo: todas las tarjetas de la búsqueda llevan a este detalle.</p>
             </div>
 
             <div class="container">
-                <div id="viaje-inexistente" class="alert alert-warning d-none" role="alert">
-                    No encontramos ese viaje. <a href="buscar.html?todos=1">Volver a ver todos los viajes</a>.
-                </div>
-
-                <div id="detalle" class="row g-4">
+                <div class="row g-4">
                     <div class="col-12 col-lg-7">
                         <article class="panel">
                             <h2 class="visually-hidden">Datos del viaje</h2>
-                            <p id="ruta-grande" class="ruta ruta-grande mb-3"></p>
-                            <div id="hechos" class="row g-2"></div>
+                            <p class="ruta ruta-grande mb-3"><span>Ramos Mejía</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></p>
+                            <div class="row g-2">
+                                <div class="col-6 col-md-3"><p class="hecho mb-0"><span>Día y hora</span><strong>Lunes 07:30</strong></p></div>
+                                <div class="col-6 col-md-3"><p class="hecho mb-0"><span>Aporte estimado</span><strong>$3.500</strong></p></div>
+                                <div class="col-6 col-md-3"><p class="hecho mb-0"><span>Lugares libres</span><strong>2</strong></p></div>
+                                <div class="col-6 col-md-3"><p class="hecho mb-0"><span>Duración</span><strong>55 min</strong></p></div>
+                            </div>
 
                             <section class="mt-4" aria-labelledby="titulo-chofer">
                                 <h3 id="titulo-chofer">Quién maneja</h3>
-                                <p id="chofer" class="d-flex align-items-center gap-3 mt-2 mb-2"></p>
-                                <a id="ver-perfil" class="btn btn-outline-primary btn-sm" href="conductor.html">Ver perfil del conductor</a>
+                                <p class="d-flex align-items-center gap-3 mt-2 mb-2"><span class="avatar grande" aria-hidden="true">MP</span><span><strong>Martina Pereyra</strong><br><span class="texto-suave">FAIN · 3.º año · ★ 5.0 · 42 viajes</span></span></p>
+                                <a class="btn btn-outline-primary btn-sm" href="conductor.html">Ver perfil del conductor</a>
                             </section>
 
                             <section class="mt-4" aria-labelledby="titulo-punto">
                                 <h3 id="titulo-punto">Punto de encuentro</h3>
-                                <p id="punto" class="mt-2 mb-0"></p>
+                                <p class="mt-2 mb-0">Sale desde Ramos Mejía (Zona Oeste). El punto exacto se coordina por teléfono cuando el chofer acepta tu solicitud.</p>
                             </section>
 
                             <section class="mt-4" aria-labelledby="titulo-reglas">
                                 <h3 id="titulo-reglas">Reglas del viaje</h3>
                                 <ul class="lista-reglas">
-                                    <li><i class="bi bi-check-circle" aria-hidden="true"></i><span id="regla-espera">El chofer espera 5 minutos en el punto de encuentro.</span></li>
+                                    <li><i class="bi bi-check-circle" aria-hidden="true"></i>El chofer espera 5 minutos en el punto de encuentro.</li>
                                     <li><i class="bi bi-check-circle" aria-hidden="true"></i>Si cancelás, avisá con al menos 2 horas de anticipación.</li>
                                     <li><i class="bi bi-check-circle" aria-hidden="true"></i>El aporte es un monto sugerido para compartir gastos.</li>
                                 </ul>
@@ -84,14 +86,14 @@
                     <div class="col-12 col-lg-5">
                         <aside class="panel pegajoso" aria-labelledby="titulo-pedir">
                             <h2 id="titulo-pedir" class="h4">Pedir un lugar</h2>
-                            <div id="estado-solicitud" class="d-none" role="status"></div>
-
-                            <form id="form-pedir" class="mt-3">
-                                <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                            <div id="exito-pedir" class="alert alert-success d-none mt-3" role="status" tabindex="-1">
+                                <strong>Solicitud enviada.</strong> Martina la va a revisar. Seguí el estado en <a href="mis-viajes.html">Mis viajes</a>.
+                            </div>
+                            <form class="validar mt-3" data-exito="exito-pedir" novalidate>
                                 <div class="mb-3">
                                     <label class="form-label" for="mensaje">Mensaje para el chofer <span class="fw-normal texto-suave">(opcional)</span></label>
                                     <textarea class="form-control" id="mensaje" name="mensaje" rows="3" maxlength="200" aria-describedby="mensaje-ayuda"></textarea>
-                                    <div id="mensaje-ayuda" class="form-text">Por ejemplo, desde dónde salís. <span id="contador-mensaje">0</span>/200 caracteres.</div>
+                                    <div id="mensaje-ayuda" class="form-text">Por ejemplo, desde dónde salís. Máximo 200 caracteres.</div>
                                 </div>
                                 <div class="form-check caja-casilla mb-3">
                                     <input class="form-check-input" type="checkbox" id="acepto" name="acepto" required>
@@ -99,10 +101,9 @@
                                     <div class="invalid-feedback">Aceptá las reglas para enviar la solicitud.</div>
                                 </div>
                                 <div class="d-grid">
-                                    <button id="boton-pedir" class="btn btn-accion" type="submit"><i class="bi bi-send" aria-hidden="true"></i>Enviar solicitud</button>
+                                    <button class="btn btn-accion" type="submit"><i class="bi bi-send" aria-hidden="true"></i>Enviar solicitud</button>
                                 </div>
                             </form>
-
                             <p class="nota-privacidad mt-3 mb-0"><i class="bi bi-lock" aria-hidden="true"></i><span>Tu teléfono no se comparte. Si el chofer acepta, van a ver el contacto solo ustedes dos.</span></p>
                         </aside>
                     </div>
@@ -135,13 +136,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/detalle.js" defer></script>
     </body>
 </html>

@@ -54,30 +54,71 @@
                             </p>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <form class="buscador validar" action="secciones/buscar.html" method="get" data-enviar="si" aria-labelledby="titulo-buscador">
+                            <form class="buscador" action="secciones/buscar.html" method="get" aria-labelledby="titulo-buscador">
                                 <h2 id="titulo-buscador" class="h4 mb-3">Buscar un viaje</h2>
                                 <div class="row g-3">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="b-zona">Zona de salida</label>
-                                        <select class="form-select" id="b-zona" name="zona" required>
-                                            <option value="">Elegí una zona</option>
-                                            <option>CABA</option>
-                                            <option>Zona Oeste</option>
-                                            <option>Zona Norte</option>
-                                            <option>Zona Sur</option>
-                                        </select>
-                                        <div class="invalid-feedback">Elegí desde qué zona salís.</div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="b-localidad">Localidad</label>
-                                        <select class="form-select" id="b-localidad" name="localidad" data-zona="b-zona" data-vacio="Todas las localidades" disabled>
-                                            <option value="">Primero elegí la zona</option>
+                                    <div class="col-12">
+                                        <label class="form-label" for="b-origen">¿Desde dónde salís?</label>
+                                        <select class="form-select" id="b-origen" name="origen">
+                                            <option value="">Cualquier zona o localidad</option>
+                                            <optgroup label="CABA">
+                                                <option value="CABA">Toda CABA</option>
+                                                <option>Palermo</option>
+                                                <option>Belgrano</option>
+                                                <option>Caballito</option>
+                                                <option>Flores</option>
+                                                <option>Villa Urquiza</option>
+                                                <option>Villa Devoto</option>
+                                                <option>Almagro</option>
+                                                <option>Recoleta</option>
+                                                <option>Núñez</option>
+                                                <option>Villa del Parque</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Norte">
+                                                <option value="Zona Norte">Toda la Zona Norte</option>
+                                                <option>Vicente López</option>
+                                                <option>Olivos</option>
+                                                <option>Florida</option>
+                                                <option>Martínez</option>
+                                                <option>San Isidro</option>
+                                                <option>San Fernando</option>
+                                                <option>Tigre</option>
+                                                <option>Benavídez</option>
+                                                <option>Escobar</option>
+                                                <option>Pilar</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Oeste">
+                                                <option value="Zona Oeste">Toda la Zona Oeste</option>
+                                                <option>Ramos Mejía</option>
+                                                <option>Haedo</option>
+                                                <option>Morón</option>
+                                                <option>Castelar</option>
+                                                <option>Ituzaingó</option>
+                                                <option>San Justo</option>
+                                                <option>Ciudadela</option>
+                                                <option>Caseros</option>
+                                                <option>Merlo</option>
+                                                <option>Moreno</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Sur">
+                                                <option value="Zona Sur">Toda la Zona Sur</option>
+                                                <option>Avellaneda</option>
+                                                <option>Lanús</option>
+                                                <option>Banfield</option>
+                                                <option>Lomas de Zamora</option>
+                                                <option>Adrogué</option>
+                                                <option>Temperley</option>
+                                                <option>Quilmes</option>
+                                                <option>Bernal</option>
+                                                <option>Berazategui</option>
+                                                <option>Ezeiza</option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="form-label" for="b-dia">Día</label>
-                                        <select class="form-select" id="b-dia" name="dia" required>
-                                            <option value="">Elegí un día</option>
+                                        <select class="form-select" id="b-dia" name="dia">
+                                            <option value="">Cualquier día</option>
                                             <option>Lunes</option>
                                             <option>Martes</option>
                                             <option>Miércoles</option>
@@ -85,7 +126,6 @@
                                             <option>Viernes</option>
                                             <option>Sábado</option>
                                         </select>
-                                        <div class="invalid-feedback">Elegí qué día viajás.</div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="form-label" for="b-franja">Horario</label>
@@ -140,10 +180,73 @@
                 <div class="container">
                     <div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
                         <h2 id="titulo-semana" class="mb-0">Viajes publicados esta semana</h2>
-                        <a href="secciones/buscar.html?todos=1">Ver todos los viajes</a>
+                        <a href="secciones/buscar.html">Ver todos los viajes</a>
                     </div>
-                    <div id="viajes-destacados" class="d-grid gap-3 mt-3">
-                        <p class="texto-suave">Cargando viajes…</p>
+                    <div class="d-grid gap-3 mt-3">
+                        <article class="tarjeta-viaje" data-zona="CABA" data-localidad="Palermo" data-dia="Lunes" data-franja="manana">
+                            <div class="viaje-hora"><strong>08:00</strong><span>Lunes</span></div>
+                            <div class="d-flex flex-column gap-2">
+                                <h3 class="viaje-ruta ruta mb-0"><span>Palermo</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                <ul class="datos">
+                                    <li>CABA</li>
+                                    <li>Aporte <strong>$1.800</strong></li>
+                                    <li>25 min</li>
+                                </ul>
+                                <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">SV</span><span>Sofía Vera<br><span class="texto-suave">FACE · 1.º año · ★ 5.0</span></span></p>
+                            </div>
+                            <div class="viaje-acciones">
+                                <span class="insignia">3 lugares libres</span>
+                                <a class="btn btn-outline-primary btn-sm" href="secciones/detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Palermo a las 08:00</span></a>
+                            </div>
+                        </article>
+                        <article class="tarjeta-viaje" data-zona="Zona Norte" data-localidad="Pilar" data-dia="Lunes" data-franja="manana">
+                            <div class="viaje-hora"><strong>07:00</strong><span>Lunes</span></div>
+                            <div class="d-flex flex-column gap-2">
+                                <h3 class="viaje-ruta ruta mb-0"><span>Pilar</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                <ul class="datos">
+                                    <li>Zona Norte</li>
+                                    <li>Aporte <strong>$4.500</strong></li>
+                                    <li>75 min</li>
+                                </ul>
+                                <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">RC</span><span>Ramiro Castro<br><span class="texto-suave">FAEN · 4.º año · ★ 4.5</span></span></p>
+                            </div>
+                            <div class="viaje-acciones">
+                                <span class="insignia">2 lugares libres</span>
+                                <a class="btn btn-outline-primary btn-sm" href="secciones/detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Pilar a las 07:00</span></a>
+                            </div>
+                        </article>
+                        <article class="tarjeta-viaje" data-zona="Zona Oeste" data-localidad="Ramos Mejía" data-dia="Lunes" data-franja="manana">
+                            <div class="viaje-hora"><strong>07:30</strong><span>Lunes</span></div>
+                            <div class="d-flex flex-column gap-2">
+                                <h3 class="viaje-ruta ruta mb-0"><span>Ramos Mejía</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                <ul class="datos">
+                                    <li>Zona Oeste</li>
+                                    <li>Aporte <strong>$3.500</strong></li>
+                                    <li>55 min</li>
+                                </ul>
+                                <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">MP</span><span>Martina Pereyra<br><span class="texto-suave">FAIN · 3.º año · ★ 5.0</span></span></p>
+                            </div>
+                            <div class="viaje-acciones">
+                                <span class="insignia">2 lugares libres</span>
+                                <a class="btn btn-outline-primary btn-sm" href="secciones/detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Ramos Mejía a las 07:30</span></a>
+                            </div>
+                        </article>
+                        <article class="tarjeta-viaje" data-zona="Zona Sur" data-localidad="Lanús" data-dia="Lunes" data-franja="tarde">
+                            <div class="viaje-hora"><strong>13:30</strong><span>Lunes</span></div>
+                            <div class="d-flex flex-column gap-2">
+                                <h3 class="viaje-ruta ruta mb-0"><span>Lanús</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                <ul class="datos">
+                                    <li>Zona Sur</li>
+                                    <li>Aporte <strong>$3.200</strong></li>
+                                    <li>45 min</li>
+                                </ul>
+                                <p class="d-flex align-items-center gap-2 mb-0 small"><span class="avatar" aria-hidden="true">JM</span><span>Joaquín Medina<br><span class="texto-suave">FAIN · 5.º año · ★ 4.5</span></span></p>
+                            </div>
+                            <div class="viaje-acciones">
+                                <span class="insignia">1 lugar libre</span>
+                                <a class="btn btn-outline-primary btn-sm" href="secciones/detalle.html">Ver detalle<span class="visually-hidden"> del viaje desde Lanús a las 13:30</span></a>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -196,13 +299,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="assets/js/datos.js" defer></script>
         <script src="assets/js/main.js" defer></script>
-        <script src="assets/js/inicio.js" defer></script>
     </body>
 </html>

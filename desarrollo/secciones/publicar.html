@@ -44,35 +44,73 @@
         <main id="contenido">
             <div class="cabecera-pagina container">
                 <h1>Publicar un viaje</h1>
-                <p class="mt-2 mb-0">Completá los tres pasos y revisá cómo lo van a ver los pasajeros antes de publicarlo.</p>
+                <p class="mt-2 mb-0">Completá los tres pasos para publicar tu viaje. Los pasajeros te van a encontrar desde Buscar viajes.</p>
             </div>
             <div class="container">
                 <div class="row g-4">
                     <div class="col-12 col-lg-7">
-                        <div id="exito-publicar" class="d-none mb-3" role="status"></div>
-                        <form id="form-publicar" class="panel">
-                            <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                        <div id="exito-publicar" class="alert alert-success d-none mb-3" role="status" tabindex="-1">
+                            <strong>¡Viaje publicado!</strong> Ya aparece para los pasajeros. Vas a ver las solicitudes en <a href="mis-viajes.html">Mis viajes</a>.
+                        </div>
+                        <form class="panel validar" data-exito="exito-publicar" novalidate>
 
                             <fieldset>
                                 <legend class="h5 fw-bold">1. Ruta</legend>
                                 <div class="row g-3">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="p-zona">Zona de origen</label>
-                                        <select class="form-select" id="p-zona" name="zona" required>
-                                            <option value="">Elegí una zona</option>
-                                            <option>CABA</option>
-                                            <option>Zona Oeste</option>
-                                            <option>Zona Norte</option>
-                                            <option>Zona Sur</option>
+                                    <div class="col-12">
+                                        <label class="form-label" for="p-origen">Localidad de salida</label>
+                                        <select class="form-select" id="p-origen" name="origen" required>
+                                            <option value="">Elegí tu localidad</option>
+                                            <optgroup label="CABA">
+                                                <option>Palermo</option>
+                                                <option>Belgrano</option>
+                                                <option>Caballito</option>
+                                                <option>Flores</option>
+                                                <option>Villa Urquiza</option>
+                                                <option>Villa Devoto</option>
+                                                <option>Almagro</option>
+                                                <option>Recoleta</option>
+                                                <option>Núñez</option>
+                                                <option>Villa del Parque</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Norte">
+                                                <option>Vicente López</option>
+                                                <option>Olivos</option>
+                                                <option>Florida</option>
+                                                <option>Martínez</option>
+                                                <option>San Isidro</option>
+                                                <option>San Fernando</option>
+                                                <option>Tigre</option>
+                                                <option>Benavídez</option>
+                                                <option>Escobar</option>
+                                                <option>Pilar</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Oeste">
+                                                <option>Ramos Mejía</option>
+                                                <option>Haedo</option>
+                                                <option>Morón</option>
+                                                <option>Castelar</option>
+                                                <option>Ituzaingó</option>
+                                                <option>San Justo</option>
+                                                <option>Ciudadela</option>
+                                                <option>Caseros</option>
+                                                <option>Merlo</option>
+                                                <option>Moreno</option>
+                                            </optgroup>
+                                            <optgroup label="Zona Sur">
+                                                <option>Avellaneda</option>
+                                                <option>Lanús</option>
+                                                <option>Banfield</option>
+                                                <option>Lomas de Zamora</option>
+                                                <option>Adrogué</option>
+                                                <option>Temperley</option>
+                                                <option>Quilmes</option>
+                                                <option>Bernal</option>
+                                                <option>Berazategui</option>
+                                                <option>Ezeiza</option>
+                                            </optgroup>
                                         </select>
-                                        <div class="invalid-feedback">Elegí una zona.</div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="p-origen">Localidad</label>
-                                        <select class="form-select" id="p-origen" name="origen" required data-zona="p-zona" data-vacio="Elegí una localidad" disabled>
-                                            <option value="">Primero elegí la zona</option>
-                                        </select>
-                                        <div class="invalid-feedback">Elegí tu localidad.</div>
+                                        <div class="invalid-feedback">Elegí desde qué localidad salís.</div>
                                     </div>
                                     <div class="col-12">
                                         <p class="nota-privacidad mb-0"><i class="bi bi-telephone" aria-hidden="true"></i><span>No hace falta poner el punto de encuentro: lo coordinás por teléfono con cada pasajero cuando aceptás su solicitud. Elijan siempre un lugar público.</span></p>
@@ -105,14 +143,10 @@
                                         <input class="form-control" id="p-hora" name="hora" type="time" required>
                                         <div class="invalid-feedback">Indicá la hora de salida.</div>
                                     </div>
-                                    <div class="col-12">
-                                        <p class="form-label mb-1" id="p-lugares-rotulo">Lugares disponibles</p>
-                                        <div class="contador" role="group" aria-labelledby="p-lugares-rotulo">
-                                            <button type="button" id="menos" aria-label="Quitar un lugar">−</button>
-                                            <output id="p-lugares" aria-live="polite">2</output>
-                                            <button type="button" id="mas" aria-label="Agregar un lugar">+</button>
-                                        </div>
-                                        <p class="form-text mb-0">Entre 1 y 4 lugares.</p>
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label" for="p-lugares">Lugares disponibles</label>
+                                        <input class="form-control" id="p-lugares" name="lugares" type="number" required min="1" max="4" value="2">
+                                        <div class="invalid-feedback">Indicá entre 1 y 4 lugares.</div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -159,10 +193,14 @@
                     </div>
 
                     <div class="col-12 col-lg-5">
-                        <aside class="pegajoso" aria-labelledby="titulo-vista">
-                            <h2 id="titulo-vista" class="h5"><i class="bi bi-eye me-2" aria-hidden="true"></i>Así lo van a ver los pasajeros</h2>
-                            <p class="texto-suave small">Vista previa: se actualiza mientras completás el formulario.</p>
-                            <div id="vista-previa"></div>
+                        <aside class="panel pegajoso" aria-labelledby="titulo-consejos">
+                            <h2 id="titulo-consejos" class="h5"><i class="bi bi-lightbulb me-2" aria-hidden="true"></i>Consejos para publicar</h2>
+                            <ul class="lista-reglas">
+                                <li><i class="bi bi-check-circle" aria-hidden="true"></i>Poné una hora realista: contá el tránsito de la mañana.</li>
+                                <li><i class="bi bi-check-circle" aria-hidden="true"></i>Un aporte justo divide nafta y peajes entre todos.</li>
+                                <li><i class="bi bi-check-circle" aria-hidden="true"></i>El punto exacto lo acordás por teléfono con cada pasajero.</li>
+                                <li><i class="bi bi-check-circle" aria-hidden="true"></i>Respondé las solicitudes rápido desde Mis viajes.</li>
+                            </ul>
                         </aside>
                     </div>
                 </div>
@@ -194,13 +232,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/publicar.js" defer></script>
     </body>
 </html>

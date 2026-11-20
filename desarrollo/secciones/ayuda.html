@@ -106,9 +106,8 @@
                     <section class="col-12 col-lg-5" aria-labelledby="titulo-contacto">
                         <div class="panel">
                             <h2 id="titulo-contacto" class="h4">Escribinos</h2>
-                            <div id="exito-contacto" class="d-none mt-3" role="status"></div>
-                            <form class="validar mt-3" data-exito="exito-contacto" data-mensaje="Gracias, recibimos tu mensaje. Te respondemos en 48 horas hábiles a tu mail.">
-                                <p class="resumen-errores alert alert-danger d-none" role="alert"></p>
+                            <div id="exito-contacto" class="alert alert-success d-none mt-3" role="status" tabindex="-1">Gracias, recibimos tu mensaje. Te respondemos en 48 horas hábiles a tu mail.</div>
+                            <form class="validar mt-3" data-exito="exito-contacto" novalidate>
                                 <div class="mb-3">
                                     <label class="form-label" for="c-nombre">Nombre</label>
                                     <input class="form-control" id="c-nombre" name="nombre" type="text" required minlength="2" maxlength="40" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]{2,40}" data-solo="letras" autocomplete="name">
@@ -169,12 +168,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
     </body>
 </html>

@@ -47,7 +47,7 @@
                 <p class="mt-2 mb-0">Seguí tus solicitudes como pasajero o respondé los pedidos de lugar de los viajes que publicaste.</p>
             </div>
             <div class="container">
-                <ul class="nav nav-pills gap-2 mb-3" id="pestanas" role="tablist">
+                <ul class="nav nav-pills gap-2 mb-3" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="tab-solicitudes" data-bs-toggle="pill" data-bs-target="#panel-solicitudes" type="button" role="tab" aria-controls="panel-solicitudes" aria-selected="true">Mis solicitudes</button>
                     </li>
@@ -56,18 +56,83 @@
                     </li>
                 </ul>
 
-                <p id="aviso-mis-viajes" class="visually-hidden" role="status" aria-live="polite"></p>
-
                 <div class="tab-content">
                     <section class="tab-pane fade show active" id="panel-solicitudes" role="tabpanel" aria-labelledby="tab-solicitudes" tabindex="0">
                         <h2 class="visually-hidden">Mis solicitudes</h2>
-                        <div id="lista-solicitudes" class="d-grid gap-3"></div>
+                        <div class="d-grid gap-3">
+                            <article class="panel d-flex flex-column flex-md-row gap-3 justify-content-between align-items-md-center">
+                                <div>
+                                    <h3 class="ruta h6 mb-2"><span>Ramos Mejía</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                    <p class="mb-0 small texto-suave">Lunes 07:30 · Martina Pereyra · $3.500</p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2"><span class="insignia aceptada">Aceptada</span><a class="btn btn-primary btn-sm" href="confirmacion.html">Ver contacto del chofer</a></div>
+                            </article>
+                            <article class="panel d-flex flex-column flex-md-row gap-3 justify-content-between align-items-md-center">
+                                <div>
+                                    <h3 class="ruta h6 mb-2"><span>Villa Devoto</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                    <p class="mb-0 small texto-suave">Martes 07:45 · Bruno López · $2.000</p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2"><span class="insignia pendiente">Pendiente</span><span class="small texto-suave">Esperando respuesta</span></div>
+                            </article>
+                            <article class="panel d-flex flex-column flex-md-row gap-3 justify-content-between align-items-md-center">
+                                <div>
+                                    <h3 class="ruta h6 mb-2"><span>Quilmes</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                                    <p class="mb-0 small texto-suave">Miércoles 07:30 · Lucía Benítez · $4.200</p>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2"><span class="insignia rechazada">Rechazada</span><a class="btn btn-outline-primary btn-sm" href="buscar.html">Buscar otro viaje</a></div>
+                            </article>
+                        </div>
                     </section>
                     <section class="tab-pane fade" id="panel-publicados" role="tabpanel" aria-labelledby="tab-publicados" tabindex="0">
                         <h2 class="visually-hidden">Viajes que publiqué</h2>
-                        <div id="lista-publicados" class="d-grid gap-3"></div>
+                        <article class="panel">
+                            <h3 class="ruta h6 mb-2"><span>Castelar</span><span class="linea-ruta" aria-hidden="true"></span><span>UADE Monserrat</span></h3>
+                            <p class="mb-0 small texto-suave">Miércoles 07:30 · 2 lugares · $3.300</p>
+                            <ul class="list-unstyled d-grid gap-3 mt-3 mb-0">
+                                <li class="border-top pt-3 d-flex flex-column flex-md-row gap-2 justify-content-between">
+                                    <div class="d-flex gap-2"><span class="avatar" aria-hidden="true">VG</span><div><strong>Valentina Gómez</strong> <span class="small texto-suave">FADI · 2.º año</span><p class="mb-0 small">“Salgo de Morón y puedo caminar hasta la estación.”</p></div></div>
+                                    <div class="d-flex flex-wrap align-items-center gap-2"><span class="insignia pendiente">Pendiente</span><button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modal-aceptar">Aceptar<span class="visually-hidden"> a Valentina Gómez</span></button><button class="btn btn-outline-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modal-rechazar">Rechazar<span class="visually-hidden"> a Valentina Gómez</span></button></div>
+                                </li>
+                                <li class="border-top pt-3 d-flex flex-column flex-md-row gap-2 justify-content-between">
+                                    <div class="d-flex gap-2"><span class="avatar" aria-hidden="true">BL</span><div><strong>Bruno López</strong> <span class="small texto-suave">FAJU · 3.º año</span></div></div>
+                                    <div class="d-flex flex-wrap align-items-center gap-2"><span class="insignia aceptada">Aceptada</span></div>
+                                </li>
+                            </ul>
+                        </article>
                         <p class="mt-3"><a class="btn btn-outline-primary" href="publicar.html"><i class="bi bi-plus-circle" aria-hidden="true"></i>Publicar otro viaje</a></p>
                     </section>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal-aceptar" tabindex="-1" aria-labelledby="titulo-modal-aceptar" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title h5" id="titulo-modal-aceptar">¿Aceptar a Valentina Gómez?</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">Al aceptar, Valentina va a ver tu teléfono para coordinar el punto de encuentro, y vos el de ella.</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-accion" data-bs-dismiss="modal">Sí, aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal-rechazar" tabindex="-1" aria-labelledby="titulo-modal-rechazar" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title h5" id="titulo-modal-rechazar">¿Rechazar a Valentina Gómez?</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">Valentina va a ver que su solicitud fue rechazada. No se comparte ningún dato de contacto.</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-accion" data-bs-dismiss="modal">Sí, rechazar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -97,13 +162,11 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© <span id="anio">2026</span> FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
+                <p class="border-top border-light-subtle pt-3 mt-4 mb-0 small">© 2026 FacuPool · Trabajo Práctico Obligatorio, Diseño y Desarrollo Web, UADE. Los viajes son datos de ejemplo.</p>
             </div>
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
-        <script src="../assets/js/datos.js" defer></script>
         <script src="../assets/js/main.js" defer></script>
-        <script src="../assets/js/mis-viajes.js" defer></script>
     </body>
 </html>

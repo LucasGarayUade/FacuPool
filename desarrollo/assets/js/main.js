@@ -1,89 +1,105 @@
-function prepararValidacion(formulario, alEnviarBien) {
-    formulario.setAttribute("novalidate", "");
-
-    formulario.addEventListener("submit", function (evento) {
-        evento.preventDefault();
-
-        const resumen = formulario.querySelector(".resumen-errores");
-
-        if (!formulario.checkValidity()) {
-            formulario.classList.add("was-validated");
-
-            const invalidos = formulario.querySelectorAll("input:invalid, select:invalid, textarea:invalid");
-            if (resumen) {
-                resumen.textContent = invalidos.length === 1
-                    ? "Revisá 1 campo marcado en rojo."
-                    : "Revisá los " + invalidos.length + " campos marcados en rojo.";
-                resumen.classList.remove("d-none");
-            }
-            if (invalidos.length) {
-                invalidos[0].focus();
-            }
-            return;
-        }
-
-        if (resumen) {
-            resumen.classList.add("d-none");
-        }
-        formulario.classList.remove("was-validated");
-        alEnviarBien(formulario);
-    });
-}
-
-function mostrarExito(contenedor, mensajeHTML) {
-    contenedor.innerHTML = '<div class="alert alert-success mb-0" role="alert">' + mensajeHTML + "</div>";
-    contenedor.classList.remove("d-none");
-    contenedor.setAttribute("tabindex", "-1");
-    contenedor.focus();
-}
-
 const CARACTERES_PERMITIDOS = {
     numeros: /[^0-9]/g,
     letras: /[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ' ]/g,
     direccion: /[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9 .,°º-]/g
 };
 
-function limpiarCampo(campo) {
-    const limpio = campo.value.replace(CARACTERES_PERMITIDOS[campo.dataset.solo], "");
-    if (limpio !== campo.value) {
-        campo.value = limpio;
+function limpiarCampo(evento) {
+    const campo = evento.target;
+    const tipo = campo.dataset.solo;
+    campo.value = campo.value.replace(CARACTERES_PERMITIDOS[tipo], "");
+}
+
+function validarFormulario(evento) {
+    evento.preventDefault();
+    const formulario = evento.target;
+
+    if (!formulario.checkValidity()) {
+        formulario.classList.add("was-validated");
+        const primerError = formulario.querySelector("input:invalid, select:invalid, textarea:invalid");
+        primerError.focus();
+        return;
     }
+
+    formulario.classList.remove("was-validated");
+    formulario.reset();
+
+    const mensaje = document.getElementById(formulario.dataset.exito);
+    mensaje.classList.remove("d-none");
+    mensaje.focus();
+}
+
+function mostrarClave(evento) {
+    const boton = evento.currentTarget;
+    const campo = document.getElementById(boton.dataset.campo);
+
+    if (campo.type === "password") {
+        campo.type = "text";
+        boton.textContent = "Ocultar";
+    } else {
+        campo.type = "password";
+        boton.textContent = "Mostrar";
+    }
+}
+
+function filtrarViajes() {
+    const origen = document.getElementById("f-origen").value;
+    const dia = document.getElementById("f-dia").value;
+    const franja = document.getElementById("f-franja").value;
+    const tarjetas = document.querySelectorAll("#resultados .tarjeta-viaje");
+    let visibles = 0;
+
+    tarjetas.forEach(function (tarjeta) {
+        const coincideOrigen = origen === "" || tarjeta.dataset.zona === origen || tarjeta.dataset.localidad === origen;
+        const coincideDia = dia === "" || tarjeta.dataset.dia === dia;
+        const coincideFranja = franja === "" || tarjeta.dataset.franja === franja;
+
+        if (coincideOrigen && coincideDia && coincideFranja) {
+            tarjeta.classList.remove("d-none");
+            visibles++;
+        } else {
+            tarjeta.classList.add("d-none");
+        }
+    });
+
+    document.getElementById("cantidad").textContent = "Mostrando " + visibles + " de " + tarjetas.length + " viajes.";
+
+    if (visibles === 0) {
+        document.getElementById("sin-resultados").classList.remove("d-none");
+    } else {
+        document.getElementById("sin-resultados").classList.add("d-none");
+    }
+}
+
+function prepararBuscador(formulario) {
+    const parametros = new URLSearchParams(window.location.search);
+    document.getElementById("f-origen").value = parametros.get("origen") || "";
+    document.getElementById("f-dia").value = parametros.get("dia") || "";
+
+    formulario.addEventListener("change", filtrarViajes);
+    formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+        filtrarViajes();
+    });
+
+    filtrarViajes();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("[data-solo]").forEach(function (campo) {
-        campo.addEventListener("input", function () {
-            limpiarCampo(campo);
-        });
-    });
-
-    const anio = document.getElementById("anio");
-    if (anio) {
-        anio.textContent = new Date().getFullYear();
-    }
-
-    document.querySelectorAll("select[data-zona]").forEach(function (selectLocalidad) {
-        const selectZona = document.getElementById(selectLocalidad.dataset.zona);
-        const textoVacio = selectLocalidad.dataset.vacio;
-
-        llenarLocalidades(selectZona, selectLocalidad, textoVacio);
-        selectZona.addEventListener("change", function () {
-            selectLocalidad.dataset.valor = "";
-            llenarLocalidades(selectZona, selectLocalidad, textoVacio);
-        });
+        campo.addEventListener("input", limpiarCampo);
     });
 
     document.querySelectorAll("form.validar").forEach(function (formulario) {
-        prepararValidacion(formulario, function (form) {
-            if (form.dataset.enviar === "si") {
-                form.submit();
-                return;
-            }
-            const destino = document.getElementById(form.dataset.exito);
-            if (destino) {
-                mostrarExito(destino, form.dataset.mensaje || "Listo, recibimos tus datos.");
-            }
-            form.reset();
-        });
+        formulario.addEventListener("submit", validarFormulario);
     });
+
+    document.querySelectorAll(".ver-clave").forEach(function (boton) {
+        boton.addEventListener("click", mostrarClave);
+    });
+
+    const buscador = document.getElementById("form-filtro");
+    if (buscador) {
+        prepararBuscador(buscador);
+    }
 });
